@@ -66,7 +66,7 @@ are successful outcomes when they protect people or purpose.
 
 ## Status and validation
 
-Version 1.0.0-rc.3 is the framework-first v1.0.0 release candidate. Repository
+Version 1.0.0-rc.4 is the framework-first v1.0.0 release candidate. Repository
 checks are intentionally limited to document integrity:
 
 ```bash

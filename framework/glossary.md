@@ -20,8 +20,11 @@ intelligence collection.
 
 ## Do not contact
 
-An accountable human decision that direct outreach should not occur unless a
-later accountable decision changes the boundary for a documented reason.
+An accountable decision that direct outreach should not occur. When the
+affected person or their authorized representative set the boundary, only their
+later affirmative direction can change it. When the practitioner set an
+internal precaution, an accountable practitioner may reconsider it for a
+documented reason after reviewing current context and risk.
 
 It is a protective outcome, not a judgment of a person's value.
 

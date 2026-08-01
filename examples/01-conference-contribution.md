@@ -71,11 +71,15 @@ the forum uses or endorses the checklist unless organizers say so.
 
 The maintainers accept several checklist items but explain that they already
 have a longer guide. They ask Mara to improve two examples instead of publishing
-a competing document.
+a competing document. After the event, an open attendee-feedback thread and the
+organizer's public lessons specifically request a short guide to captioning
+demonstration videos.
 
 Mara records that her assumption about the missing artifact was wrong, while
-the underlying need was real. She contributes the two examples and abandons the
-new guide. The lesson is to look for maintained community resources before
+the underlying need was real. She contributes the two examples, abandons the
+new checklist, and treats the captioning request as a separately evidenced
+future contribution rather than inferring a gap from the agenda. The lesson is
+to look for maintained community resources and direct community signals before
 creating a replacement.
 
 ## Result

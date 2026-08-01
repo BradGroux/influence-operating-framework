@@ -2,7 +2,7 @@
 
 All notable changes to the Influence Operating Framework are documented here.
 
-## 1.0.0-rc.3 — Unreleased
+## 1.0.0-rc.4 — Unreleased
 
 ### Changed
 
@@ -16,6 +16,10 @@ All notable changes to the Influence Operating Framework are documented here.
 - Replaced schema-based records and profiles with three readable fictional
   examples.
 - Embedded only the Mermaid diagrams that materially clarify the framework.
+- Distinguished recipient-set communication boundaries from internal
+  practitioner precautions.
+- Diversified examples across event contribution, nonprofit sponsorship, and
+  assisted open-source work.
 
 ### Removed
 
@@ -25,6 +29,13 @@ All notable changes to the Influence Operating Framework are documented here.
 - Technical release-assurance tests and reports tied to the superseded toolkit.
 
 ## Pre-release history
+
+### 1.0.0-rc.3 — 2026-08-01
+
+- Produced the first framework-first candidate.
+- Independent application review returned GO; adversarial review identified two
+  Material findings involving recipient-set boundaries and narrow examples.
+- Superseded by rc.4 after accepting both findings.
 
 ### 1.0.0-rc.2 — 2026-08-01
 

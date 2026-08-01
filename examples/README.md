@@ -13,10 +13,12 @@ domain expert.
 
 1. [Conference contribution](01-conference-contribution.md) — use purpose and
    context to turn event preparation into a bounded contribution.
-2. [Relationship continuity](02-relationship-continuity.md) — honor a promise
-   without manufacturing a follow-up cadence.
-3. [No-contact decision](03-no-contact-decision.md) — respect an organizer's
-   published boundary while still using an open participation path.
+2. [Community sponsorship boundary](02-community-sponsorship-boundary.md) — let
+   a mission-led group protect participant consent and community authority when
+   funding creates pressure.
+3. [Assisted open-source contribution](03-assisted-open-source-contribution.md)
+   — use AI assistance for public research and drafting without surrendering
+   evidence, contribution, or external-action judgment.
 
 Read each example first as a short case, then use the six-concern review to see
 how the framework shaped the judgment.

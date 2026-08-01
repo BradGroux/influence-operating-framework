@@ -63,6 +63,20 @@ than manufacturing agreement.
 Known communication preferences, requests to wait, and do-not-contact decisions
 take precedence over an opportunity to engage. Silence is not consent.
 
+The origin of a boundary determines who can change it:
+
+- A boundary communicated by the affected person, or by a representative
+  authorized to act for them, can be changed only by later affirmative
+  direction from that person or their authorized representative.
+- An internal precaution set by the practitioner can be reconsidered by an
+  accountable practitioner for a documented reason after current context and
+  risk are reviewed.
+
+Elapsed time, a new opportunity, a different channel, or lack of response does
+not reverse a recipient-set boundary. A genuine legal or immediate-safety duty
+may require action under the rules governing that duty, but it does not create
+permission for ordinary influence engagement.
+
 A direct communication should have:
 
 - a truthful and current reason;
@@ -73,8 +87,7 @@ A direct communication should have:
 - an accountable person who reviews and chooses the action.
 
 Do not contact is a normal protective decision, not a negative judgment of a
-person. A later change requires an accountable human reason; a tool may not
-remove or weaken the boundary automatically.
+person. A tool may not remove or weaken any such boundary automatically.
 
 ## Human judgment and assisted work
 
