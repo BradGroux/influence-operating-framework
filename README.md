@@ -31,6 +31,14 @@ python3 scripts/validate.py
 
 The validator checks repository structure, JSON Schemas and every fictional example, linked record IDs, Markdown links, public-data safety, external-action boundaries, visual sources and renders, and the generated index. It rewrites [the validation report](reports/validation-report.md) with explicit passed, failed, and deferred items.
 
+When records have changed since a prior authoritative export, verify that human decision histories were only appended:
+
+```bash
+python3 scripts/validate.py --only schemas --baseline-root /path/to/authoritative-snapshot --no-report
+```
+
+No self-contained current snapshot can prove that omitted prior history never existed; release and private-overlay procedures must retain the authoritative baseline used by this check.
+
 To rerender diagrams separately:
 
 ```bash
@@ -47,7 +55,7 @@ Everything committed here is safe for public review. Real sensitive notes, perso
 
 ## Status
 
-Version 0.1.0 is an initial inspectable baseline. It does not claim independent ethics, privacy, accessibility, legal, or domain review. See [project status](project/planning/status.md), [decisions](decisions/locked-decisions.md), and [the validation report](reports/validation-report.md).
+Version 1.0.0-rc.1 is a local release candidate under independent review. It is not the final v1.0.0 release and does not claim independent ethics, privacy, accessibility, legal, or domain approval. See [v1.0.0 release criteria](project/specifications/v1.0.0-release-criteria.md), [project status](project/planning/status.md), and [the validation report](reports/validation-report.md).
 
 ## License
 

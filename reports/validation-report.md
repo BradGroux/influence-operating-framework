@@ -1,6 +1,6 @@
 # Validation report
 
-**Repository version:** 0.1.0
+**Repository version:** 1.0.0-rc.1
 **Overall:** PASS
 **Command:** `python3 scripts/validate.py`
 
@@ -11,14 +11,14 @@ This report records direct repository checks. It does not convert owner decision
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | index | PASS | INDEX.md is current |
-| links | PASS | 241 repository-local Markdown links resolve |
+| links | PASS | 267 repository-local Markdown links resolve |
 | public-data-safety | PASS | public examples are fictional, public-classified, and contain no non-reserved email addresses |
 | outreach-safety | PASS | approve, revise, wait, and do-not-contact are explicit; schema and contracts expose no sender |
-| schemas | PASS | 13 schemas and 13 fictional records validate under Draft 2020-12 |
-| graph-references | PASS | all references resolve across 13 stable record IDs |
-| structure | PASS | 100 required repository artifacts exist |
+| schemas | PASS | 13 schemas and 18 fictional records validate under Draft 2020-12 |
+| graph-references | PASS | all references resolve across 18 stable record IDs |
+| structure | PASS | 108 required repository artifacts exist |
 | documentation | PASS | 17 canonical docs and all agent contracts are substantive and complete |
-| tests | PASS | 15 acceptance tests pass |
+| tests | PASS | 44 acceptance tests pass |
 | visuals | PASS | 12 Mermaid sources have synchronized SVG, PNG, metadata, and accessible descriptions |
 | report | PASS | deterministic full-gate report regenerated and read back |
 
@@ -28,7 +28,7 @@ No automated gate failed.
 
 ## Visual inspection
 
-Representative complex renders passed the recorded [visual inspection](../project/reviews/initial-visual-inspection.md). This is not an independent accessibility review.
+The release-candidate lifecycle change passed the recorded [visual readback](../project/reviews/v1.0.0-rc.1-visual-readback-2026-08-01.md). This is not an independent human accessibility review.
 
 ## Deferred items
 
@@ -39,8 +39,10 @@ Representative complex renders passed the recorded [visual inspection](../projec
 | Dedicated private security and conduct channel | DEFERRED | Owner publishes an appropriate monitored private channel. |
 | Release signing and long-term cadence | DEFERRED | Maintainers approve signing, custody, and cadence policy. |
 | Tool-specific private overlay and messaging integrations | DEFERRED | Separate proposals pass privacy, access, retention, and external-action review. |
-| Independent ethics, privacy, accessibility, legal, and domain review | DEFERRED | Qualified reviewers complete reviews and dispositions before a 1.0.0 maturity claim. |
-| Independent verification of Brad profile statements | DEFERRED | Owner approves source-based public research; 0.1.0 remains explicitly owner-supplied. |
+| Fresh post-fix two-agent review | DEFERRED | Both independent agents review the same exact hardened candidate SHA with no unresolved Blocker or Material findings. |
+| Independent ethics, privacy, accessibility, legal, and domain review | DEFERRED | Qualified human reviewers complete reviews and dispositions before a final 1.0.0 maturity claim. |
+| Independent verification of Brad profile statements | DEFERRED | Owner approves source-based public research; the release candidate remains explicitly owner-supplied. |
+| Final owner approval | DEFERRED | Owner reads the validation and review dispositions and approves the final commit and annotated tag. |
 
 ## Safety conclusion
 

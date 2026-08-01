@@ -13,6 +13,23 @@
       "uniqueItems": true,
       "default": []
     },
+    "passiveExtensionKey": {
+      "allOf": [
+        { "pattern": "^[a-z][a-z0-9_.-]*$" },
+        { "not": { "pattern": "(^|[._-])(send|sender|sending|credential|credentials|secret|token|password|key|privatekey|apikey|delivery|campaign|retry|webhook)($|[._-])" } }
+      ]
+    },
+    "passiveExtensionValue": {
+      "oneOf": [
+        { "type": ["string", "number", "integer", "boolean", "null"] },
+        { "type": "array", "items": { "$ref": "#/$defs/passiveExtensionValue" } },
+        {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/passiveExtensionKey" },
+          "additionalProperties": { "$ref": "#/$defs/passiveExtensionValue" }
+        }
+      ]
+    },
     "record": {
       "type": "object",
       "required": [
@@ -34,7 +51,7 @@
         "$schema": { "type": "string", "format": "uri" },
         "id": { "$ref": "#/$defs/stableId" },
         "record_type": { "type": "string" },
-        "schema_version": { "const": "1.0.0" },
+        "schema_version": { "const": "2.0.0" },
         "created_at": { "type": "string", "format": "date-time" },
         "updated_at": { "type": "string", "format": "date-time" },
         "status": {
@@ -44,13 +61,71 @@
         "privacy": { "enum": ["public", "community", "private", "sensitive"] },
         "evidence_ids": { "$ref": "#/$defs/stableIdArray" },
         "human_notes": { "type": "string" },
-        "extensions": { "type": "object", "additionalProperties": true },
+        "extensions": {
+          "type": "object",
+          "propertyNames": {
+            "allOf": [
+              { "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)+$" },
+              { "$ref": "#/$defs/passiveExtensionKey" }
+            ]
+          },
+          "additionalProperties": { "$ref": "#/$defs/passiveExtensionValue" }
+        },
         "fictional": { "type": "boolean" }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "allOf": [
+              { "not": { "properties": { "record_type": { "const": "evidence" } }, "required": ["record_type"] } },
+              {
+                "anyOf": [
+                  { "properties": { "status": { "const": "verified" } }, "required": ["status"] },
+                  { "properties": { "confidence": { "const": "high" } }, "required": ["confidence"] }
+                ]
+              }
+            ]
+          },
+          "then": { "properties": { "evidence_ids": { "minItems": 1 } } }
+        }
+      ]
     },
     "nonEmptyString": { "type": "string", "minLength": 1 },
+    "unknownValue": {
+      "type": "object",
+      "required": ["state", "reason"],
+      "properties": {
+        "state": { "const": "unknown" },
+        "reason": { "$ref": "#/$defs/nonEmptyString" }
+      },
+      "additionalProperties": false
+    },
+    "knownOrUnknownString": {
+      "oneOf": [
+        { "$ref": "#/$defs/nonEmptyString" },
+        { "$ref": "#/$defs/unknownValue" }
+      ]
+    },
+    "knownOrUnknownDateTime": {
+      "oneOf": [
+        { "type": "string", "format": "date-time" },
+        { "$ref": "#/$defs/unknownValue" }
+      ]
+    },
     "claimType": { "enum": ["fact", "inference", "hypothesis"] },
     "humanDisposition": { "enum": ["approve", "revise", "wait", "do_not_contact"] },
+    "outreachApprovalScope": {
+      "type": "object",
+      "required": ["outreach_draft_id", "recipient_person_id", "content_sha256", "channel", "expires_at"],
+      "properties": {
+        "outreach_draft_id": { "$ref": "#/$defs/stableId" },
+        "recipient_person_id": { "$ref": "#/$defs/stableId" },
+        "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "channel": { "$ref": "#/$defs/nonEmptyString" },
+        "expires_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
     "humanDecision": {
       "type": "object",
       "required": ["decision_id", "state", "decided_by_person_id", "decided_at", "reason"],
@@ -61,7 +136,8 @@
         "decided_at": { "type": "string", "format": "date-time" },
         "reason": { "$ref": "#/$defs/nonEmptyString" },
         "supersedes_decision_id": { "$ref": "#/$defs/stableId" },
-        "review_after": { "type": "string", "format": "date" }
+        "review_after": { "type": "string", "format": "date" },
+        "approval_scope": { "$ref": "#/$defs/outreachApprovalScope" }
       },
       "additionalProperties": false
     }

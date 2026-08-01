@@ -4,7 +4,7 @@ Visuals are maintained framework artifacts, not decoration. They clarify relatio
 
 ## Required set
 
-The 0.1.0 baseline includes framework overview, influence lifecycle, ecosystem map, relationship graph model, event intelligence workflow, contribution-before-ask, human-reviewed outreach, reflection and learning loop, measurement model, automation architecture, profile-to-framework relationship, and repository information architecture.
+The maintained visual set includes framework overview, influence lifecycle, ecosystem map, relationship graph model, event intelligence workflow, contribution-before-ask, human-reviewed outreach, reflection and learning loop, measurement model, automation architecture, profile-to-framework relationship, and repository information architecture.
 
 ## Visual grammar
 

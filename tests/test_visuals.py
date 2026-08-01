@@ -36,6 +36,14 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertNotEqual(0, result.returncode)
         self.assertIn("hash mismatch", result.stdout)
 
+    def test_lifecycle_visual_preserves_all_eleven_stages_and_repeat_decision(self) -> None:
+        source = (ROOT / "visuals" / "source" / "influence-lifecycle.mmd").read_text(encoding="utf-8")
+        description = (ROOT / "visuals" / "descriptions" / "influence-lifecycle.md").read_text(encoding="utf-8")
+        for stage in ("Discover", "Research", "Verify", "Map", "Prioritize", "Contribute", "Engage", "Follow up", "Reflect", "Improve", "Repeat"):
+            self.assertIn(stage, source)
+        self.assertIn("Repeat", description)
+        self.assertIn("human", description.lower())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,7 +1,7 @@
 # Organization: [public or fictional name]
 
 **Stable ID:**
-**Type:** nonprofit / community / education / company / media / project / other
+**Type:** nonprofit / community / education / company / media / open_source_project / other
 **Status / confidence / privacy:**
 **Last reviewed:**
 

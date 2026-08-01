@@ -6,7 +6,7 @@
     { "$ref": "common.schema.json#/$defs/record" },
     {
       "type": "object",
-      "required": ["subject_ids", "reflection_type", "what_happened", "expected_outcome", "actual_outcome", "what_worked", "what_failed", "surprises", "changes", "repeat", "artifact", "challenged_assumption", "locked_decision_review_needed"],
+      "required": ["subject_ids", "reflection_type", "what_happened", "expected_outcome", "actual_outcome", "observed_evidence", "interpretation", "what_worked", "what_failed", "surprises", "beneficiaries", "burdens", "changes", "repeat", "artifact", "challenged_assumption", "lesson_scope", "artifact_review_targets", "authorized_reader_scope", "locked_decision_review_needed"],
       "properties": {
         "record_type": { "const": "reflection" },
         "subject_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
@@ -14,13 +14,25 @@
         "what_happened": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "expected_outcome": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "actual_outcome": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "observed_evidence": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "interpretation": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "what_worked": { "type": "string" },
         "what_failed": { "type": "string" },
         "surprises": { "type": "string" },
+        "beneficiaries": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/nonEmptyString" }, "minItems": 1, "uniqueItems": true },
+        "burdens": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/nonEmptyString" }, "minItems": 1, "uniqueItems": true },
         "changes": { "type": "string" },
         "repeat": { "type": "string" },
         "artifact": { "type": "string" },
         "challenged_assumption": { "type": "string" },
+        "lesson_scope": { "enum": ["profile_local", "potentially_canonical"] },
+        "artifact_review_targets": {
+          "type": "array",
+          "items": { "enum": ["profile", "workflow", "template", "schema", "locked_decision", "none"] },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "authorized_reader_scope": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "locked_decision_review_needed": { "type": "boolean" }
       }
     }

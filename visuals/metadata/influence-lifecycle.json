@@ -9,11 +9,11 @@
     "png": "visuals/exports/png/influence-lifecycle.png"
   },
   "description": "visuals/descriptions/influence-lifecycle.md",
-  "accessible_description": "The main path moves from discover through research, verify, map, a human prioritization decision, contribute, a human engagement decision, follow up, reflect, improve, and back to discover. At prioritization, a human can wait or take no action and move to a restartable safe pause, or choose do not contact and enter a separate durable human stop. Engagement review likewise separates revise or wait from do not contact. Only the ordinary pause has a dashed return when evidence or capacity changes. Do not contact can change only through a new accountable human decision with a documented reason; the diagram contains no automatic restart from that state. The loop is adaptable, not a funnel, and research never obligates contact.",
+  "accessible_description": "The main path moves from Discover through Research, Verify, Map, a human Prioritize decision, Contribute, a human Engage decision, Follow up, Reflect, Improve, and a distinct human Repeat decision. Repeat can begin another bounded cycle at Discover, enter a restartable pause, or end the cycle intentionally; improvement never restarts work automatically. At prioritization, a human can wait or take no action and move to the ordinary pause, or choose do not contact and enter a separate durable human stop. Engagement review likewise separates revise or wait from do not contact. Only the ordinary pause has a dashed return when evidence or capacity changes. Do not contact can change only through a new accountable human decision with a documented reason; the diagram contains no automatic restart from that state. The lifecycle is adaptable, not a funnel, and research never obligates contact.",
   "hashes": {
-    "source": "efd59d2531cdca1706ff12e50fb76b8720bf8ebdb14eaea0ca08fcec248480f1",
-    "svg": "cb9645b03c37cb7852c4447cfd7fac81dfce96e4827c28e0bcd008baca73aa17",
-    "png": "16910dbd1dabe6d7a7e795ea1dd0d1c243fa972999006e0f95032c8914a963bb",
-    "description": "a6220324c21bbd9f456b56df48087d4dba28af1ab8d5455f5f3ca853a944b15c"
+    "source": "2e86b392c22ade3ffc2076c0b2413781d96042d43678b649a8cdba0c8916fc8e",
+    "svg": "b1c0535c448c44304953a46bafc633ec41d16de2ee081e7200121fec55e23184",
+    "png": "b1341890789968323d428dc1abb803f8e7015093ed60238a4e2acc06c1406752",
+    "description": "58120596a6429dac1ceb44a0ca2513de1e49a4b8b3425430c1bed61fb705c287"
   }
 }

@@ -2,7 +2,7 @@
 
 ## Stewardship
 
-Brad Groux is the founding steward for the 0.1.0 baseline. Additional maintainers and CODEOWNERS assignments are deferred until accepted explicitly.
+Brad Groux is the founding steward. Additional maintainers and CODEOWNERS assignments are deferred until accepted explicitly.
 
 Stewardship preserves the charter, records material decisions, distinguishes requirements from examples, and reports review limits honestly. Teaching, applying, commercializing, or automating the framework does not independently grant authority to redefine it.
 
@@ -22,7 +22,7 @@ A proposal states the problem, evidence, affected communities, privacy and safet
 
 The project uses semantic versions. Schema documents have their own `schema_version`. Breaking record changes require a migration note and a major schema version. Deprecated fields remain documented for at least one compatible release unless retaining them creates a safety risk.
 
-Release signing, cadence, public hosting, and a 1.0.0 maturity policy are deferred. Every release must run validation and include a truthful status report.
+Release signing, cadence, and public hosting remain deferred. The [v1.0.0 release criteria](project/specifications/v1.0.0-release-criteria.md) define the accepted maturity gate. Every release must run validation and include a truthful status report; no version string or automated PASS can override an open required gate.
 
 ## Lessons into changes
 

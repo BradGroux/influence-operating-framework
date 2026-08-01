@@ -17,13 +17,27 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["owner_id", "description", "status"],
+            "required": ["owner_id", "description", "status", "due_state", "completion_evidence_ids"],
             "properties": {
               "owner_id": { "$ref": "common.schema.json#/$defs/stableId" },
               "description": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
-              "status": { "enum": ["open", "completed", "cancelled"] }
+              "status": { "enum": ["open", "completed", "cancelled"] },
+              "due_state": {
+                "oneOf": [
+                  { "enum": ["planned", "due", "overdue", "completed", "cancelled"] },
+                  { "$ref": "common.schema.json#/$defs/unknownValue" }
+                ]
+              },
+              "due_at": { "type": "string", "format": "date-time" },
+              "completion_evidence_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": { "properties": { "status": { "const": "completed" } }, "required": ["status"] },
+                "then": { "properties": { "completion_evidence_ids": { "minItems": 1 } } }
+              }
+            ]
           }
         }
       }

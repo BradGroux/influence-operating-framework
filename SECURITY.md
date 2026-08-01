@@ -2,7 +2,7 @@
 
 Do not publish vulnerabilities, private contact data, consent records, or sensitive relationship context in a public issue.
 
-The repository does not yet publish a dedicated private reporting address. Until one is approved, contact Brad Groux through an already trusted private channel and include only the minimum information necessary to coordinate a safer transfer. This is an explicit 0.1.0 deferral.
+The repository does not yet publish a dedicated private reporting address. Until one is approved, contact Brad Groux through an already trusted private channel and include only the minimum information necessary to coordinate a safer transfer. This is an explicit final-v1.0.0 release blocker, not an accessible route for a new reporter.
 
 Reports should identify the affected artifact, likely impact, reproduction conditions, and any known exposure. Do not include credentials or unrelated personal data. Maintainers will acknowledge, assess, contain, correct, validate, and document a public-safe summary when appropriate.
 

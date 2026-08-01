@@ -1,7 +1,10 @@
 flowchart LR
   D["Discover"] --> R["Research"] --> V["Verify"] --> M["Map"] --> P{"Prioritize"}
   P --> C["Contribute"] --> E{"Engage?"}
-  E -->|"human approves context"| F["Follow up"] --> L["Reflect"] --> I["Improve"] --> D
+  E -->|"human approves context"| F["Follow up"] --> L["Reflect"] --> I["Improve"] --> Q{"Repeat?"}
+  Q -->|"human begins bounded cycle"| D
+  Q -->|"pause"| S
+  Q -->|"stop"| T["Intentional cycle stop"]
   P -->|"wait / no action"| S["Stop or pause safely"]
   P -->|"do not contact"| X["Durable human stop"]
   E -->|"revise / wait"| S
@@ -13,5 +16,5 @@ flowchart LR
   classDef stop fill:#3d1620,stroke:#fb7185,color:#f5f7ff,stroke-width:2px;
   class D,R,V,M evidence;
   class C,F,L,I constructive;
-  class P,E human;
-  class S,X stop;
+  class P,E,Q human;
+  class S,X,T stop;

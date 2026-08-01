@@ -6,13 +6,14 @@
     { "$ref": "common.schema.json#/$defs/record" },
     {
       "type": "object",
-      "required": ["recipient_person_id", "context", "contribution_id", "draft_content", "relationship_claims", "disposition", "review_history", "sending_capability"],
+      "required": ["recipient_person_id", "context", "contribution_id", "draft_content", "channel", "relationship_claims", "disposition", "review_history", "sending_capability"],
       "properties": {
         "record_type": { "const": "outreach_draft" },
         "recipient_person_id": { "$ref": "common.schema.json#/$defs/stableId" },
         "context": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "contribution_id": { "$ref": "common.schema.json#/$defs/stableId" },
         "draft_content": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "channel": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "relationship_claims": {
           "type": "array",
           "items": {
@@ -36,7 +37,12 @@
           "items": {
             "allOf": [
               { "$ref": "common.schema.json#/$defs/humanDecision" },
-              { "properties": { "state": { "enum": ["approve", "revise", "wait", "do_not_contact"] } } }
+              { "properties": { "state": { "enum": ["approve", "revise", "wait", "do_not_contact"] } } },
+              {
+                "if": { "properties": { "state": { "const": "approve" } }, "required": ["state"] },
+                "then": { "required": ["approval_scope"] },
+                "else": { "not": { "required": ["approval_scope"] } }
+              }
             ]
           }
         },

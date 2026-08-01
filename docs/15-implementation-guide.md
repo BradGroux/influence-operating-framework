@@ -8,7 +8,7 @@ Adopt or adapt the charter. Name the accountable practitioner or group. Record l
 
 ## 2. Create a profile
 
-Use the profile template to declare mission, goals, non-goals, strengths, capacity, ecosystems, channels, privacy boundary, prohibited actions, and review cadence. Avoid turning goals into activity quotas.
+Use the [profile template](../templates/profile.md) to declare mission, goals, non-goals, strengths, capacity, ecosystems, channels, privacy boundary, prohibited actions, and review cadence. Avoid turning goals into activity quotas.
 
 See the [profile-to-framework visual](../visuals/exports/svg/profile-to-framework.svg) and [description](../visuals/descriptions/profile-to-framework.md).
 

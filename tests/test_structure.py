@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -55,6 +56,39 @@ class StructureAcceptanceTests(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
         self.assertEqual(before, report.read_bytes())
 
+    def test_missing_schema_dependency_replaces_stale_pass_report_with_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory) / "repository"
+            report = fixture / "reports" / "validation-report.md"
+            report.parent.mkdir(parents=True)
+            report.write_text("# Stale report\n\n**Overall:** PASS\n", encoding="utf-8")
+            shadow = Path(directory) / "shadow"
+            shadow.mkdir()
+            (shadow / "jsonschema.py").write_text("raise ImportError('synthetic missing dependency')\n", encoding="utf-8")
+            environment = os.environ.copy()
+            environment["PYTHONPATH"] = str(shadow)
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "validate.py"), "--root", str(fixture)],
+                cwd=ROOT,
+                text=True,
+                capture_output=True,
+                env=environment,
+            )
+            content = report.read_text(encoding="utf-8")
+        self.assertNotEqual(0, result.returncode)
+        self.assertNotIn("# Stale report", content)
+        self.assertIn("validation dependency missing", content.lower())
+
+    def test_release_candidate_version_is_synchronized(self) -> None:
+        version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+        package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+        report = (ROOT / "reports" / "validation-report.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertEqual("1.0.0-rc.1", version)
+        self.assertEqual(version, package["version"])
+        self.assertIn(f"**Repository version:** {version}", report)
+        self.assertIn(f"Version {version}", readme)
+
     def test_possible_private_email_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = Path(directory)
@@ -89,6 +123,36 @@ class StructureAcceptanceTests(unittest.TestCase):
             result = run_gate(fixture, "safety")
         self.assertNotEqual(0, result.returncode)
         self.assertIn("prohibited sender field send_message", result.stdout)
+
+    def test_sender_and_credential_capabilities_are_rejected_inside_extensions(self) -> None:
+        prohibited_keys = ("send_message", "send-message", "access.token", "recipient_credential", "signing_key", "key", "api-key")
+        for prohibited_key in prohibited_keys:
+            with self.subTest(prohibited_key=prohibited_key), tempfile.TemporaryDirectory() as directory:
+                fixture = Path(directory)
+                copy_safety_fixture(fixture)
+                path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+                record = json.loads(path.read_text(encoding="utf-8"))
+                record["extensions"] = {"example.adapter": {prohibited_key: "synthetic-value"}}
+                path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+                safety_result = run_gate(fixture, "safety")
+                schema_result = run_gate(fixture, "schemas")
+                self.assertNotEqual(0, safety_result.returncode)
+                self.assertNotEqual(0, schema_result.returncode)
+                self.assertIn(f"prohibited extension field {prohibited_key}", safety_result.stdout)
+
+    def test_prohibited_extension_terms_are_rejected_in_top_level_namespaces(self) -> None:
+        for prohibited_namespace in ("send-message.adapter", "access.token", "signing-key.adapter", "api-key.adapter"):
+            with self.subTest(prohibited_namespace=prohibited_namespace), tempfile.TemporaryDirectory() as directory:
+                fixture = Path(directory)
+                copy_safety_fixture(fixture)
+                path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+                record = json.loads(path.read_text(encoding="utf-8"))
+                record["extensions"] = {prohibited_namespace: {"enabled": True}}
+                path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+                safety_result = run_gate(fixture, "safety")
+                schema_result = run_gate(fixture, "schemas")
+                self.assertNotEqual(0, safety_result.returncode)
+                self.assertNotEqual(0, schema_result.returncode)
 
     def test_transactional_person_vocabulary_is_rejected_in_public_examples(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -2,7 +2,7 @@
   "$schema": "https://influence-operating-framework.org/schemas/ecosystem.schema.json",
   "id": "ecosystem-riverbend-digital-learning",
   "record_type": "ecosystem",
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "created_at": "2026-08-01T12:00:00Z",
   "updated_at": "2026-08-01T12:00:00Z",
   "status": "active",

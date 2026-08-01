@@ -12,9 +12,17 @@ import struct
 import subprocess
 import sys
 from dataclasses import dataclass
+from datetime import date, datetime
 from pathlib import Path
 from typing import Callable, Iterable
 from urllib.parse import unquote, urlparse
+
+DEPENDENCY_ERROR: str | None = None
+
+PROHIBITED_EXTENSION_FIELD_PATTERN = re.compile(
+    r"(^|[._-])(send|sender|sending|credential|credentials|secret|token|password|key|privatekey|apikey|delivery|campaign|retry|webhook)($|[._-])",
+    re.IGNORECASE,
+)
 
 try:
     from jsonschema import Draft202012Validator, FormatChecker
@@ -25,8 +33,7 @@ except ImportError as exc:  # pragma: no cover - exercised from a dependency-mis
     venv_python = venv_root / "bin" / "python"
     if venv_python.is_file() and Path(sys.prefix).resolve() != venv_root.resolve():
         os.execv(str(venv_python), [str(venv_python), str(Path(__file__).resolve()), *sys.argv[1:]])
-    print("Validation dependency missing. Run: python3 -m pip install -r requirements-dev.txt", file=sys.stderr)
-    raise SystemExit(2) from exc
+    DEPENDENCY_ERROR = f"validation dependency missing: {exc}; run python3 -m pip install -r requirements-dev.txt"
 
 
 @dataclass(frozen=True)
@@ -38,6 +45,24 @@ class GateResult:
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def parse_datetime(value: object) -> datetime | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def parse_date(value: object) -> date | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        return date.fromisoformat(value)
+    except ValueError:
+        return None
 
 
 def build_registry(schema_documents: dict[str, dict]) -> Registry:
@@ -71,7 +96,12 @@ def find_decision_histories(value: object, location: str = "") -> Iterable[tuple
             yield from find_decision_histories(child, child_location)
 
 
-def validate_schemas(root: Path) -> list[GateResult]:
+def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[GateResult]:
+    if DEPENDENCY_ERROR is not None:
+        return [
+            GateResult("schemas", "FAIL", DEPENDENCY_ERROR),
+            GateResult("graph-references", "FAIL", "not run because the schema validation dependency is unavailable"),
+        ]
     schema_paths = sorted((root / "schemas").glob("*.schema.json"))
     example_paths = sorted((root / "examples" / "fictional").glob("*.json"))
     errors: list[str] = []
@@ -129,6 +159,7 @@ def validate_schemas(root: Path) -> list[GateResult]:
 
     reference_errors: list[str] = []
     ids: dict[str, Path] = {}
+    records_by_id: dict[str, dict] = {}
     for path, record in records:
         record_id = record.get("id")
         if not isinstance(record_id, str):
@@ -136,11 +167,36 @@ def validate_schemas(root: Path) -> list[GateResult]:
         if record_id in ids:
             reference_errors.append(f"duplicate record ID {record_id} in {path.relative_to(root)} and {ids[record_id].relative_to(root)}")
         ids[record_id] = path
+        records_by_id[record_id] = record
 
     for path, record in records:
         for field, reference in find_record_references(record):
             if reference not in ids:
                 reference_errors.append(f"{path.relative_to(root)}:{field} references missing ID {reference}")
+            elif (field.endswith("evidence_id") or field.endswith("evidence_ids")) and records_by_id[reference].get("record_type") != "evidence":
+                reference_errors.append(
+                    f"{path.relative_to(root)}:{field} references non-evidence record {reference}"
+                )
+        if (
+            record.get("record_type") != "evidence"
+            and (record.get("status") == "verified" or record.get("confidence") == "high")
+            and not record.get("evidence_ids")
+        ):
+            reference_errors.append(f"{path.relative_to(root)}: verified or high-confidence record requires evidence")
+        created_at = parse_datetime(record.get("created_at"))
+        updated_at = parse_datetime(record.get("updated_at"))
+        if created_at is not None and updated_at is not None and updated_at < created_at:
+            reference_errors.append(f"{path.relative_to(root)}: updated_at precedes created_at")
+        if record.get("record_type") == "event":
+            starts_at = parse_datetime(record.get("starts_at"))
+            ends_at = parse_datetime(record.get("ends_at"))
+            if starts_at is not None and ends_at is not None and ends_at < starts_at:
+                reference_errors.append(f"{path.relative_to(root)}: event ends_at precedes starts_at")
+        if record.get("record_type") == "evidence":
+            accessed_at = parse_date(record.get("accessed_at"))
+            stale_after = parse_date(record.get("stale_after"))
+            if accessed_at is not None and stale_after is not None and stale_after < accessed_at:
+                reference_errors.append(f"{path.relative_to(root)}: evidence stale_after precedes accessed_at")
         for location, history in find_decision_histories(record):
             seen_decisions: set[str] = set()
             previous: dict | None = None
@@ -150,6 +206,12 @@ def validate_schemas(root: Path) -> list[GateResult]:
                     continue
                 if decision_id in seen_decisions:
                     reference_errors.append(f"{path.relative_to(root)}:{location} repeats decision ID {decision_id}")
+                if "approval_scope" in decision and not (
+                    record.get("record_type") == "outreach_draft"
+                    and location == "review_history"
+                    and decision.get("state") == "approve"
+                ):
+                    reference_errors.append(f"{path.relative_to(root)}:{location}[{index}] uses approval scope outside an outreach approval")
                 seen_decisions.add(decision_id)
                 supersedes = decision.get("supersedes_decision_id")
                 if previous is None and supersedes is not None:
@@ -158,8 +220,11 @@ def validate_schemas(root: Path) -> list[GateResult]:
                     reference_errors.append(
                         f"{path.relative_to(root)}:{location}[{index}] must supersede {previous.get('decision_id')}"
                     )
-                if previous is not None and str(decision.get("decided_at", "")) < str(previous.get("decided_at", "")):
-                    reference_errors.append(f"{path.relative_to(root)}:{location}[{index}] is out of chronological order")
+                if previous is not None:
+                    decided_at = parse_datetime(decision.get("decided_at"))
+                    previous_decided_at = parse_datetime(previous.get("decided_at"))
+                    if decided_at is not None and previous_decided_at is not None and decided_at < previous_decided_at:
+                        reference_errors.append(f"{path.relative_to(root)}:{location}[{index}] is out of chronological order")
                 previous = decision
         if record.get("record_type") == "outreach_draft":
             history = record.get("review_history", [])
@@ -168,6 +233,82 @@ def validate_schemas(root: Path) -> list[GateResult]:
                 reference_errors.append(f"{path.relative_to(root)}: pending review cannot contain a human disposition")
             elif disposition != "pending_review" and (not history or history[-1].get("state") != disposition):
                 reference_errors.append(f"{path.relative_to(root)}: disposition must match the latest human review")
+            recipient = records_by_id.get(record.get("recipient_person_id"), {})
+            restrictions = recipient.get("communication_boundary", {}).get("restriction_history", [])
+            if restrictions and restrictions[-1].get("state") == "do_not_contact" and disposition != "do_not_contact":
+                reference_errors.append(f"{path.relative_to(root)}: recipient has an active do-not-contact restriction")
+            contribution_id = record.get("contribution_id")
+            linked_relationships = [
+                linked_record
+                for linked_record in records_by_id.values()
+                if linked_record.get("record_type") == "relationship"
+                and record.get("recipient_person_id") in linked_record.get("participant_ids", [])
+                and contribution_id in linked_record.get("contribution_ids", [])
+            ]
+            if disposition != "do_not_contact" and any(
+                relationship.get("disposition_history", [])
+                and relationship["disposition_history"][-1].get("state") == "do_not_contact"
+                for relationship in linked_relationships
+            ):
+                reference_errors.append(f"{path.relative_to(root)}: linked relationship has an active do-not-contact restriction")
+            contribution = records_by_id.get(contribution_id, {})
+            linked_opportunities = [
+                records_by_id.get(opportunity_id, {}) for opportunity_id in contribution.get("opportunity_ids", [])
+            ]
+            if disposition != "do_not_contact" and any(
+                opportunity.get("record_type") == "opportunity"
+                and opportunity.get("decision_history", [])
+                and opportunity["decision_history"][-1].get("state") == "do_not_contact"
+                for opportunity in linked_opportunities
+            ):
+                reference_errors.append(f"{path.relative_to(root)}: linked opportunity has an active do-not-contact restriction")
+            if disposition == "approve" and history:
+                approval_scope = history[-1].get("approval_scope", {})
+                expected_hash = hashlib.sha256(str(record.get("draft_content", "")).encode("utf-8")).hexdigest()
+                if approval_scope.get("content_sha256") != expected_hash:
+                    reference_errors.append(f"{path.relative_to(root)}: approved content hash does not match the current draft")
+                for field, expected in (
+                    ("outreach_draft_id", record.get("id")),
+                    ("recipient_person_id", record.get("recipient_person_id")),
+                    ("channel", record.get("channel")),
+                ):
+                    if approval_scope.get(field) != expected:
+                        reference_errors.append(f"{path.relative_to(root)}: approval scope {field} does not match the current draft")
+                approval_expires_at = parse_datetime(approval_scope.get("expires_at"))
+                approval_decided_at = parse_datetime(history[-1].get("decided_at"))
+                record_updated_at = parse_datetime(record.get("updated_at"))
+                if approval_expires_at is not None and approval_decided_at is not None and approval_expires_at < approval_decided_at:
+                    reference_errors.append(f"{path.relative_to(root)}: approval expires before its decision time")
+                if approval_expires_at is not None and record_updated_at is not None and approval_expires_at < record_updated_at:
+                    reference_errors.append(f"{path.relative_to(root)}: approved outreach is expired at the record update time")
+
+    if baseline_root is not None:
+        baseline_examples = baseline_root / "examples" / "fictional"
+        baseline_paths = sorted(baseline_examples.glob("*.json")) if baseline_examples.is_dir() else []
+        if not baseline_paths:
+            reference_errors.append(
+                f"authoritative baseline {baseline_root} does not contain examples/fictional/*.json records"
+            )
+        baseline_records: dict[str, tuple[Path, dict]] = {}
+        for path in baseline_paths:
+            try:
+                baseline_record = load_json(path)
+            except Exception as exc:
+                reference_errors.append(f"authoritative baseline {path.relative_to(baseline_root)} is invalid: {exc}")
+                continue
+            record_id = baseline_record.get("id")
+            if isinstance(record_id, str):
+                baseline_records[record_id] = (path, baseline_record)
+        for record_id, (baseline_path, baseline_record) in baseline_records.items():
+            candidate_record = records_by_id.get(record_id)
+            if candidate_record is None:
+                reference_errors.append(f"{baseline_path.relative_to(baseline_root)}: authoritative record {record_id} is missing")
+                continue
+            candidate_histories = dict(find_decision_histories(candidate_record))
+            for location, baseline_history in find_decision_histories(baseline_record):
+                candidate_history = candidate_histories.get(location, [])
+                if len(candidate_history) < len(baseline_history) or candidate_history[: len(baseline_history)] != baseline_history:
+                    reference_errors.append(f"{record_id}:{location} rewrites authoritative decision history")
 
     graph_result = GateResult(
         "graph-references",
@@ -356,14 +497,20 @@ def validate_visuals(root: Path) -> list[GateResult]:
 
 REQUIRED_PATHS = [
     "README.md", "LICENSE", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "GOVERNANCE.md", "CHANGELOG.md",
-    "SECURITY.md", "AGENTS.md", "CONTEXT.md", "INDEX.md",
+    "SECURITY.md", "AGENTS.md", "CONTEXT.md", "INDEX.md", "VERSION",
     "decisions/locked-decisions.md", "decisions/proposed-decisions.md", "decisions/adr-template.md",
     "scripts/validate.py", "scripts/render_visuals.py", "scripts/build_index.py",
     "tests/test_schemas.py", "tests/test_links.py", "tests/test_structure.py", "tests/test_visuals.py",
     "reports/validation-report.md",
     "project/discovery/grill-with-docs-review.md", "project/specifications/initial-build.md",
+    "project/specifications/v1.0.0-release-criteria.md",
+    "project/migrations/portable-records-1-to-2.md",
     "project/planning/tickets.md", "project/planning/status.md", "project/reviews/initial-visual-inspection.md",
     "project/reviews/initial-code-review-disposition.md",
+    "project/reviews/v1.0.0-independent-application-review-2026-08-01-a.md",
+    "project/reviews/v1.0.0-adversarial-release-assurance-review-2026-08-01-b.md",
+    "project/reviews/v1.0.0-independent-review-disposition-2026-08-01.md",
+    "project/reviews/v1.0.0-rc.1-visual-readback-2026-08-01.md",
 ]
 REQUIRED_PATHS.extend(f"docs/{number:02d}-{name}.md" for number, name in [
     (0, "charter"), (1, "framework-overview"), (2, "operating-model"), (3, "ecosystem-mapping"),
@@ -377,7 +524,7 @@ REQUIRED_PATHS.extend(f"schemas/{name}.schema.json" for name in [
     "contribution", "outreach-draft", "reflection", "evidence", "profile",
 ])
 REQUIRED_PATHS.extend(f"templates/{name}.md" for name in [
-    "person", "organization", "ecosystem", "event-brief", "conference-playbook", "relationship-note",
+    "profile", "person", "organization", "ecosystem", "event-brief", "conference-playbook", "relationship-note",
     "contribution-plan", "outreach-draft", "follow-up-plan", "reflection", "research-note", "monthly-review", "annual-plan",
 ])
 REQUIRED_PATHS.extend(f"automations/{name}.md" for name in [
@@ -530,7 +677,7 @@ def validate_safety(root: Path) -> list[GateResult]:
             elif normalized_key == "no_autonomous_send":
                 if child != {"const": True}:
                     outreach_errors.append(f"{schema_path.relative_to(root)}: no_autonomous_send is not locked true")
-            elif re.search(r"(^|_)(send|sender|sending)($|_)", normalized_key):
+            elif re.search(r"(^|[._-])(send|sender|sending)($|[._-])", normalized_key):
                 outreach_errors.append(f"{schema_path.relative_to(root)}: prohibited sender field {key}")
 
     capability_pattern = re.compile(r"\b(?:can|may|will)\s+(?:automatically\s+|autonomously\s+)?send\b", re.IGNORECASE)
@@ -548,6 +695,9 @@ def validate_safety(root: Path) -> list[GateResult]:
     )
     for path in sorted((root / "examples" / "fictional").glob("*.json")):
         record = load_json(path)
+        for key, _ in walk_json_items(record.get("extensions", {})):
+            if PROHIBITED_EXTENSION_FIELD_PATTERN.search(key):
+                outreach_errors.append(f"{path.relative_to(root)}: prohibited extension field {key}")
         if record.get("record_type") != "outreach_draft":
             continue
         claims = record.get("relationship_claims", [])
@@ -612,14 +762,19 @@ GATES: dict[str, Callable[[Path], list[GateResult]]] = {
 }
 
 
-def render_report(results: list[GateResult]) -> str:
+def repository_version(root: Path) -> str:
+    version_path = root / "VERSION"
+    return version_path.read_text(encoding="utf-8").strip() if version_path.is_file() else "unknown"
+
+
+def render_report(root: Path, results: list[GateResult]) -> str:
     """Return deterministic Markdown for a complete validation run."""
 
     overall = "FAIL" if any(result.status == "FAIL" for result in results) else "PASS"
     lines = [
         "# Validation report",
         "",
-        "**Repository version:** 0.1.0",
+        f"**Repository version:** {repository_version(root)}",
         f"**Overall:** {overall}",
         "**Command:** `python3 scripts/validate.py`",
         "",
@@ -644,7 +799,7 @@ def render_report(results: list[GateResult]) -> str:
             "",
             "## Visual inspection",
             "",
-            "Representative complex renders passed the recorded [visual inspection](../project/reviews/initial-visual-inspection.md). This is not an independent accessibility review.",
+            "The release-candidate lifecycle change passed the recorded [visual readback](../project/reviews/v1.0.0-rc.1-visual-readback-2026-08-01.md). This is not an independent human accessibility review.",
             "",
             "## Deferred items",
             "",
@@ -655,8 +810,10 @@ def render_report(results: list[GateResult]) -> str:
             "| Dedicated private security and conduct channel | DEFERRED | Owner publishes an appropriate monitored private channel. |",
             "| Release signing and long-term cadence | DEFERRED | Maintainers approve signing, custody, and cadence policy. |",
             "| Tool-specific private overlay and messaging integrations | DEFERRED | Separate proposals pass privacy, access, retention, and external-action review. |",
-            "| Independent ethics, privacy, accessibility, legal, and domain review | DEFERRED | Qualified reviewers complete reviews and dispositions before a 1.0.0 maturity claim. |",
-            "| Independent verification of Brad profile statements | DEFERRED | Owner approves source-based public research; 0.1.0 remains explicitly owner-supplied. |",
+            "| Fresh post-fix two-agent review | DEFERRED | Both independent agents review the same exact hardened candidate SHA with no unresolved Blocker or Material findings. |",
+            "| Independent ethics, privacy, accessibility, legal, and domain review | DEFERRED | Qualified human reviewers complete reviews and dispositions before a final 1.0.0 maturity claim. |",
+            "| Independent verification of Brad profile statements | DEFERRED | Owner approves source-based public research; the release candidate remains explicitly owner-supplied. |",
+            "| Final owner approval | DEFERRED | Owner reads the validation and review dispositions and approves the final commit and annotated tag. |",
             "",
             "## Safety conclusion",
             "",
@@ -670,7 +827,7 @@ def render_report(results: list[GateResult]) -> str:
 def write_report(root: Path, results: list[GateResult]) -> None:
     report = root / "reports" / "validation-report.md"
     report.parent.mkdir(parents=True, exist_ok=True)
-    content = render_report(results)
+    content = render_report(root, results)
     report.write_text(content, encoding="utf-8")
     if report.read_text(encoding="utf-8") != content:
         raise RuntimeError("validation report read-back did not match generated content")
@@ -681,6 +838,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--only", choices=sorted(GATES))
     parser.add_argument("--no-report", action="store_true")
+    parser.add_argument(
+        "--baseline-root",
+        type=Path,
+        help="previous authoritative repository snapshot used to verify append-only decision histories",
+    )
     return parser.parse_args()
 
 
@@ -690,7 +852,11 @@ def main() -> int:
     selected = [args.only] if args.only else list(GATES)
     results: list[GateResult] = []
     for gate_name in selected:
-        results.extend(GATES[gate_name](root))
+        if gate_name == "schemas":
+            baseline_root = args.baseline_root.resolve() if args.baseline_root else None
+            results.extend(validate_schemas(root, baseline_root))
+        else:
+            results.extend(GATES[gate_name](root))
     if not args.only and not args.no_report:
         results.append(GateResult("report", "PASS", "deterministic full-gate report regenerated and read back"))
         write_report(root, results)

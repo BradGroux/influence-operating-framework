@@ -3,6 +3,7 @@
 **Stable ID:**
 **Recipient record ID:**
 **Contribution record ID:**
+**Channel:**
 **Evidence IDs:**
 **Sending capability:** false
 
@@ -27,5 +28,6 @@
 - Review decision ID and named human reviewer ID:
 - Reviewed at, reason, and expiry:
 - Superseded decision ID, when revising a prior disposition:
+- Approval scope: draft ID, recipient ID, SHA-256 of exact UTF-8 content, exact channel, and expiry:
 
-Approval applies only to the exact reviewed draft and does not send it.
+Approval applies only when its scope matches the current draft, recipient, content, channel, and timing. It does not send anything.

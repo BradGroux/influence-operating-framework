@@ -14,7 +14,7 @@ Current role, truthful context, prior interaction if claimed, contribution or le
 
 ## Outputs
 
-One outreach-draft record with exact content, evidence links, `sending_capability: false`, and disposition `pending_review`, `approve`, `revise`, `wait`, or `do_not_contact` after human action.
+One outreach-draft record with exact content, intended channel, evidence links, `sending_capability: false`, and disposition `pending_review`, `approve`, `revise`, `wait`, or `do_not_contact` after human action. Approval scope binds the draft ID, recipient, exact content hash, channel, and expiry.
 
 ## Confidence handling
 
@@ -26,7 +26,7 @@ No sending, scheduling, recipient lookup from private sources, generic flattery,
 
 ## Human approval gates
 
-A named human chooses approve, revise, wait, or do not contact. Approval binds exact content, recipient, context, channel, and expiry and still does not send.
+A named human chooses approve, revise, wait, or do not contact. Approval binds the exact draft ID, recipient, content hash, channel, and expiry and still does not send. Recipient do-not-contact overrides any conflicting draft state.
 
 ## Failure states
 

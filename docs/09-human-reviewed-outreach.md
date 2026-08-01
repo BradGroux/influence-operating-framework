@@ -46,6 +46,8 @@ A draft is contextual, concise, respectful, and easy to decline. It states a tru
 
 Any later messaging tool is a separate controlled implementation. It must authenticate the human disposition, bind it to the exact content and recipient, enforce expiry and do-not-contact, log the human-triggered action, and fail closed. This repository provides no sender, credential field, delivery API, background campaign, or retry queue.
 
+The portable approval scope records the draft ID, recipient ID, content SHA-256, channel, and expiry. Validation recomputes the content hash, compares the current recipient and channel, rejects expiry at the record update time, and gives an active recipient do-not-contact restriction precedence over a conflicting draft. Runtime handoff systems must recheck the current time and authoritative restriction state immediately before any separately authorized human-triggered action.
+
 ## Outcome logging
 
 Record only what actually happened: handed off, sent by an authorized human-controlled system, declined, failed, no response, or unknown. Do not infer that delivery created a relationship. Follow-up requires a new contextual judgment.

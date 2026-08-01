@@ -148,23 +148,23 @@
       "id": "influence-lifecycle",
       "source": {
         "path": "visuals/source/influence-lifecycle.mmd",
-        "sha256": "efd59d2531cdca1706ff12e50fb76b8720bf8ebdb14eaea0ca08fcec248480f1"
+        "sha256": "2e86b392c22ade3ffc2076c0b2413781d96042d43678b649a8cdba0c8916fc8e"
       },
       "svg": {
         "path": "visuals/exports/svg/influence-lifecycle.svg",
-        "sha256": "cb9645b03c37cb7852c4447cfd7fac81dfce96e4827c28e0bcd008baca73aa17"
+        "sha256": "b1c0535c448c44304953a46bafc633ec41d16de2ee081e7200121fec55e23184"
       },
       "png": {
         "path": "visuals/exports/png/influence-lifecycle.png",
-        "sha256": "16910dbd1dabe6d7a7e795ea1dd0d1c243fa972999006e0f95032c8914a963bb"
+        "sha256": "b1341890789968323d428dc1abb803f8e7015093ed60238a4e2acc06c1406752"
       },
       "metadata": {
         "path": "visuals/metadata/influence-lifecycle.json",
-        "sha256": "e426d013699fdafc099660431062c95f73bbf50cfffbccdb84dfb5e45e70458e"
+        "sha256": "01e05fcc120c7090d5bca655d654e501d26c52c4f03b0bc7e8d74cdae6e8a446"
       },
       "description": {
         "path": "visuals/descriptions/influence-lifecycle.md",
-        "sha256": "a6220324c21bbd9f456b56df48087d4dba28af1ab8d5455f5f3ca853a944b15c"
+        "sha256": "58120596a6429dac1ceb44a0ca2513de1e49a4b8b3425430c1bed61fb705c287"
       }
     },
     {
