@@ -49,4 +49,5 @@ the release decision in a separate disposition.
 |---|---|---|---|
 | rc.3 | GO; 1 Minor | NO-GO; 2 Material | NO-GO; findings accepted for rc.4 |
 | rc.4 | GO; no findings | GO; no findings | GO; promoted to initial v1.0.0 |
-| Initial v1.0.0 supplemental review | GO; 2 Minor | Three NO-GO reports with overlapping and disputed findings | See supplemental disposition |
+| Initial v1.0.0 supplemental review | GO; 2 Minor | Three NO-GO reports with overlapping and disputed findings | [GO after bounded correction](v1.0.0-supplemental-review-disposition-2026-08-01.md) |
+| Corrected v1.0.0 candidate | GO; 1 Minor | GO; 1 Minor | Shared terminology issue corrected |

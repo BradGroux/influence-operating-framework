@@ -20,6 +20,18 @@ All notable changes to the Influence Operating Framework are documented here.
   practitioner precautions.
 - Diversified examples across event contribution, nonprofit sponsorship, and
   assisted open-source work.
+- Required disclosure and management of material interests and legitimate
+  authority for consequential group decisions.
+- Clarified that accountable people own judgment while software and AI cannot
+  independently decide or transmit external actions, and that batch approval is
+  not accountable review.
+- Clarified the optional relationship between the six concerns and seven moves,
+  normalized decision labels, separated sustainability from commercial results,
+  and compacted repeated learning guidance.
+- Consolidated public authority in governance, made release review proportional
+  to change risk, and aligned validator claims with its structural checks.
+- Standardized and sanitized the v1.0.0 review record while preserving verdicts,
+  findings, dissent, and limitations.
 
 ### Removed
 
@@ -27,6 +39,21 @@ All notable changes to the Influence Operating Framework are documented here.
 - Automation-agent contracts and implementation workflow templates.
 - Generated SVG and PNG exports, diagram metadata, and rendering dependencies.
 - Technical release-assurance tests and reports tied to the superseded toolkit.
+- The completed framework-first reset specification after its durable boundary
+  and rationale were recorded in the decision log and changelog.
+
+### Supplemental review correction
+
+- Four supplemental reviews evaluated the initial v1.0.0 commit
+  `3878daec07c402c49a0424e82368c07ad0e07c6c` for coherence, practical use,
+  misuse resistance, and simplicity.
+- Material corrections were committed as candidate
+  `3f4cc013d80fed996705ed9a2fd4e4cc9bd63541` and subjected to fresh practical
+  application and adversarial framework review before the release record and
+  local tag were updated.
+- The supplemental disposition preserves recommendations that were downgraded
+  or rejected rather than silently treating every review preference as a
+  framework requirement.
 
 ## Pre-release history
 
@@ -35,7 +62,8 @@ All notable changes to the Influence Operating Framework are documented here.
 - Closed all rc.3 application and adversarial findings.
 - Received independent application and adversarial GO recommendations with zero
   Blocker, Material, or Minor findings.
-- Promoted to v1.0.0 without further canonical framework changes.
+- Promoted to the initial v1.0.0 candidate; later corrected in place after the
+  supplemental review described above.
 
 ### 1.0.0-rc.3 — 2026-08-01
 

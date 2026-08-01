@@ -104,8 +104,8 @@ The practitioner is accountable for:
   and
 - examining outcomes honestly and adopting lessons carefully.
 
-A practitioner may always stop, narrow the activity, wait, decline, take no
-action, or decide not to contact someone.
+A practitioner may always stop, narrow the activity, wait, decline, choose no
+action needed, or choose do not contact.
 
 ## Stewardship and change
 
