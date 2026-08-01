@@ -2,7 +2,7 @@
 
 All notable changes to the Influence Operating Framework are documented here.
 
-## 1.0.0-rc.4 — Unreleased
+## 1.0.0 — 2026-08-01
 
 ### Changed
 
@@ -29,6 +29,13 @@ All notable changes to the Influence Operating Framework are documented here.
 - Technical release-assurance tests and reports tied to the superseded toolkit.
 
 ## Pre-release history
+
+### 1.0.0-rc.4 — 2026-08-01
+
+- Closed all rc.3 application and adversarial findings.
+- Received independent application and adversarial GO recommendations with zero
+  Blocker, Material, or Minor findings.
+- Promoted to v1.0.0 without further canonical framework changes.
 
 ### 1.0.0-rc.3 — 2026-08-01
 

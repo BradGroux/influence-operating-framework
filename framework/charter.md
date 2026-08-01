@@ -1,6 +1,6 @@
 # Charter
 
-- **Status:** Accepted 1.0.0-rc.4 release candidate
+- **Status:** Accepted 1.0.0
 - **Founding steward:** Brad Groux
 - **Effective date:** 2026-08-01
 
