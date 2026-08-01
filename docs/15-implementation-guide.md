@@ -4,7 +4,7 @@ Start small enough to govern well. A useful first implementation can be one prof
 
 ## 1. Establish authority
 
-Adopt or adapt the charter. Name the accountable practitioner or group. Record local laws, policies, community norms, accessibility commitments, professional boundaries, and who may approve external engagement.
+Adopt or adapt the charter. Name the accountable practitioner or group. Link the profile to a stable accountable-human person ID and an explicit list of authorized outreach-approver person IDs. Record local laws, policies, community norms, accessibility commitments, professional boundaries, and who may approve external engagement.
 
 ## 2. Create a profile
 

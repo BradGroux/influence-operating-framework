@@ -2,7 +2,8 @@
   "$schema": "https://influence-operating-framework.org/schemas/profile.schema.json",
   "id": "profile-riverbend-learning",
   "record_type": "profile",
-  "schema_version": "2.0.0",
+  "schema_version": "3.0.0",
+  "framework_version": "1.0.0-rc.2",
   "created_at": "2026-08-01T12:00:00Z",
   "updated_at": "2026-08-01T12:00:00Z",
   "status": "active",
@@ -23,9 +24,14 @@
     "Do not collect participant contact data in public artifacts.",
     "Do not send external communication through framework automation."
   ],
+  "capacity": "Four volunteer hours per week for planning, contribution, and review.",
+  "review_cadence": "Monthly, with an immediate review after any material boundary or authority change.",
   "ecosystem_ids": ["ecosystem-riverbend-digital-learning"],
   "channels": ["community workshops", "accessible guides", "volunteer facilitation"],
   "measurement_priorities": ["contribution", "learning", "relationships"],
-  "accountable_human": "Fictional program steward",
+  "accountable_human_id": "person-lina-moreno",
+  "authorized_outreach_approver_ids": [
+    "person-lina-moreno"
+  ],
   "no_autonomous_send": true
 }

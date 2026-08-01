@@ -6,7 +6,7 @@ Prepare one contextual draft for human review after evidence and contribution ch
 
 ## Approved inputs
 
-Verified recipient ID, relationship and interaction IDs, contribution ID, approved purpose, communication boundary, wait and do-not-contact states, and evidence IDs.
+Governing profile ID and authorized approver IDs, verified recipient ID, relationship and interaction IDs, contribution ID, approved purpose, current consent state, preferred channels, communication boundary, wait and do-not-contact states, and evidence IDs.
 
 ## Required evidence
 
@@ -14,7 +14,7 @@ Current role, truthful context, prior interaction if claimed, contribution or le
 
 ## Outputs
 
-One outreach-draft record with exact content, intended channel, evidence links, `sending_capability: false`, and disposition `pending_review`, `approve`, `revise`, `wait`, or `do_not_contact` after human action. Approval scope binds the draft ID, recipient, exact content hash, channel, and expiry.
+One outreach-draft record with governing profile ID, exact content, intended channel, evidence links, `sending_capability: false`, and disposition `pending_review`, `approve`, `revise`, `wait`, or `do_not_contact` after human action. Approval scope binds the draft ID, recipient, exact content hash, channel, and expiry.
 
 ## Confidence handling
 
@@ -26,11 +26,11 @@ No sending, scheduling, recipient lookup from private sources, generic flattery,
 
 ## Human approval gates
 
-A named human chooses approve, revise, wait, or do not contact. Approval binds the exact draft ID, recipient, content hash, channel, and expiry and still does not send. Recipient do-not-contact overrides any conflicting draft state.
+A named human chooses approve, revise, wait, or do not contact. Approval requires that human's stable person ID in the governing profile's authorized approver list, binds the exact draft ID, recipient, content hash, channel, and expiry, and still does not send. Applicable do-not-contact overrides any conflicting draft state.
 
 ## Failure states
 
-Stop on do not contact, active wait, missing consent context, unsupported claim, ambiguous identity, stale role, absent contribution reason, or unavailable human review.
+Stop on do not contact, active wait or opt-out, a channel outside recipient preferences, unsupported claim, ambiguous identity or record type, stale role, absent contribution reason, unauthorized approver, or unavailable human review. Unknown consent must be surfaced for bounded contextual human judgment.
 
 ## Logging and idempotency
 

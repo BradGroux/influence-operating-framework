@@ -1,6 +1,7 @@
 # Outreach draft: [context]
 
 **Stable ID:**
+**Governing profile ID:**
 **Recipient record ID:**
 **Contribution record ID:**
 **Channel:**
@@ -11,7 +12,8 @@
 
 - [ ] Current role and context are verified.
 - [ ] Contribution or legitimate reason is explicit.
-- [ ] Consent, communication preference, wait, and do-not-contact were checked.
+- [ ] Consent state was checked; active opt-out is absent, the selected channel is declared in recipient preferences, and any unknown state is explained for bounded human judgment.
+- [ ] The named reviewer is authorized by the governing profile.
 - [ ] The practitioner can honor implied commitments.
 - [ ] A lower-burden public contribution is not clearly better.
 

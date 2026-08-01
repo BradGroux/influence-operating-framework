@@ -55,7 +55,7 @@ Everything committed here is safe for public review. Real sensitive notes, perso
 
 ## Status
 
-Version 1.0.0-rc.1 is a local release candidate under independent review. It is not the final v1.0.0 release and does not claim independent ethics, privacy, accessibility, legal, or domain approval. See [v1.0.0 release criteria](project/specifications/v1.0.0-release-criteria.md), [project status](project/planning/status.md), and [the validation report](reports/validation-report.md).
+Version 1.0.0-rc.2 is a local release candidate under independent review. It is not the final v1.0.0 release and does not claim independent ethics, privacy, accessibility, legal, or domain approval. See [v1.0.0 release criteria](project/specifications/v1.0.0-release-criteria.md), [project status](project/planning/status.md), and [the validation report](reports/validation-report.md).
 
 ## License
 

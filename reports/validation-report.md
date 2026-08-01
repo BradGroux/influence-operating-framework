@@ -1,8 +1,10 @@
 # Validation report
 
-**Repository version:** 1.0.0-rc.1
+**Repository version:** 1.0.0-rc.2
+**Candidate source SHA-256:** `9ed0011a4abb41e70b2e04c0a20e7f3020ca5056ba6d4936bcd0146e8b3f752e`
+**Source worktree state (excluding this report):** DIRTY
 **Overall:** PASS
-**Command:** `python3 scripts/validate.py`
+**Command:** `python3 scripts/validate.py --baseline-root <authoritative-root>`
 
 This report records direct repository checks. It does not convert owner decisions or independent reviews into implementation success.
 
@@ -11,18 +13,19 @@ This report records direct repository checks. It does not convert owner decision
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | index | PASS | INDEX.md is current |
-| links | PASS | 267 repository-local Markdown links resolve |
+| links | PASS | 278 repository-local Markdown links resolve |
 | public-data-safety | PASS | public examples are fictional, public-classified, and contain no non-reserved email addresses |
 | outreach-safety | PASS | approve, revise, wait, and do-not-contact are explicit; schema and contracts expose no sender |
 | schemas | PASS | 13 schemas and 18 fictional records validate under Draft 2020-12 |
 | graph-references | PASS | all references resolve across 18 stable record IDs |
+| history-baseline | PASS | authoritative baseline source SHA-256 f2667c94e9f6db84f8f116107c0661751ab6cc7ce1fd86cc48eba5f511c8a29b compared across 18 records and 5 decision histories |
 | structure | PASS | 108 required repository artifacts exist |
 | documentation | PASS | 17 canonical docs and all agent contracts are substantive and complete |
-| tests | PASS | 44 acceptance tests pass |
+| tests | PASS | 60 acceptance tests pass |
 | visuals | PASS | 12 Mermaid sources have synchronized SVG, PNG, metadata, and accessible descriptions |
 | report | PASS | deterministic full-gate report regenerated and read back |
 
-## Failed items
+## Failed or deferred automated gates
 
 No automated gate failed.
 

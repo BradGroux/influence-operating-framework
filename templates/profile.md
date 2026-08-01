@@ -2,7 +2,8 @@
 
 **Stable ID:**
 **Profile type:** individual / group / organization
-**Accountable human:**
+**Accountable human person ID:**
+**Authorized outreach approver person IDs:**
 **Status / confidence / privacy:**
 **Evidence provenance:** owner-supplied / source-backed / fictional
 **Last reviewed:**
@@ -12,7 +13,8 @@
 - Mission:
 - Current goals:
 - Explicit non-goals:
-- Capacity and review cadence:
+- Capacity:
+- Review cadence:
 
 ## Boundaries
 

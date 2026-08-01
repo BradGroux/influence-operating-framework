@@ -35,7 +35,29 @@
             "allOf": [
               {
                 "if": { "properties": { "status": { "const": "completed" } }, "required": ["status"] },
-                "then": { "properties": { "completion_evidence_ids": { "minItems": 1 } } }
+                "then": {
+                  "properties": {
+                    "due_state": { "const": "completed" },
+                    "completion_evidence_ids": { "minItems": 1 }
+                  }
+                }
+              },
+              {
+                "if": { "properties": { "status": { "const": "cancelled" } }, "required": ["status"] },
+                "then": { "properties": { "due_state": { "const": "cancelled" } } }
+              },
+              {
+                "if": { "properties": { "status": { "const": "open" } }, "required": ["status"] },
+                "then": {
+                  "properties": {
+                    "due_state": {
+                      "oneOf": [
+                        { "enum": ["planned", "due", "overdue"] },
+                        { "$ref": "common.schema.json#/$defs/unknownValue" }
+                      ]
+                    }
+                  }
+                }
               }
             ]
           }

@@ -6,9 +6,10 @@
     { "$ref": "common.schema.json#/$defs/record" },
     {
       "type": "object",
-      "required": ["recipient_person_id", "context", "contribution_id", "draft_content", "channel", "relationship_claims", "disposition", "review_history", "sending_capability"],
+      "required": ["profile_id", "recipient_person_id", "context", "contribution_id", "draft_content", "channel", "relationship_claims", "disposition", "review_history", "sending_capability"],
       "properties": {
         "record_type": { "const": "outreach_draft" },
+        "profile_id": { "$ref": "common.schema.json#/$defs/stableId" },
         "recipient_person_id": { "$ref": "common.schema.json#/$defs/stableId" },
         "context": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "contribution_id": { "$ref": "common.schema.json#/$defs/stableId" },

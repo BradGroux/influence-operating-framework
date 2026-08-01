@@ -84,10 +84,26 @@ class StructureAcceptanceTests(unittest.TestCase):
         package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
         report = (ROOT / "reports" / "validation-report.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertEqual("1.0.0-rc.1", version)
+        self.assertEqual("1.0.0-rc.2", version)
         self.assertEqual(version, package["version"])
         self.assertIn(f"**Repository version:** {version}", report)
         self.assertIn(f"Version {version}", readme)
+
+    def test_validation_report_binds_source_and_discloses_history_baseline_state(self) -> None:
+        report = (ROOT / "reports" / "validation-report.md").read_text(encoding="utf-8")
+        self.assertRegex(report, r"\*\*Candidate source SHA-256:\*\* `[a-f0-9]{64}`")
+        self.assertRegex(report, r"\| history-baseline \| (?:PASS|DEFERRED) \|")
+        self.assertIn("authoritative baseline", report)
+
+    def test_omitted_history_baseline_is_explicitly_deferred(self) -> None:
+        result = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "validate.py"), "--root", str(ROOT), "--only", "schemas", "--no-report"],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        self.assertIn("DEFERRED history-baseline", result.stdout)
 
     def test_possible_private_email_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

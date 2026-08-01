@@ -15,7 +15,7 @@ See the [relationship graph model](../visuals/exports/svg/relationship-graph-mod
 - Separate shared interests from inferred similarity.
 - Record actual interactions and contributions by ID.
 - Preserve promises, responsible owner, due state, and completion evidence.
-- Store communication preferences only when authorized and necessary.
+- Store communication preferences only when authorized and necessary; preserve consent state in an append-only accountable decision history.
 - Use qualitative health states—unknown, new, active, quiet, needs-repair, closed—supported by notes and evidence.
 - Record last meaningful interaction without equating recency with value.
 - Allow next thoughtful action, no action needed, wait, and do not contact.

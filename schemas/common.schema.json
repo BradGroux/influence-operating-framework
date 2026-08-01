@@ -37,6 +37,7 @@
         "id",
         "record_type",
         "schema_version",
+        "framework_version",
         "created_at",
         "updated_at",
         "status",
@@ -51,7 +52,11 @@
         "$schema": { "type": "string", "format": "uri" },
         "id": { "$ref": "#/$defs/stableId" },
         "record_type": { "type": "string" },
-        "schema_version": { "const": "2.0.0" },
+        "schema_version": { "const": "3.0.0" },
+        "framework_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+        },
         "created_at": { "type": "string", "format": "date-time" },
         "updated_at": { "type": "string", "format": "date-time" },
         "status": {
@@ -91,6 +96,13 @@
       ]
     },
     "nonEmptyString": { "type": "string", "minLength": 1 },
+    "knownString": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "^[ \\t]*(?:[Tt][Bb][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn]|[Tt][Oo][ \\t]+[Bb][Ee][ \\t]+[Dd][Ee][Tt][Ee][Rr][Mm][Ii][Nn][Ee][Dd]|[Nn][ \\t]*/?[ \\t]*[Aa])[ \\t]*$"
+      }
+    },
     "unknownValue": {
       "type": "object",
       "required": ["state", "reason"],
@@ -102,7 +114,7 @@
     },
     "knownOrUnknownString": {
       "oneOf": [
-        { "$ref": "#/$defs/nonEmptyString" },
+        { "$ref": "#/$defs/knownString" },
         { "$ref": "#/$defs/unknownValue" }
       ]
     },

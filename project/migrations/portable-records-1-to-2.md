@@ -1,6 +1,6 @@
 # Portable record migration: schema 1.0.0 to 2.0.0
 
-**Status:** Required for schema 1.x records
+**Status:** Historical first step; followed by schema 2-to-3
 **Framework release target:** v1.0.0 release candidate
 **Migration type:** Breaking, human-reviewed
 
@@ -22,7 +22,7 @@ Schema 2.0.0 aligns the portable record layer with canonical accountability, evi
 
 ## Deprecation window
 
-Schema 1.x was a pre-release draft, but adopters still need an explicit transition boundary. Its deprecation window begins on the framework v1.0.0 release date and lasts 90 calendar days. During that window, maintainers will retain this migration guide, answer migration questions through the documented support path, and treat the last authoritative 1.x export as the rollback source. The current validator accepts 2.0.0 records only; it does not claim dual-version validation. After the window, 1.x artifacts remain historical evidence but receive no compatibility changes.
+Schema 1.x was a pre-release draft, but adopters still need an explicit transition boundary. Its deprecation window begins on the framework v1.0.0 release date and lasts 90 calendar days. During that window, maintainers will retain this migration guide, answer migration questions through the documented support path, and treat the last authoritative 1.x export as the rollback source. The 2.0.0 release-candidate validator accepted 2.0.0 records only; the current validator requires the subsequent [schema 2-to-3 migration](portable-records-2-to-3.md). After the window, 1.x artifacts remain historical evidence but receive no compatibility changes.
 
 ## Decision-history preservation
 

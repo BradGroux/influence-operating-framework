@@ -6,7 +6,7 @@ A truthful, evidence-backed reason for one external communication remains after 
 
 ## Inputs and evidence
 
-Verified recipient ID and role, relationship and interaction context, contribution ID, communication boundary, current wait and do-not-contact state, approved purpose, and supporting evidence.
+Governing profile and authorized approver IDs, verified recipient ID and role, relationship and interaction context, contribution ID, current consent state, preferred channels, communication boundary, current wait and do-not-contact state, approved purpose, and supporting evidence.
 
 ## Flow
 
@@ -14,7 +14,7 @@ Verified recipient ID and role, relationship and interaction context, contributi
 2. Draft one concise, contextual, respectful message that is easy to decline.
 3. Bind evidence, intended channel, and `sending_capability: false`.
 4. Human chooses:
-   - **Approve** — bind draft ID, recipient, exact content hash, channel, and expiry; the exact draft is eligible for a separate authorized handoff, but no send occurs here.
+   - **Approve** — an approver authorized by the governing profile binds draft ID, recipient, exact content hash, channel, and expiry; the exact draft is eligible for a separate authorized handoff, but no send occurs here.
    - **Revise** — invalidate approval and return to review.
    - **Wait** — record reason and optional review date.
    - **Do not contact** — stop and preserve the durable restriction.
@@ -23,7 +23,7 @@ Verified recipient ID and role, relationship and interaction context, contributi
 
 ## Stops and recovery
 
-Stop on unsupported familiarity, stale role, ambiguity, missing consent context, active wait, do not contact, privacy conflict, scope mismatch, expiry, or unavailable reviewer. An active recipient do-not-contact restriction overrides a conflicting draft. Only corrected evidence or a new documented human decision can reopen review.
+Stop on unsupported familiarity, stale role, ambiguity, active opt-out, a channel outside declared preferences, active person/relationship/opportunity wait, do not contact, privacy conflict, scope mismatch, expiry, wrong record type, unauthorized reviewer, or unavailable reviewer. Unknown consent requires an explicit contextual human judgment and never becomes general permission. An applicable do-not-contact restriction overrides a conflicting draft even when an optional relationship-to-contribution edge is missing. Only corrected evidence or a new documented human decision can reopen review.
 
 ## Outputs and reflection
 

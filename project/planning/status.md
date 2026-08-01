@@ -2,7 +2,7 @@
 
 **Target:** 1.0.0 release candidate
 **Updated:** 2026-08-01
-**State:** Repository-local hardening complete; immutable post-fix review pending
+**State:** rc.2 remediation and code review complete; immutable rc.2 review pending
 
 ## Completed 0.1.0 baseline
 
@@ -26,11 +26,12 @@
 ## v1.0.0 release hardening
 
 - Two independent agents reviewed the exact clean 0.1.0 candidate SHA.
-- All repository-local Blocker, Material, and Editorial findings have been dispositioned with regression coverage and a two-axis code review.
-- The current version is `1.0.0-rc.1`; it is not a final v1.0.0 claim or tag.
+- Initial and rc.1 repository-local Blocker, Material, and Editorial findings have been dispositioned in the rc.2 candidate with regression coverage and a final two-axis code review.
+- Candidate `1.0.0-rc.1` failed its first post-fix independent review; its reports remain point-in-time evidence.
+- The current version is `1.0.0-rc.2`; it is not a final v1.0.0 claim or tag.
 - A fresh two-agent post-fix review is required against the final release-candidate SHA.
 
-See the [v1.0.0 release criteria](../specifications/v1.0.0-release-criteria.md), [independent review disposition](../reviews/v1.0.0-independent-review-disposition-2026-08-01.md), and [release-candidate code review](../reviews/v1.0.0-rc.1-code-review-2026-08-01.md).
+See the [v1.0.0 release criteria](../specifications/v1.0.0-release-criteria.md), [initial independent review disposition](../reviews/v1.0.0-independent-review-disposition-2026-08-01.md), [rc.1 post-fix disposition](../reviews/v1.0.0-rc.1-post-fix-review-disposition-2026-08-01.md), and [rc.2 code review](../reviews/v1.0.0-rc.2-code-review-2026-08-01.md).
 
 ## Open external release gates
 

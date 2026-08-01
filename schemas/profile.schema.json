@@ -6,7 +6,7 @@
     { "$ref": "common.schema.json#/$defs/record" },
     {
       "type": "object",
-      "required": ["practitioner_name", "profile_type", "mission", "goals", "boundaries", "ecosystem_ids", "channels", "measurement_priorities", "accountable_human", "no_autonomous_send"],
+      "required": ["practitioner_name", "profile_type", "mission", "goals", "boundaries", "capacity", "review_cadence", "ecosystem_ids", "channels", "measurement_priorities", "accountable_human_id", "authorized_outreach_approver_ids", "no_autonomous_send"],
       "properties": {
         "record_type": { "const": "profile" },
         "practitioner_name": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
@@ -14,10 +14,18 @@
         "mission": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "goals": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
         "boundaries": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "capacity": { "$ref": "common.schema.json#/$defs/knownOrUnknownString" },
+        "review_cadence": { "$ref": "common.schema.json#/$defs/knownOrUnknownString" },
         "ecosystem_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
         "channels": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
         "measurement_priorities": { "type": "array", "items": { "enum": ["contribution", "relationships", "learning", "reach", "commercial"] }, "uniqueItems": true },
-        "accountable_human": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "accountable_human_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "authorized_outreach_approver_ids": {
+          "type": "array",
+          "items": { "$ref": "common.schema.json#/$defs/stableId" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
         "no_autonomous_send": { "const": true }
       }
     }

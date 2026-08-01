@@ -49,6 +49,24 @@ def approve_outreach(record: dict, *, decided_at: str = "2026-08-01T12:00:00Z", 
     ]
 
 
+def make_outreach_eligible(fixture: Path) -> None:
+    person_path = fixture / "examples" / "fictional" / "person-jules-okafor.json"
+    person = json.loads(person_path.read_text(encoding="utf-8"))
+    person["communication_boundary"]["consent_status"] = "opted_in"
+    person["communication_boundary"]["consent_history"][-1]["state"] = "opted_in"
+    person["communication_boundary"]["consent_history"][-1]["reason"] = (
+        "The fictional recipient explicitly opted in to this bounded review request."
+    )
+    person["communication_boundary"]["preferred_channels"] = ["community_platform_direct_message"]
+    person["communication_boundary"]["restriction_history"][-1]["state"] = "none"
+    person_path.write_text(json.dumps(person, indent=2) + "\n", encoding="utf-8")
+
+    relationship_path = fixture / "examples" / "fictional" / "relationship-lina-jules.json"
+    relationship = json.loads(relationship_path.read_text(encoding="utf-8"))
+    relationship["disposition_history"][-1]["state"] = "consider"
+    relationship_path.write_text(json.dumps(relationship, indent=2) + "\n", encoding="utf-8")
+
+
 class SchemaAcceptanceTests(unittest.TestCase):
     def test_public_examples_validate_as_one_linked_dataset(self) -> None:
         result = run_schemas(ROOT)
@@ -137,6 +155,24 @@ class SchemaAcceptanceTests(unittest.TestCase):
         self.assertNotEqual(0, result.returncode)
         self.assertIn("linked relationship has an active do-not-contact restriction", result.stdout)
 
+    def test_relationship_do_not_contact_cannot_be_bypassed_by_dropping_contribution_edge(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory)
+            copy_schema_fixture(fixture)
+            make_outreach_eligible(fixture)
+            relationship_path = fixture / "examples" / "fictional" / "relationship-lina-jules.json"
+            relationship = json.loads(relationship_path.read_text(encoding="utf-8"))
+            relationship["contribution_ids"] = []
+            relationship["disposition_history"][-1]["state"] = "do_not_contact"
+            relationship_path.write_text(json.dumps(relationship, indent=2) + "\n", encoding="utf-8")
+            outreach_path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+            outreach = json.loads(outreach_path.read_text(encoding="utf-8"))
+            approve_outreach(outreach)
+            outreach_path.write_text(json.dumps(outreach, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(fixture)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("linked relationship has an active do-not-contact restriction", result.stdout)
+
     def test_linked_opportunity_do_not_contact_overrides_approved_outreach(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = Path(directory)
@@ -152,6 +188,160 @@ class SchemaAcceptanceTests(unittest.TestCase):
             result = run_schemas(fixture)
         self.assertNotEqual(0, result.returncode)
         self.assertIn("linked opportunity has an active do-not-contact restriction", result.stdout)
+
+    def test_wait_and_opt_out_states_override_exact_outreach_approval(self) -> None:
+        cases = ("person_wait", "relationship_wait", "opportunity_wait", "recipient_opted_out")
+        for case in cases:
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as directory:
+                fixture = Path(directory)
+                copy_schema_fixture(fixture)
+                make_outreach_eligible(fixture)
+                if case in {"person_wait", "recipient_opted_out"}:
+                    path = fixture / "examples" / "fictional" / "person-jules-okafor.json"
+                    record = json.loads(path.read_text(encoding="utf-8"))
+                    if case == "person_wait":
+                        record["communication_boundary"]["restriction_history"][-1]["state"] = "wait"
+                    else:
+                        record["communication_boundary"]["consent_status"] = "opted_out"
+                        record["communication_boundary"]["consent_history"][-1]["state"] = "opted_out"
+                elif case == "relationship_wait":
+                    path = fixture / "examples" / "fictional" / "relationship-lina-jules.json"
+                    record = json.loads(path.read_text(encoding="utf-8"))
+                    record["disposition_history"][-1]["state"] = "wait"
+                else:
+                    path = fixture / "examples" / "fictional" / "opportunity-accessible-starter-guide.json"
+                    record = json.loads(path.read_text(encoding="utf-8"))
+                    record["decision_history"][-1]["state"] = "wait"
+                path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+                outreach_path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+                outreach = json.loads(outreach_path.read_text(encoding="utf-8"))
+                approve_outreach(outreach)
+                outreach_path.write_text(json.dumps(outreach, indent=2) + "\n", encoding="utf-8")
+                result = run_schemas(fixture)
+            self.assertNotEqual(0, result.returncode)
+            self.assertRegex(result.stdout, r"active wait|consent status")
+
+    def test_eligible_exact_outreach_approval_passes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory)
+            copy_schema_fixture(fixture)
+            make_outreach_eligible(fixture)
+            path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+            record = json.loads(path.read_text(encoding="utf-8"))
+            approve_outreach(record)
+            path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(fixture)
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_unknown_consent_can_receive_contextual_human_approval_when_not_opted_out(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory)
+            copy_schema_fixture(fixture)
+            make_outreach_eligible(fixture)
+            person_path = fixture / "examples" / "fictional" / "person-jules-okafor.json"
+            person = json.loads(person_path.read_text(encoding="utf-8"))
+            person["communication_boundary"]["consent_status"] = "unknown"
+            person["communication_boundary"]["consent_history"][-1]["state"] = "unknown"
+            person["communication_boundary"]["consent_history"][-1]["reason"] = (
+                "No general opt-in exists; the authorized human is assessing one contextual request."
+            )
+            person_path.write_text(json.dumps(person, indent=2) + "\n", encoding="utf-8")
+            outreach_path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+            outreach = json.loads(outreach_path.read_text(encoding="utf-8"))
+            approve_outreach(outreach)
+            outreach_path.write_text(json.dumps(outreach, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(fixture)
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_outreach_approval_uses_a_declared_preferred_channel(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory)
+            copy_schema_fixture(fixture)
+            make_outreach_eligible(fixture)
+            person_path = fixture / "examples" / "fictional" / "person-jules-okafor.json"
+            person = json.loads(person_path.read_text(encoding="utf-8"))
+            person["communication_boundary"]["preferred_channels"] = ["email"]
+            person_path.write_text(json.dumps(person, indent=2) + "\n", encoding="utf-8")
+            outreach_path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+            outreach = json.loads(outreach_path.read_text(encoding="utf-8"))
+            approve_outreach(outreach)
+            outreach_path.write_text(json.dumps(outreach, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(fixture)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("channel is not declared in recipient preferences", result.stdout)
+
+    def test_relationship_participants_and_owners_allow_canonical_organizations(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory)
+            copy_schema_fixture(fixture)
+            relationship_path = fixture / "examples" / "fictional" / "relationship-lina-jules.json"
+            relationship = json.loads(relationship_path.read_text(encoding="utf-8"))
+            relationship["participant_ids"] = ["person-jules-okafor", "organization-riverbend-learning"]
+            relationship_path.write_text(json.dumps(relationship, indent=2) + "\n", encoding="utf-8")
+            contribution_path = fixture / "examples" / "fictional" / "contribution-accessible-starter-guide.json"
+            contribution = json.loads(contribution_path.read_text(encoding="utf-8"))
+            contribution["owner_id"] = "organization-riverbend-learning"
+            contribution_path.write_text(json.dumps(contribution, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(fixture)
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_semantically_typed_references_reject_existing_wrong_record_types(self) -> None:
+        cases = {
+            "recipient_person_id": (
+                "outreach-draft-accessibility-review.json",
+                lambda record: record.update({"recipient_person_id": "organization-riverbend-learning"}),
+            ),
+            "decided_by_person_id": (
+                "relationship-lina-jules.json",
+                lambda record: record["disposition_history"][-1].update({"decided_by_person_id": "organization-riverbend-learning"}),
+            ),
+            "owner_id": (
+                "contribution-accessible-starter-guide.json",
+                lambda record: record.update({"owner_id": "opportunity-accessible-starter-guide"}),
+            ),
+            "contribution_id": (
+                "outreach-draft-accessibility-review.json",
+                lambda record: record.update({"contribution_id": "opportunity-accessible-starter-guide"}),
+            ),
+            "opportunity_ids": (
+                "contribution-accessible-starter-guide.json",
+                lambda record: record.update({"opportunity_ids": ["person-jules-okafor"]}),
+            ),
+            "organizer_ids": (
+                "event-riverbend-accessibility-lab.json",
+                lambda record: record.update({"organizer_ids": ["contribution-accessible-starter-guide"]}),
+            ),
+            "beneficiary_ids": (
+                "opportunity-accessible-starter-guide.json",
+                lambda record: record.update({"beneficiary_ids": ["evidence-riverbend-program"]}),
+            ),
+        }
+        for field, (filename, mutate) in cases.items():
+            with self.subTest(field=field), tempfile.TemporaryDirectory() as directory:
+                fixture = Path(directory)
+                copy_schema_fixture(fixture)
+                path = fixture / "examples" / "fictional" / filename
+                record = json.loads(path.read_text(encoding="utf-8"))
+                mutate(record)
+                path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+                result = run_schemas(fixture)
+                self.assertNotEqual(0, result.returncode)
+                self.assertIn(f"{field} references", result.stdout)
+                self.assertRegex(result.stdout, r"references .* record .*; expected")
+
+    def test_outreach_approval_requires_profile_authority(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory)
+            copy_schema_fixture(fixture)
+            make_outreach_eligible(fixture)
+            path = fixture / "examples" / "fictional" / "outreach-draft-accessibility-review.json"
+            record = json.loads(path.read_text(encoding="utf-8"))
+            approve_outreach(record)
+            record["review_history"][-1]["decided_by_person_id"] = record["recipient_person_id"]
+            path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(fixture)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("reviewer is not authorized by governing profile", result.stdout)
 
     def test_approval_is_bound_to_exact_content_recipient_channel_and_expiry(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -313,6 +503,35 @@ class SchemaAcceptanceTests(unittest.TestCase):
                     self.assertNotEqual(0, result.returncode)
                     self.assertIn("authoritative baseline", result.stdout)
 
+    def test_schema3_initial_consent_decision_preserves_schema2_baseline_status(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            baseline = root / "baseline"
+            candidate = root / "candidate"
+            copy_schema_fixture(baseline)
+            baseline_path = baseline / "examples" / "fictional" / "person-jules-okafor.json"
+            baseline_record = json.loads(baseline_path.read_text(encoding="utf-8"))
+            baseline_record["communication_boundary"]["consent_status"] = "opted_out"
+            baseline_record["communication_boundary"].pop("consent_history")
+            baseline_path.write_text(json.dumps(baseline_record, indent=2) + "\n", encoding="utf-8")
+            shutil.copytree(baseline, candidate)
+            candidate_path = candidate / "examples" / "fictional" / "person-jules-okafor.json"
+            candidate_record = json.loads(candidate_path.read_text(encoding="utf-8"))
+            candidate_record["communication_boundary"]["consent_status"] = "opted_in"
+            candidate_record["communication_boundary"]["consent_history"] = [
+                {
+                    "decision_id": "decision-jules-consent-rewritten",
+                    "state": "opted_in",
+                    "decided_by_person_id": "person-lina-moreno",
+                    "decided_at": "2026-08-02T12:00:00Z",
+                    "reason": "The authoritative opt-out was not preserved.",
+                }
+            ]
+            candidate_path.write_text(json.dumps(candidate_record, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(candidate, baseline)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("initial consent decision does not preserve authoritative baseline status", result.stdout)
+
     def test_verified_or_high_confidence_records_require_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = Path(directory)
@@ -352,6 +571,18 @@ class SchemaAcceptanceTests(unittest.TestCase):
             result = run_schemas(fixture)
         self.assertNotEqual(0, result.returncode)
         self.assertIn("updated_at precedes created_at", result.stdout)
+
+    def test_consent_status_must_match_append_only_consent_history(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = Path(directory)
+            copy_schema_fixture(fixture)
+            path = fixture / "examples" / "fictional" / "person-jules-okafor.json"
+            record = json.loads(path.read_text(encoding="utf-8"))
+            record["communication_boundary"]["consent_status"] = "opted_in"
+            path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+            result = run_schemas(fixture)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("consent status must match the latest consent decision", result.stdout)
 
     def test_event_end_cannot_precede_start(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -397,6 +628,8 @@ class SchemaAcceptanceTests(unittest.TestCase):
             copy_schema_fixture(fixture)
             path = fixture / "examples" / "fictional" / "interaction-riverbend-planning-session.json"
             record = json.loads(path.read_text(encoding="utf-8"))
+            record["commitments"][0]["status"] = "open"
+            record["commitments"][0]["completion_evidence_ids"] = []
             record["commitments"][0]["due_state"] = {"state": "unknown", "reason": "Timing has not been agreed."}
             path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
             valid = run_schemas(fixture)
@@ -427,6 +660,50 @@ class SchemaAcceptanceTests(unittest.TestCase):
         self.assertNotEqual(0, result.returncode)
         for field in ("owner_id", "scope", "due_window", "accessibility_check", "maintenance_or_handoff", "risks", "stop_conditions"):
             self.assertIn(f"'{field}' is a required property", result.stdout)
+
+    def test_completed_contribution_requires_coherent_completion_evidence_and_review(self) -> None:
+        cases = {
+            "evidence": lambda record: record.update({"completion_evidence_ids": []}),
+            "due_window": lambda record: record.update({"due_window": {"state": "planned"}}),
+            "accessibility": lambda record: record.update(
+                {"accessibility_check": {"status": "pending", "evidence_ids": [], "notes": "Still pending."}}
+            ),
+            "accessibility_evidence": lambda record: record.update(
+                {"accessibility_check": {"status": "passed", "evidence_ids": [], "notes": "Unsupported pass."}}
+            ),
+        }
+        for case, mutate in cases.items():
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as directory:
+                fixture = Path(directory)
+                copy_schema_fixture(fixture)
+                path = fixture / "examples" / "fictional" / "contribution-accessible-starter-guide.json"
+                record = json.loads(path.read_text(encoding="utf-8"))
+                record["status"] = "completed"
+                record["due_window"] = {"state": "completed"}
+                record["accessibility_check"] = {
+                    "status": "passed",
+                    "evidence_ids": ["evidence-riverbend-planning-session"],
+                    "notes": "The fictional review passed.",
+                }
+                record["completion_evidence_ids"] = ["evidence-riverbend-planning-session"]
+                mutate(record)
+                path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+                result = run_schemas(fixture)
+            self.assertNotEqual(0, result.returncode)
+
+    def test_commitment_status_and_due_state_must_agree(self) -> None:
+        cases = (("completed", "overdue"), ("cancelled", "planned"), ("open", "completed"))
+        for commitment_status, due_state in cases:
+            with self.subTest(status=commitment_status, due_state=due_state), tempfile.TemporaryDirectory() as directory:
+                fixture = Path(directory)
+                copy_schema_fixture(fixture)
+                path = fixture / "examples" / "fictional" / "interaction-riverbend-planning-session.json"
+                record = json.loads(path.read_text(encoding="utf-8"))
+                record["commitments"][0]["status"] = commitment_status
+                record["commitments"][0]["due_state"] = due_state
+                path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+                result = run_schemas(fixture)
+            self.assertNotEqual(0, result.returncode)
 
     def test_unknown_contribution_due_window_requires_a_reason(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -510,6 +787,27 @@ class SchemaAcceptanceTests(unittest.TestCase):
             result = run_schemas(fixture)
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
 
+    def test_event_known_fields_reject_placeholder_unknowns(self) -> None:
+        for placeholder in ("TBD", "unknown", "To Be Determined", "N/A"):
+            with self.subTest(placeholder=placeholder), tempfile.TemporaryDirectory() as directory:
+                fixture = Path(directory)
+                copy_schema_fixture(fixture)
+                path = fixture / "examples" / "fictional" / "event-riverbend-accessibility-lab.json"
+                record = json.loads(path.read_text(encoding="utf-8"))
+                record["accessibility_summary"] = placeholder
+                path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+                result = run_schemas(fixture)
+            self.assertNotEqual(0, result.returncode)
+
+    def test_portable_profile_preserves_capacity_cadence_and_approver_authority(self) -> None:
+        record = json.loads(
+            (ROOT / "examples" / "fictional" / "profile-riverbend-learning.json").read_text(encoding="utf-8")
+        )
+        self.assertIn("capacity", record)
+        self.assertIn("review_cadence", record)
+        self.assertIn("accountable_human_id", record)
+        self.assertIn("authorized_outreach_approver_ids", record)
+
     def test_riverbend_material_claims_use_claim_specific_evidence(self) -> None:
         expected_evidence = {
             "organization-riverbend-learning.json": "evidence-riverbend-organization-profile",
@@ -524,15 +822,19 @@ class SchemaAcceptanceTests(unittest.TestCase):
                 record = json.loads((ROOT / "examples" / "fictional" / filename).read_text(encoding="utf-8"))
                 self.assertIn(evidence_id, record["evidence_ids"])
 
-    def test_breaking_portable_record_changes_use_schema_v2_and_publish_migration(self) -> None:
+    def test_breaking_portable_record_changes_use_schema_v3_and_publish_migrations(self) -> None:
         common = json.loads((ROOT / "schemas" / "common.schema.json").read_text(encoding="utf-8"))
-        self.assertEqual("2.0.0", common["$defs"]["record"]["properties"]["schema_version"]["const"])
+        self.assertEqual("3.0.0", common["$defs"]["record"]["properties"]["schema_version"]["const"])
         for path in sorted((ROOT / "examples" / "fictional").glob("*.json")):
             with self.subTest(path=path.name):
-                self.assertEqual("2.0.0", json.loads(path.read_text(encoding="utf-8"))["schema_version"])
+                record = json.loads(path.read_text(encoding="utf-8"))
+                self.assertEqual("3.0.0", record["schema_version"])
+                self.assertEqual("1.0.0-rc.2", record["framework_version"])
         self.assertTrue((ROOT / "project" / "migrations" / "portable-records-1-to-2.md").is_file())
-        migration = (ROOT / "project" / "migrations" / "portable-records-1-to-2.md").read_text(encoding="utf-8").lower()
-        self.assertIn("deprecation window", migration)
+        self.assertTrue((ROOT / "project" / "migrations" / "portable-records-2-to-3.md").is_file())
+        for filename in ("portable-records-1-to-2.md", "portable-records-2-to-3.md"):
+            migration = (ROOT / "project" / "migrations" / filename).read_text(encoding="utf-8").lower()
+            self.assertIn("deprecation window", migration)
 
 
 if __name__ == "__main__":

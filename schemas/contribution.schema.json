@@ -43,13 +43,37 @@
             "evidence_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
             "notes": { "$ref": "common.schema.json#/$defs/nonEmptyString" }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": { "properties": { "status": { "const": "passed" } }, "required": ["status"] },
+              "then": { "properties": { "evidence_ids": { "minItems": 1 } } }
+            }
+          ]
         },
         "maintenance_or_handoff": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "risks": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/nonEmptyString" }, "uniqueItems": true },
         "stop_conditions": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/nonEmptyString" }, "minItems": 1, "uniqueItems": true },
         "completion_evidence_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" }
-      }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "completed" } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "due_window": {
+                "properties": { "state": { "enum": ["completed", "not_applicable"] } },
+                "required": ["state"]
+              },
+              "accessibility_check": {
+                "properties": { "status": { "enum": ["passed", "not_required"] } },
+                "required": ["status"]
+              },
+              "completion_evidence_ids": { "minItems": 1 }
+            }
+          }
+        }
+      ]
     }
   ],
   "unevaluatedProperties": false

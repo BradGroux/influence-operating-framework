@@ -24,6 +24,27 @@ PROHIBITED_EXTENSION_FIELD_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+EXPECTED_REFERENCE_TYPES: dict[str, set[str]] = {
+    "accountable_human_id": {"person"},
+    "authorized_outreach_approver_ids": {"person"},
+    "beneficiary_ids": {"organization", "person"},
+    "contribution_id": {"contribution"},
+    "contribution_ids": {"contribution"},
+    "decided_by_person_id": {"person"},
+    "ecosystem_ids": {"ecosystem"},
+    "interaction_ids": {"interaction"},
+    "organization_ids": {"organization"},
+    "organizer_ids": {"organization", "person"},
+    "opportunity_ids": {"opportunity"},
+    "outreach_draft_id": {"outreach_draft"},
+    "owner_id": {"organization", "person", "profile"},
+    "participant_ids": {"organization", "person"},
+    "person_ids": {"person"},
+    "profile_id": {"profile"},
+    "recipient_person_id": {"person"},
+    "relationship_ids": {"relationship"},
+}
+
 try:
     from jsonschema import Draft202012Validator, FormatChecker
     from referencing import Registry, Resource
@@ -51,7 +72,8 @@ def parse_datetime(value: object) -> datetime | None:
     if not isinstance(value, str):
         return None
     try:
-        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return parsed if parsed.tzinfo is not None else None
     except ValueError:
         return None
 
@@ -76,13 +98,17 @@ def find_record_references(value: object, field: str | None = None) -> Iterable[
     if isinstance(value, dict):
         for key, child in value.items():
             yield from find_record_references(child, key)
-    elif field and field not in {"decision_id", "supersedes_decision_id"} and (field.endswith("_id") or field.endswith("_ids")):
-        if isinstance(value, str):
-            yield field, value
-        elif isinstance(value, list):
+    elif isinstance(value, list):
+        if field and field.endswith("_ids"):
             for item in value:
                 if isinstance(item, str):
                     yield field, item
+        else:
+            for item in value:
+                yield from find_record_references(item)
+    elif field and field not in {"decision_id", "supersedes_decision_id"} and field.endswith("_id"):
+        if isinstance(value, str):
+            yield field, value
 
 
 def find_decision_histories(value: object, location: str = "") -> Iterable[tuple[str, list[dict]]]:
@@ -177,6 +203,14 @@ def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[Gate
                 reference_errors.append(
                     f"{path.relative_to(root)}:{field} references non-evidence record {reference}"
                 )
+            elif field in EXPECTED_REFERENCE_TYPES:
+                actual_type = records_by_id[reference].get("record_type")
+                expected_types = EXPECTED_REFERENCE_TYPES[field]
+                if actual_type not in expected_types:
+                    expected = " or ".join(sorted(expected_types))
+                    reference_errors.append(
+                        f"{path.relative_to(root)}:{field} references {actual_type or 'untyped'} record {reference}; expected {expected}"
+                    )
         if (
             record.get("record_type") != "evidence"
             and (record.get("status") == "verified" or record.get("confidence") == "high")
@@ -197,6 +231,13 @@ def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[Gate
             stale_after = parse_date(record.get("stale_after"))
             if accessed_at is not None and stale_after is not None and stale_after < accessed_at:
                 reference_errors.append(f"{path.relative_to(root)}: evidence stale_after precedes accessed_at")
+        if record.get("record_type") == "person":
+            communication_boundary = record.get("communication_boundary", {})
+            consent_history = communication_boundary.get("consent_history", [])
+            if consent_history and communication_boundary.get("consent_status") != consent_history[-1].get("state"):
+                reference_errors.append(
+                    f"{path.relative_to(root)}: consent status must match the latest consent decision"
+                )
         for location, history in find_decision_histories(record):
             seen_decisions: set[str] = set()
             previous: dict | None = None
@@ -234,16 +275,37 @@ def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[Gate
             elif disposition != "pending_review" and (not history or history[-1].get("state") != disposition):
                 reference_errors.append(f"{path.relative_to(root)}: disposition must match the latest human review")
             recipient = records_by_id.get(record.get("recipient_person_id"), {})
+            consent_status = recipient.get("communication_boundary", {}).get("consent_status")
             restrictions = recipient.get("communication_boundary", {}).get("restriction_history", [])
             if restrictions and restrictions[-1].get("state") == "do_not_contact" and disposition != "do_not_contact":
                 reference_errors.append(f"{path.relative_to(root)}: recipient has an active do-not-contact restriction")
+            if disposition == "approve" and consent_status == "opted_out":
+                reference_errors.append(
+                    f"{path.relative_to(root)}: recipient consent status opted_out does not permit approval"
+                )
+            preferred_channels = recipient.get("communication_boundary", {}).get("preferred_channels", [])
+            if disposition == "approve" and record.get("channel") not in preferred_channels:
+                reference_errors.append(f"{path.relative_to(root)}: approved channel is not declared in recipient preferences")
+            if disposition == "approve" and restrictions and restrictions[-1].get("state") == "wait":
+                reference_errors.append(f"{path.relative_to(root)}: recipient has an active wait restriction")
             contribution_id = record.get("contribution_id")
+            contribution = records_by_id.get(contribution_id, {})
+            profile = records_by_id.get(record.get("profile_id"), {})
+            practitioner_party_ids = {
+                candidate
+                for candidate in [
+                    contribution.get("owner_id"),
+                    profile.get("accountable_human_id"),
+                    *profile.get("authorized_outreach_approver_ids", []),
+                ]
+                if isinstance(candidate, str)
+            }
             linked_relationships = [
                 linked_record
                 for linked_record in records_by_id.values()
                 if linked_record.get("record_type") == "relationship"
                 and record.get("recipient_person_id") in linked_record.get("participant_ids", [])
-                and contribution_id in linked_record.get("contribution_ids", [])
+                and practitioner_party_ids.intersection(linked_record.get("participant_ids", []))
             ]
             if disposition != "do_not_contact" and any(
                 relationship.get("disposition_history", [])
@@ -251,7 +313,12 @@ def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[Gate
                 for relationship in linked_relationships
             ):
                 reference_errors.append(f"{path.relative_to(root)}: linked relationship has an active do-not-contact restriction")
-            contribution = records_by_id.get(contribution_id, {})
+            if disposition == "approve" and any(
+                relationship.get("disposition_history", [])
+                and relationship["disposition_history"][-1].get("state") in {"wait", "no_action_needed"}
+                for relationship in linked_relationships
+            ):
+                reference_errors.append(f"{path.relative_to(root)}: linked relationship has an active wait or no-action restriction")
             linked_opportunities = [
                 records_by_id.get(opportunity_id, {}) for opportunity_id in contribution.get("opportunity_ids", [])
             ]
@@ -262,7 +329,17 @@ def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[Gate
                 for opportunity in linked_opportunities
             ):
                 reference_errors.append(f"{path.relative_to(root)}: linked opportunity has an active do-not-contact restriction")
+            if disposition == "approve" and any(
+                opportunity.get("record_type") == "opportunity"
+                and opportunity.get("decision_history", [])
+                and opportunity["decision_history"][-1].get("state") in {"wait", "decline", "no_action_needed"}
+                for opportunity in linked_opportunities
+            ):
+                reference_errors.append(f"{path.relative_to(root)}: linked opportunity has an active wait, decline, or no-action restriction")
             if disposition == "approve" and history:
+                reviewer_id = history[-1].get("decided_by_person_id")
+                if reviewer_id not in profile.get("authorized_outreach_approver_ids", []):
+                    reference_errors.append(f"{path.relative_to(root)}: reviewer is not authorized by governing profile")
                 approval_scope = history[-1].get("approval_scope", {})
                 expected_hash = hashlib.sha256(str(record.get("draft_content", "")).encode("utf-8")).hexdigest()
                 if approval_scope.get("content_sha256") != expected_hash:
@@ -282,11 +359,14 @@ def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[Gate
                 if approval_expires_at is not None and record_updated_at is not None and approval_expires_at < record_updated_at:
                     reference_errors.append(f"{path.relative_to(root)}: approved outreach is expired at the record update time")
 
+    baseline_errors: list[str] = []
+    baseline_record_count = 0
+    baseline_history_count = 0
     if baseline_root is not None:
         baseline_examples = baseline_root / "examples" / "fictional"
         baseline_paths = sorted(baseline_examples.glob("*.json")) if baseline_examples.is_dir() else []
         if not baseline_paths:
-            reference_errors.append(
+            baseline_errors.append(
                 f"authoritative baseline {baseline_root} does not contain examples/fictional/*.json records"
             )
         baseline_records: dict[str, tuple[Path, dict]] = {}
@@ -294,28 +374,65 @@ def validate_schemas(root: Path, baseline_root: Path | None = None) -> list[Gate
             try:
                 baseline_record = load_json(path)
             except Exception as exc:
-                reference_errors.append(f"authoritative baseline {path.relative_to(baseline_root)} is invalid: {exc}")
+                baseline_errors.append(f"authoritative baseline {path.relative_to(baseline_root)} is invalid: {exc}")
                 continue
             record_id = baseline_record.get("id")
             if isinstance(record_id, str):
+                if record_id in baseline_records:
+                    baseline_errors.append(f"authoritative baseline repeats record ID {record_id}")
                 baseline_records[record_id] = (path, baseline_record)
+            else:
+                baseline_errors.append(f"authoritative baseline {path.relative_to(baseline_root)} has no stable record ID")
+        baseline_record_count = len(baseline_records)
         for record_id, (baseline_path, baseline_record) in baseline_records.items():
             candidate_record = records_by_id.get(record_id)
             if candidate_record is None:
-                reference_errors.append(f"{baseline_path.relative_to(baseline_root)}: authoritative record {record_id} is missing")
+                baseline_errors.append(f"{baseline_path.relative_to(baseline_root)}: authoritative record {record_id} is missing")
                 continue
             candidate_histories = dict(find_decision_histories(candidate_record))
+            if baseline_record.get("record_type") == "person":
+                baseline_consent = baseline_record.get("communication_boundary", {}).get("consent_status")
+                candidate_consent_history = candidate_record.get("communication_boundary", {}).get("consent_history", [])
+                if (
+                    baseline_consent in {"unknown", "opted_in", "opted_out"}
+                    and (
+                        not candidate_consent_history
+                        or candidate_consent_history[0].get("state") != baseline_consent
+                    )
+                ):
+                    baseline_errors.append(
+                        f"{record_id}: initial consent decision does not preserve authoritative baseline status {baseline_consent}"
+                    )
             for location, baseline_history in find_decision_histories(baseline_record):
+                baseline_history_count += 1
                 candidate_history = candidate_histories.get(location, [])
                 if len(candidate_history) < len(baseline_history) or candidate_history[: len(baseline_history)] != baseline_history:
-                    reference_errors.append(f"{record_id}:{location} rewrites authoritative decision history")
+                    baseline_errors.append(f"{record_id}:{location} rewrites authoritative decision history")
 
     graph_result = GateResult(
         "graph-references",
         "FAIL" if reference_errors else "PASS",
         "; ".join(reference_errors) if reference_errors else f"all references resolve across {len(ids)} stable record IDs",
     )
-    return [schema_result, graph_result]
+    if baseline_root is None:
+        baseline_result = GateResult(
+            "history-baseline",
+            "DEFERRED",
+            "authoritative baseline comparison was not run; supply --baseline-root for release assurance",
+        )
+    else:
+        baseline_digest = repository_source_sha256(baseline_root) if baseline_record_count else "unavailable"
+        baseline_result = GateResult(
+            "history-baseline",
+            "FAIL" if baseline_errors else "PASS",
+            "; ".join(baseline_errors)
+            if baseline_errors
+            else (
+                f"authoritative baseline source SHA-256 {baseline_digest} compared across "
+                f"{baseline_record_count} records and {baseline_history_count} decision histories"
+            ),
+        )
+    return [schema_result, graph_result, baseline_result]
 
 
 def markdown_anchors(path: Path) -> set[str]:
@@ -767,16 +884,73 @@ def repository_version(root: Path) -> str:
     return version_path.read_text(encoding="utf-8").strip() if version_path.is_file() else "unknown"
 
 
+def repository_source_paths(root: Path) -> list[Path]:
+    process = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+        text=False,
+        capture_output=True,
+    )
+    if process.returncode == 0:
+        relatives = [Path(item.decode("utf-8")) for item in process.stdout.split(b"\0") if item]
+    else:
+        relatives = [path.relative_to(root) for path in root.rglob("*") if path.is_file()]
+    excluded = {Path("reports/validation-report.md")}
+    return sorted(
+        (
+            relative
+            for relative in relatives
+            if relative not in excluded
+            and not any(part in {".git", ".venv", "node_modules", "__pycache__"} for part in relative.parts)
+            and (root / relative).is_file()
+        ),
+        key=lambda item: item.as_posix(),
+    )
+
+
+def repository_source_sha256(root: Path) -> str:
+    digest = hashlib.sha256()
+    for relative in repository_source_paths(root):
+        digest.update(relative.as_posix().encode("utf-8"))
+        digest.update(b"\0")
+        digest.update((root / relative).read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def source_worktree_state(root: Path) -> str:
+    process = subprocess.run(
+        ["git", "-C", str(root), "status", "--porcelain=v1", "--untracked-files=all"],
+        text=True,
+        capture_output=True,
+    )
+    if process.returncode != 0:
+        return "NOT A GIT WORKTREE"
+    material_changes = []
+    for line in process.stdout.splitlines():
+        relative = line[3:]
+        if " -> " in relative:
+            relative = relative.split(" -> ", 1)[1]
+        if relative != "reports/validation-report.md":
+            material_changes.append(relative)
+    return "CLEAN" if not material_changes else "DIRTY"
+
+
 def render_report(root: Path, results: list[GateResult]) -> str:
     """Return deterministic Markdown for a complete validation run."""
 
-    overall = "FAIL" if any(result.status == "FAIL" for result in results) else "PASS"
+    overall = "FAIL" if any(result.status == "FAIL" for result in results) else (
+        "PASS WITH DEFERRED GATES" if any(result.status == "DEFERRED" for result in results) else "PASS"
+    )
+    baseline_ran = any(result.name == "history-baseline" and result.status == "PASS" for result in results)
+    command = "python3 scripts/validate.py --baseline-root <authoritative-root>" if baseline_ran else "python3 scripts/validate.py"
     lines = [
         "# Validation report",
         "",
         f"**Repository version:** {repository_version(root)}",
+        f"**Candidate source SHA-256:** `{repository_source_sha256(root)}`",
+        f"**Source worktree state (excluding this report):** {source_worktree_state(root)}",
         f"**Overall:** {overall}",
-        "**Command:** `python3 scripts/validate.py`",
+        f"**Command:** `{command}`",
         "",
         "This report records direct repository checks. It does not convert owner decisions or independent reviews into implementation success.",
         "",
@@ -789,11 +963,14 @@ def render_report(root: Path, results: list[GateResult]) -> str:
         safe_detail = result.detail.replace("|", "\\|").replace("\n", "<br>")
         lines.append(f"| {result.name} | {result.status} | {safe_detail} |")
     failures = [result for result in results if result.status == "FAIL"]
-    lines.extend(["", "## Failed items", ""])
+    deferred = [result for result in results if result.status == "DEFERRED"]
+    lines.extend(["", "## Failed or deferred automated gates", ""])
     if failures:
         lines.extend(f"- **{result.name}:** {result.detail}" for result in failures)
     else:
         lines.append("No automated gate failed.")
+    if deferred:
+        lines.extend(f"- **{result.name} — DEFERRED:** {result.detail}" for result in deferred)
     lines.extend(
         [
             "",
