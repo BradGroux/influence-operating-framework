@@ -2,7 +2,7 @@
 
 **Repository version:** 1.0.0-rc.2
 **Candidate source SHA-256:** `9ed0011a4abb41e70b2e04c0a20e7f3020ca5056ba6d4936bcd0146e8b3f752e`
-**Source worktree state (excluding this report):** DIRTY
+**Source worktree state (excluding this report):** CLEAN
 **Overall:** PASS
 **Command:** `python3 scripts/validate.py --baseline-root <authoritative-root>`
 
