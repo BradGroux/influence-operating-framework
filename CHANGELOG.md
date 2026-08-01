@@ -4,65 +4,112 @@ All notable changes to the Influence Operating Framework are documented here.
 
 ## 1.0.0 — 2026-08-01
 
+The first public release establishes a concise, human-first business operating
+framework for responsible influence practice.
+
+### Added
+
+- A charter defining the framework's purpose, commitments, scope,
+  accountability, and stewardship.
+- Six canonical concerns: Purpose, Context, Contribution, Relationship,
+  Judgment, and Learning.
+- A seven-move practice method: Orient, Understand, Choose, Contribute, Engage,
+  Sustain, and Learn.
+- A responsible-practice standard covering evidence, proportional research,
+  truthful relationships, consent, communication boundaries, accountable human
+  judgment, contribution, power, conflicts, corrections, and prohibited
+  practice.
+- Measurement and learning guidance that keeps contribution, relationship,
+  learning, relevant reach, sustainability, and commercial outcomes visible
+  without reducing influence to one score.
+- An approved glossary and three fictional application examples spanning event
+  contribution, community sponsorship, and assisted open-source work.
+- Governance, contribution guidance, a Code of Conduct, security and sensitive
+  disclosure guidance, decision records, project-history boundaries, and an
+  MIT license.
+- Citation metadata in `CITATION.cff` and a release version in `VERSION`.
+- GitHub issue forms for contribution, appeal, conduct, and sensitive
+  disclosure, plus a pull-request template and explicit code ownership.
+- A pinned GitHub Actions workflow for automated repository validation.
+- A repeatable validation gate covering required structure, local Markdown
+  links and anchors, release metadata, review-record conventions,
+  publication-safety patterns, framework-boundary paths, and Mermaid rendering.
+- Preserved, sanitized review evidence from application, adversarial,
+  coherence, simplicity, misuse, and release-integrity passes.
+
 ### Changed
 
-- Rebuilt the repository around a canonical business operating framework.
-- Defined six concerns: Purpose, Context, Contribution, Relationship, Judgment,
-  and Learning.
-- Condensed the operating method into seven practical moves: Orient,
-  Understand, Choose, Contribute, Engage, Sustain, and Learn.
-- Replaced technical conformance machinery with a responsible-practice standard
-  and lightweight document validation.
-- Replaced schema-based records and profiles with three readable fictional
-  examples.
-- Embedded only the Mermaid diagrams that materially clarify the framework.
+- Rebuilt the repository around a canonical business operating framework after
+  the pre-release technical toolkit had grown beyond the intended scope.
+- Condensed the operating method into seven practical moves and clarified that
+  they overlap, repeat, and are not a mandatory lifecycle.
 - Distinguished recipient-set communication boundaries from internal
   practitioner precautions.
-- Diversified examples across event contribution, nonprofit sponsorship, and
-  assisted open-source work.
-- Required disclosure and management of material interests and legitimate
-  authority for consequential group decisions.
+- Required relevant disclosure and management of material interests and
+  legitimate authority for consequential group decisions.
 - Clarified that accountable people own judgment while software and AI cannot
   independently decide or transmit external actions, and that batch approval is
   not accountable review.
-- Clarified the optional relationship between the six concerns and seven moves,
-  normalized decision labels, separated sustainability from commercial results,
+- Normalized decision labels, separated sustainability from commercial results,
   and compacted repeated learning guidance.
-- Consolidated public authority in governance, made release review proportional
-  to change risk, and aligned validator claims with its structural checks.
-- Standardized and sanitized the v1.0.0 review record while preserving verdicts,
-  findings, dissent, and limitations.
+- Consolidated public authority in governance and made release review
+  proportional to the consequence of a change.
+- Standardized repository names: uppercase root policy and metadata files,
+  lowercase kebab-case content and scripts, zero-padded numbered records, and
+  dated public review records without internal reviewer sequence letters.
+- Replaced named reviewer, tester, agent, model, and platform attribution with
+  generic role-based attribution while preserving findings, verdicts,
+  limitations, and dissent.
+- Established a sanitized public-history baseline using generic review
+  attribution and GitHub-provided no-reply author metadata.
+- Restored concise repository-relative source evidence to historical findings.
+- Documented Mermaid accurately: diagrams remain inline source; rendering uses
+  a transient pinned renderer, with no package manifest, lockfile, generated
+  export, or committed dependency tree.
 
 ### Removed
 
-- Portable JSON Schemas, record migrations, graph fixtures, and profile records.
+- Portable JSON Schemas, record migrations, graph fixtures, and profile
+  records.
 - Automation-agent contracts and implementation workflow templates.
-- Generated SVG and PNG exports, diagram metadata, and rendering dependencies.
+- Generated SVG and PNG exports and diagram metadata.
 - Technical release-assurance tests and reports tied to the superseded toolkit.
 - The completed framework-first reset specification after its durable boundary
   and rationale were recorded in the decision log and changelog.
+- Internal reviewer sequence suffixes and public tester or bot identities from
+  release-review filenames and content.
 
-### Supplemental review correction
+### Review and Release Status
 
-- Four supplemental reviews evaluated the initial v1.0.0 commit
+- The rc.3 reviews identified two Material findings involving recipient-set
+  boundaries and narrow examples; rc.4 resolved both and received GO from the
+  application and adversarial reviews.
+- Four supplemental reviews evaluated initial commit
   `3878daec07c402c49a0424e82368c07ad0e07c6c` for coherence, practical use,
   misuse resistance, and simplicity.
 - Material corrections were committed as candidate
   `3f4cc013d80fed996705ed9a2fd4e4cc9bd63541` and subjected to fresh practical
-  application and adversarial framework review before the release record and
-  local tag were updated.
-- The supplemental disposition preserves recommendations that were downgraded
-  or rejected rather than silently treating every review preference as a
-  framework requirement.
+  application and adversarial review.
+- The canonical coherence, practical application, and adversarial misuse
+  reviews of candidate `18c8b2c89137de3191034f7b7138df256b397f1f`
+  returned GO with no findings.
+- The release-integrity review returned GO with three Minor repository
+  maintenance findings. The publication pass resolved all three without
+  changing framework meaning.
+- The examples remain fictional, illustrative, and not domain-validated.
+- The independent reports are source-bounded AI-assisted review evidence, not
+  human, organizational, legal, ethical, professional, or domain validation.
+- The version 1.0.0 release is owner-approved, licensed under MIT, and published
+  at `github.com/BradGroux/influence-operating-framework`.
 
-## Pre-release history
+## Pre-release History
 
 ### 1.0.0-rc.4 — 2026-08-01
 
 - Closed all rc.3 application and adversarial findings.
 - Received independent application and adversarial GO recommendations with zero
   Blocker, Material, or Minor findings.
-- Promoted to the initial v1.0.0 candidate; later corrected in place after the
+- Became the initial v1.0.0 candidate and was later corrected in place after the
   supplemental review described above.
 
 ### 1.0.0-rc.3 — 2026-08-01
@@ -70,15 +117,15 @@ All notable changes to the Influence Operating Framework are documented here.
 - Produced the first framework-first candidate.
 - Independent application review returned GO; adversarial review identified two
   Material findings involving recipient-set boundaries and narrow examples.
-- Superseded by rc.4 after accepting both findings.
+- Was superseded by rc.4 after both findings were accepted.
 
 ### 1.0.0-rc.2 — 2026-08-01
 
 - Hardened the initial portable-record and visual-toolkit candidate.
 - Independent review found unresolved implementation concerns.
-- Superseded by the framework-first rewrite before a final v1.0.0 release.
+- Was superseded by the framework-first rewrite before public release.
 
 ### 1.0.0-rc.1 — 2026-08-01
 
 - Produced the first fully validated technical release candidate.
-- Superseded before public v1.0.0 release.
+- Was superseded before public release.

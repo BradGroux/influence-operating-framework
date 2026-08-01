@@ -50,17 +50,20 @@ Examples illustrate the framework. They do not create requirements.
 - Add an inline Mermaid diagram only when it materially clarifies a relationship
   or sequence. Do not commit generated image exports or diagram metadata.
 - Keep examples subordinate to the canonical framework.
+- Follow the filename conventions in `CONTRIBUTING.md` and the review-record
+  conventions in `project/reviews/README.md`.
 
 ## Verification
 
 Before reporting completion, run:
 
 ```bash
-python3 scripts/validate_repository.py
-bash scripts/validate_mermaid.sh
+bash scripts/validate-repository.sh
 ```
 
-The validation is intentionally lightweight. It checks repository structure,
-Markdown links, anchors, Mermaid fence integrity, version consistency, and the
-framework boundary. It does not claim that a document validator can prove the
-quality or ethics of real practice.
+The gate checks its enumerated required files, local Markdown links and anchors,
+release and citation metadata, review-record conventions, publication-safety
+patterns, fixed superseded-framework paths, Mermaid fence integrity, and
+rendering of inline Mermaid source. It does not fetch external links, infer
+semantic coherence, or claim that document checks can prove the quality or
+ethics of real practice.

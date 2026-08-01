@@ -14,7 +14,18 @@ Influence here means the earned capacity to help ideas, people, and communities
 move. It is not follower count, access, status, or the ability to manufacture
 attention.
 
-## The framework
+## Research and Stewardship
+
+The framework is developed as part of
+[Digital Meld](https://digitalmeld.io)'s research arm. This relationship
+provides research, application, and learning context; it does not grant Digital
+Meld authority to redefine the framework outside its documented governance and
+contribution processes.
+
+Brad Groux is the creator and founding steward. Changes follow
+[Governance](GOVERNANCE.md) and the [contribution guide](CONTRIBUTING.md).
+
+## The Framework
 
 Every responsible influence practice makes six concerns clear:
 
@@ -33,7 +44,9 @@ These concerns apply to existing work. The framework does not require a
 particular tool, database, data model, automation system, or communication
 platform.
 
-## Start here
+## Start Here
+
+Read the canonical framework in this order:
 
 1. [Charter](framework/charter.md)
 2. [Operating framework](framework/operating-framework.md)
@@ -42,10 +55,41 @@ platform.
 5. [Measurement and learning](framework/measurement-and-learning.md)
 6. [Glossary](framework/glossary.md)
 
-The [examples](examples/README.md) show the framework in use without adding new
-requirements.
+Then use:
 
-## What this is not
+- [Examples](examples/README.md) to see the framework applied in three
+  fictional contexts;
+- [Decision records](decisions/README.md) to understand material choices and
+  their rationale;
+- [Governance](GOVERNANCE.md) to understand authority, review, and releases;
+- [Contributing](CONTRIBUTING.md) to propose or prepare a change;
+- [Code of Conduct](CODE_OF_CONDUCT.md) for participation expectations; and
+- [Security and privacy](SECURITY.md) before reporting sensitive information.
+
+## Quick Application
+
+For any activity, write one honest answer for each of the six concerns. If
+purpose is unclear, evidence is weak, the contribution is speculative, a
+boundary is unresolved, or the practitioner cannot honor the resulting
+commitment, stop or narrow the activity. Waiting, declining, and doing nothing
+are successful outcomes when they protect people or purpose.
+
+## Repository Structure
+
+| Path | Purpose | Authority |
+|---|---|---|
+| `framework/` | Charter, operating framework, method, practice standard, measurement guidance, and glossary | Canonical framework |
+| `examples/` | Fictional application examples | Explanatory; cannot amend the framework |
+| `decisions/` | Accepted decisions and reusable decision template | Rationale for canonical changes |
+| `project/` | Development and review records | Historical evidence; not framework content |
+| `CONTRIBUTING.md` | Contribution and review process | Repository process |
+| `GOVERNANCE.md` | Stewardship, authority, amendment, and release rules | Repository governance |
+| `CODE_OF_CONDUCT.md` | Participation and enforcement expectations | Community standard |
+| `SECURITY.md` | Private reporting and sensitive-disclosure guidance | Repository safeguard |
+| `CITATION.cff` | Citation metadata | Release metadata |
+| `scripts/validate-repository.sh` | Complete local validation entry point | Repository verification |
+
+## What This Is Not
 
 This is not a CRM, lead funnel, engagement-farming playbook, public-speaking
 checklist, messaging system, or technical specification. It does not prescribe
@@ -56,30 +100,57 @@ People and tools may assist with research, drafting, organization, and
 reflection. The practitioner remains accountable for evidence, privacy,
 contribution, commitments, and every external action.
 
-## Quick application
+## Current Status
 
-For any activity, write one honest answer for each of the six concerns. If
-purpose is unclear, evidence is weak, the contribution is speculative, a
-boundary is unresolved, or the practitioner cannot honor the resulting
-commitment, stop or narrow the activity. Waiting, declining, and doing nothing
-are successful outcomes when they protect people or purpose.
+Version 1.0.0 is the complete, owner-approved initial release, dated
+2026-08-01. The final framework reviews found no Blocker, Material, Minor, or
+Suggestion findings:
 
-## Status and validation
+- [Canonical coherence review](project/reviews/v1.0.0-final-canonical-coherence-review-2026-08-01.md)
+- [Practical application review](project/reviews/v1.0.0-final-practical-application-review-2026-08-01.md)
+- [Adversarial misuse review](project/reviews/v1.0.0-final-adversarial-misuse-review-2026-08-01.md)
 
-Version 1.0.0 is the first framework-first release. Repository checks are
-intentionally limited to document integrity:
+The [release-integrity review](project/reviews/v1.0.0-final-release-integrity-review-2026-08-01.md)
+returned GO with three repository-maintenance findings. This publication pass
+resolves them by documenting the transient Mermaid renderer accurately,
+aligning validation claims with implemented checks, and restoring concise
+source evidence to historical reports.
+
+The examples are fictional, illustrative, and not domain-validated. The
+independent reports are source-bounded AI-assisted review evidence; they are
+not human, organizational, legal, ethical, professional, or domain validation.
+
+Run the complete repository gate before submitting or releasing a change:
 
 ```bash
-python3 scripts/validate_repository.py
-bash scripts/validate_mermaid.sh
+bash scripts/validate-repository.sh
 ```
 
-Passing validation means the listed structural checks completed. It does not
-establish semantic consistency or certify a real-world implementation, legal
-compliance, ethics, accessibility, or community acceptance.
+The gate checks required files, local Markdown links and anchors, version and
+citation metadata, review-record conventions, publication-safety patterns,
+framework-boundary paths, and Mermaid rendering. It does not certify a
+real-world implementation or prove legal compliance, ethics, accessibility, or
+community acceptance. Mermaid rendering uses a transient, pinned command-line
+renderer through `npx`; no package manifest, lockfile, generated diagram, or
+committed dependency tree is required.
 
-## Stewardship
+## Contributing and Support
 
-Brad Groux is the founding steward. Changes follow [governance](GOVERNANCE.md)
-and the [contribution guide](CONTRIBUTING.md). The framework is released under
-the [MIT License](LICENSE).
+Use [GitHub Issues](https://github.com/BradGroux/influence-operating-framework/issues)
+for proposals, questions, and appeals. Use
+[pull requests](https://github.com/BradGroux/influence-operating-framework/pulls)
+for prepared changes. Do not put credentials, personal information, private
+evidence, or sensitive conduct reports in a public issue or pull request.
+
+## License and Citation
+
+The framework is available under the [MIT License](LICENSE.md). Its designated
+public home is
+[github.com/BradGroux/influence-operating-framework](https://github.com/BradGroux/influence-operating-framework).
+Formal citation metadata is provided in [`CITATION.cff`](CITATION.cff).
+
+## Development Records
+
+Planning and review artifacts are preserved under [`project/`](project/README.md)
+so contributors can inspect how decisions were reached without confusing those
+records with the framework itself.

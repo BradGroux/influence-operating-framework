@@ -3,7 +3,7 @@
 This directory preserves release findings, dissent, and maintainer disposition.
 Reports evaluate an exact commit and do not become framework requirements.
 
-## Review perspectives
+## Review Perspectives
 
 1. **Application:** Can a practitioner use the framework across realistic
    contexts without hidden technical machinery?
@@ -11,26 +11,39 @@ Reports evaluate an exact commit and do not become framework requirements.
    transactional or manipulative use?
 3. **Simplicity and scope:** Does each canonical element earn its place without
    turning the framework into a technical system or exhaustive procedure?
+4. **Release integrity:** Is the release complete, internally linked,
+   consistently described, and safe to publish?
 
 Reviewers read the canonical framework before examples. Optional
 implementation choices are not defects or requirements.
 
-## Standard report format
+## Public Review Record Standard
+
+Review records use `<subject>-<record-type>-YYYY-MM-DD.md`. `README.md` is the
+only undated file in this directory because it is the maintained index rather
+than a point-in-time record.
 
 Each report contains:
 
-- review date, reviewer role, reviewed version, and exact commit;
+- status, review date, generic reviewer role, reviewed version, and exact
+  commit;
 - verdict and counts for Blocker, Material, Minor, and Suggestion findings;
 - executive summary, findings, verification, limitations, and final verdict;
-- repository-relative evidence without reviewer personas, model names, local
-  machine paths, temporary checkout details, or access diagnostics.
+  and
+- concise repository-relative `path:line` evidence evaluated against the
+  report's reviewed commit.
+
+Reviewer and tester attribution is role-based. Public records may distinguish
+human review from AI-assisted review, but do not publish a person, agent, model,
+tool, or internal platform name unless that identity is material to approved
+professional authority. Filenames do not carry reviewer sequence letters.
 
 Sanitization may remove operational noise and normalize presentation. It must
 not change the reviewed commit, verdict, severity, finding substance, or stated
 limitations. A disposition may accept, reject, downgrade, or combine findings,
 but it preserves material dissent.
 
-## Severity and verdict
+## Severity and Verdict
 
 - **Blocker:** the framework is unusable or directly permits a serious breach
   of its commitments.
@@ -43,7 +56,7 @@ but it preserves material dissent.
 `GO` requires no unresolved Blocker or Material finding. The maintainer records
 the release decision in a separate disposition.
 
-## v1.0.0 record
+## Version 1.0.0 Record
 
 | Candidate | Application | Adversarial or coherence | Disposition |
 |---|---|---|---|
@@ -51,11 +64,33 @@ the release decision in a separate disposition.
 | rc.4 | GO; no findings | GO; no findings | GO; promoted to initial v1.0.0 |
 | Initial v1.0.0 supplemental review | GO; 2 Minor | Three NO-GO reports with overlapping and disputed findings | [GO after bounded correction](v1.0.0-supplemental-review-disposition-2026-08-01.md) |
 | Corrected v1.0.0 candidate | GO; 1 Minor | GO; 1 Minor | Shared terminology issue corrected |
-| Tagged v1.0.0 final audits | GO; no findings | GO in coherence and misuse reviews; no findings | Release integrity GO; 3 Minor maintenance findings |
+| Final framework audits | GO; no findings | GO in coherence and misuse reviews; no findings | Release integrity GO; 3 Minor maintenance findings resolved in the publication pass |
 
-Final tagged-commit reports:
+### rc.3
 
-- [canonical coherence](v1.0.0-final-canonical-coherence-review-2026-08-01-i.md)
-- [practical application](v1.0.0-final-practical-application-review-2026-08-01-j.md)
-- [adversarial misuse](v1.0.0-final-adversarial-misuse-review-2026-08-01-k.md)
-- [release integrity](v1.0.0-final-release-integrity-review-2026-08-01-l.md)
+- [Independent application review](v1.0.0-rc.3-independent-application-review-2026-08-01.md)
+- [Adversarial framework review](v1.0.0-rc.3-adversarial-framework-review-2026-08-01.md)
+- [Review disposition](v1.0.0-rc.3-review-disposition-2026-08-01.md)
+
+### rc.4
+
+- [Independent application review](v1.0.0-rc.4-independent-application-review-2026-08-01.md)
+- [Adversarial framework review](v1.0.0-rc.4-adversarial-framework-review-2026-08-01.md)
+- [Review disposition](v1.0.0-rc.4-review-disposition-2026-08-01.md)
+
+### Supplemental and Corrected Candidate Reviews
+
+- [Framework coherence review](v1.0.0-supplemental-framework-coherence-review-2026-08-01.md)
+- [Practical application review](v1.0.0-supplemental-practical-application-review-2026-08-01.md)
+- [Misuse-resistance review](v1.0.0-supplemental-misuse-resistance-review-2026-08-01.md)
+- [Simplicity and scope review](v1.0.0-supplemental-simplicity-scope-review-2026-08-01.md)
+- [Supplemental review disposition](v1.0.0-supplemental-review-disposition-2026-08-01.md)
+- [Corrected independent application review](v1.0.0-corrected-independent-application-review-2026-08-01.md)
+- [Corrected adversarial framework review](v1.0.0-corrected-adversarial-framework-review-2026-08-01.md)
+
+### Final Audits
+
+- [Canonical coherence](v1.0.0-final-canonical-coherence-review-2026-08-01.md)
+- [Practical application](v1.0.0-final-practical-application-review-2026-08-01.md)
+- [Adversarial misuse](v1.0.0-final-adversarial-misuse-review-2026-08-01.md)
+- [Release integrity](v1.0.0-final-release-integrity-review-2026-08-01.md)

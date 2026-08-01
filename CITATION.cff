@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use the Influence Operating Framework, please cite it using this metadata."
+title: "Influence Operating Framework"
+authors:
+  - family-names: "Groux"
+    given-names: "Brad"
+    alias: "BradGroux"
+repository-code: "https://github.com/BradGroux/influence-operating-framework"
+url: "https://github.com/BradGroux/influence-operating-framework"
+license: MIT
+version: 1.0.0
+date-released: 2026-08-01
+abstract: >-
+  An open business operating framework for building meaningful influence
+  through useful contribution, trusted relationships, accountable judgment,
+  and continuous learning.
+keywords:
+  - business operations
+  - operating framework
+  - influence
+  - community participation
+  - responsible practice
+  - continuous learning

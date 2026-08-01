@@ -11,7 +11,7 @@ cleanup() {
 trap cleanup EXIT
 
 if [[ $# -ne 0 ]]; then
-  echo "Usage: scripts/validate_mermaid.sh" >&2
+  echo "Usage: scripts/validate-mermaid.sh" >&2
   exit 2
 fi
 

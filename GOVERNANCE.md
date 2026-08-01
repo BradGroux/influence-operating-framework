@@ -1,5 +1,9 @@
 # Governance
 
+**Status:** Approved initial repository governance<br>
+**Founding steward:** Brad Groux<br>
+**Last reviewed:** 2026-08-01
+
 ## Stewardship
 
 Brad Groux is the founding steward. Future maintainers or successors require an
@@ -9,6 +13,10 @@ Stewardship protects the charter, preserves the framework's business boundary,
 distinguishes requirements from examples, and reports uncertainty and review
 limits honestly. Teaching, applying, commercializing, or implementing the
 framework does not independently grant authority to redefine it.
+
+The framework is developed through
+[Digital Meld](https://digitalmeld.io)'s research arm. This affiliation does
+not grant Digital Meld decision authority outside this governance process.
 
 ## Authority
 
@@ -87,3 +95,40 @@ receive review proportionate to their risk plus the repository document checks.
 
 No version number or automated check overrides an unresolved material framework
 finding.
+
+Repository content and accepted contributions are licensed under the
+[MIT License](LICENSE.md).
+
+### Version 1.0.0 Release Baseline
+
+- **Version:** 1.0.0
+- **Effective date:** 2026-08-01
+- **Repository version:** annotated tag `v1.0.0`
+- **Material changes:** recorded in the [changelog](CHANGELOG.md)
+- **Known limitations:** examples are fictional, illustrative, and not
+  domain-validated; independent reports are source-bounded AI-assisted review
+  evidence rather than human, organizational, professional, or domain
+  validation; real-world use has not been certified
+- **Superseded public version:** none
+- **Responsible steward:** Brad Groux
+- **Publication destination:**
+  [`github.com/BradGroux/influence-operating-framework`](https://github.com/BradGroux/influence-operating-framework)
+
+## Conflicts and Appeals
+
+Conflicting interpretations are recorded and escalated to the founding steward
+or a future governing body. Material dissent remains visible with the decision.
+
+An appeal identifies the disputed contribution or decision, grounds, evidence,
+and requested resolution. Appeals of maintainer decisions go to the founding
+steward or future governing body. When the founding steward made the disputed
+decision and no broader governing body exists, the steward conducts a
+documented reconsideration with an uninvolved reviewer when practical and
+records that governance limitation.
+
+## Governance Review
+
+Review this document when participation materially expands, maintainers or
+decision authorities change, repeated contribution or appeal problems occur, a
+release exposes unclear authority, licensing changes, or the founding steward
+proposes a broader governing body.
