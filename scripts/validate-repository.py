@@ -46,6 +46,7 @@ REQUIRED_FILES = (
     "framework/responsible-practice-standard.md",
     "project/README.md",
     "project/reviews/README.md",
+    "scripts/puppeteer-ci-config.json",
     "scripts/validate-mermaid.sh",
     "scripts/validate-repository.py",
     "scripts/validate-repository.sh",

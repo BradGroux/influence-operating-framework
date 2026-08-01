@@ -69,7 +69,8 @@ framework for responsible influence practice.
   export, or committed dependency tree.
 - Made Mermaid validation portable across local and GitHub-hosted environments
   by relying only on Git plus standard shell tools before invoking the pinned
-  renderer.
+  renderer, with a CI-only Chromium configuration for the hosted runner's
+  unavailable process sandbox.
 
 ### Removed
 

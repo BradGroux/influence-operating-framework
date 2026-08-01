@@ -133,7 +133,9 @@ paths, and Mermaid rendering. It does not certify a real-world implementation
 or prove legal compliance, ethics, accessibility, or community acceptance.
 Mermaid rendering uses a transient, pinned command-line renderer through `npx`;
 no package manifest, lockfile, generated diagram, or committed dependency tree
-is required.
+is required. On GitHub-hosted Linux runners, a narrowly scoped Puppeteer
+configuration disables Chromium's unavailable process sandbox while rendering
+repository-owned Markdown in the disposable CI environment.
 
 ## Contributing and Support
 

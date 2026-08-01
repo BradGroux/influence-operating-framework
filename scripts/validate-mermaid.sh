@@ -37,13 +37,21 @@ while IFS= read -r -d '' markdown_file; do
   document_key="$(printf '%s' "$markdown_file" | tr '/.' '__')"
   document_temp="$validation_temp/$document_key"
   assets_temp="$document_temp/assets"
+  mermaid_arguments=(
+    --input "$markdown_file"
+    --output "$document_temp/rendered.md"
+    --artefacts "$assets_temp"
+    --quiet
+  )
+
+  if [[ "${CI:-}" == "true" && "$(uname -s)" == "Linux" ]]; then
+    mermaid_arguments+=(
+      --puppeteerConfigFile scripts/puppeteer-ci-config.json
+    )
+  fi
 
   mkdir -p "$assets_temp"
-  npx --yes @mermaid-js/mermaid-cli@11.16.0 \
-    --input "$markdown_file" \
-    --output "$document_temp/rendered.md" \
-    --artefacts "$assets_temp" \
-    --quiet
+  npx --yes @mermaid-js/mermaid-cli@11.16.0 "${mermaid_arguments[@]}"
 
   rendered="$(find "$assets_temp" -type f -name '*.svg' | wc -l | tr -d ' ')"
   if [[ "$rendered" != "$expected" ]]; then
