@@ -1,0 +1,19 @@
+flowchart LR
+  A["Participant A"] --- REL["Relationship record"] --- B["Participant B"]
+  EV["Evidence"] -.-> REL
+  IN["Actual interactions"] --> REL
+  CO["Contributions & commitments"] --> REL
+  CB["Consent & communication boundary"] --> REL
+  REL --> HD{"Human disposition"}
+  HD --> NA["No action needed"]
+  HD --> W["Wait"]
+  HD --> DNC["Do not contact"]
+  HD --> NX["Next thoughtful action"]
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  classDef stop fill:#3d1620,stroke:#fb7185,color:#f5f7ff,stroke-width:2px;
+  class A,B,REL,EV,IN,CB evidence;
+  class CO,NX constructive;
+  class HD,NA,W human;
+  class DNC stop;

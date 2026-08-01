@@ -1,0 +1,19 @@
+{
+  "id": "human-reviewed-outreach",
+  "title": "Human-reviewed outreach flow",
+  "concept": "Approve, revise, wait, and do-not-contact without a sender",
+  "version": "1.0.0",
+  "source": "visuals/source/human-reviewed-outreach.mmd",
+  "exports": {
+    "svg": "visuals/exports/svg/human-reviewed-outreach.svg",
+    "png": "visuals/exports/png/human-reviewed-outreach.png"
+  },
+  "description": "visuals/descriptions/human-reviewed-outreach.md",
+  "accessible_description": "Research completion leads to identified contribution context and then to a draft that cannot send. A human review has four explicit branches. Approve makes the exact draft eligible for a separately authorized handoff. Revise returns it to drafting and invalidates approval. Wait pauses with a reason. Do not contact creates a durable stop. If a separate system is authorized, only the actual outcome is logged and reflected on. Nothing in the diagram sends a message, and approval alone is not delivery.",
+  "hashes": {
+    "source": "42a9612f410b15cdfa49e0075bb3b1abf48859f00247b4533a0d7a60d4fdd2ab",
+    "svg": "7737f40934747505d1087f4a40e2708bfd64e635387cee91b4af008df49b426f",
+    "png": "84f7dfcde01de97e191d6d2547ca2d38898787779e9616163439b1937f8ea834",
+    "description": "2f695fe7eb0ec22d771c4154220a7d5c9d76dfde264d8c9eba9bda2fc0249094"
+  }
+}

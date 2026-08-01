@@ -1,0 +1,3 @@
+# Event intelligence workflow — accessible description
+
+The workflow begins by verifying the organizer, logistics, and public roles. A human evaluates mission, community, and capacity fit. A negative or uncertain decision can wait, decline, or stop with no action. A positive decision sets contribution and learning intentions, prepares accessible artifacts and consented introductions, and returns to a human event decision. Approved participation follows community norms, then fulfills promises and reflects before any new ask. The visual does not treat a public attendee or speaker list as existing relationships.

@@ -1,0 +1,19 @@
+{
+  "id": "influence-lifecycle",
+  "title": "Influence practice lifecycle",
+  "concept": "Adaptable practice loop with safe stop and no-action paths",
+  "version": "1.0.0",
+  "source": "visuals/source/influence-lifecycle.mmd",
+  "exports": {
+    "svg": "visuals/exports/svg/influence-lifecycle.svg",
+    "png": "visuals/exports/png/influence-lifecycle.png"
+  },
+  "description": "visuals/descriptions/influence-lifecycle.md",
+  "accessible_description": "The main path moves from discover through research, verify, map, a human prioritization decision, contribute, a human engagement decision, follow up, reflect, improve, and back to discover. At prioritization, a human can wait or take no action and move to a restartable safe pause, or choose do not contact and enter a separate durable human stop. Engagement review likewise separates revise or wait from do not contact. Only the ordinary pause has a dashed return when evidence or capacity changes. Do not contact can change only through a new accountable human decision with a documented reason; the diagram contains no automatic restart from that state. The loop is adaptable, not a funnel, and research never obligates contact.",
+  "hashes": {
+    "source": "efd59d2531cdca1706ff12e50fb76b8720bf8ebdb14eaea0ca08fcec248480f1",
+    "svg": "cb9645b03c37cb7852c4447cfd7fac81dfce96e4827c28e0bcd008baca73aa17",
+    "png": "16910dbd1dabe6d7a7e795ea1dd0d1c243fa972999006e0f95032c8914a963bb",
+    "description": "a6220324c21bbd9f456b56df48087d4dba28af1ab8d5455f5f3ca853a944b15c"
+  }
+}

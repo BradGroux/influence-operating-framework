@@ -1,0 +1,19 @@
+{
+  "id": "automation-architecture",
+  "title": "Bounded automation architecture",
+  "concept": "Authority, approved inputs, bounded agents, human gates, and optional external boundary",
+  "version": "1.0.0",
+  "source": "visuals/source/automation-architecture.mmd",
+  "exports": {
+    "svg": "visuals/exports/svg/automation-architecture.svg",
+    "png": "visuals/exports/png/automation-architecture.png"
+  },
+  "description": "visuals/descriptions/automation-architecture.md",
+  "accessible_description": "Authoritative guidance and a practitioner profile govern approved evidence-backed inputs. Bounded agents transform those inputs into human review queues, where approve, revise, wait, and do not contact remain available. Review produces inspectable outputs. An optional dashed connection can hand an exact approved payload to a separately controlled external system, which returns only an actual outcome. Missing evidence, privacy conflict, stale claims, or restrictions create a stop routed to human review. The default architecture exposes no sender.",
+  "hashes": {
+    "source": "c2ab862f43f57ab207c77cccabff8f565ab4be1009cf91cb01ae85c8bb7e49b6",
+    "svg": "116b7022fb34768422da0a043bc99f4871f2b5e8d7bb39915816e188b921a2e8",
+    "png": "9c1bf5ad8d822da7436d5a64d4e4bf6c72a78d7cb95ce262fb6a438d036c6627",
+    "description": "02258882b12ac8ee9ca6f99ffb792ff532cfb510ed064acadf58f3ecceb13d15"
+  }
+}

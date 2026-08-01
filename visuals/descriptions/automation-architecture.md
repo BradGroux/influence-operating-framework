@@ -1,0 +1,3 @@
+# Automation architecture — accessible description
+
+Authoritative guidance and a practitioner profile govern approved evidence-backed inputs. Bounded agents transform those inputs into human review queues, where approve, revise, wait, and do not contact remain available. Review produces inspectable outputs. An optional dashed connection can hand an exact approved payload to a separately controlled external system, which returns only an actual outcome. Missing evidence, privacy conflict, stale claims, or restrictions create a stop routed to human review. The default architecture exposes no sender.

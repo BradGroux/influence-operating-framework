@@ -1,0 +1,19 @@
+{
+  "id": "reflection-learning-loop",
+  "title": "Reflection and anti-fragile learning loop",
+  "concept": "Evidence-backed learning routed through human interpretation and governance",
+  "version": "1.0.0",
+  "source": "visuals/source/reflection-learning-loop.mmd",
+  "exports": {
+    "svg": "visuals/exports/svg/reflection-learning-loop.svg",
+    "png": "visuals/exports/png/reflection-learning-loop.png"
+  },
+  "description": "visuals/descriptions/reflection-learning-loop.md",
+  "accessible_description": "An observed outcome is documented against the expected result, then examined for learning from success, failure, and surprise. A human interprets the evidence and chooses a local profile or practice update, a reversible experiment, a governance proposal, or no change because evidence is insufficient. Accepted local changes, experiments, and proposals pass through validation before the practice repeats or pauses. No agent or single reflection changes canonical guidance automatically.",
+  "hashes": {
+    "source": "b8d1d524a2c02f48aa525f46afb3e2ad175a7611d096ff081193f76aad848e53",
+    "svg": "2ed29e5025a8e194d1f63aa1377864c007166ab6357707a58592574db4e6c42d",
+    "png": "535a6b794df842e1d86935f10d3d3eb3250a9a1eda7734a35f9d5bed7fb15d98",
+    "description": "40d3b0dc9a3ff46dca84712c7c837fe2dcf90046552693d3fe5f170159915138"
+  }
+}

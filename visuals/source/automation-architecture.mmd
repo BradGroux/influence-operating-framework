@@ -1,0 +1,15 @@
+flowchart LR
+  A["Authoritative guidance & profile"] --> I["Approved evidence-backed inputs"] --> B["Bounded agents"] --> Q["Human review queues"] --> O["Inspectable outputs"]
+  Q -->|"approve / revise / wait / do not contact"| O
+  O -. "optional exact approved handoff" .-> X["Separately controlled external system"]
+  X -. "actual outcome only" .-> I
+  S["Stop: missing evidence, privacy conflict, stale claim or restriction"] --> Q
+  B --> S
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  classDef stop fill:#3d1620,stroke:#fb7185,color:#f5f7ff,stroke-width:2px;
+  class A,I,B evidence;
+  class O,X constructive;
+  class Q human;
+  class S stop;

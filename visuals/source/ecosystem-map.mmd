@@ -1,0 +1,20 @@
+flowchart TB
+  Q{"Bounded map question"} --> EC["Ecosystem"]
+  EC --> PE["People"]
+  EC --> OR["Organizations & communities"]
+  EC --> EV["Events & channels"]
+  EC --> PR["Projects & media"]
+  PE --- RE["Evidence-backed relationships"]
+  OR --- RE
+  EV --- OP["Opportunities"]
+  PR --- CO["Contributions"]
+  OP --> CO
+  E["Evidence: fact / inference / hypothesis"] -. "supports nodes and edges" .-> EC
+  H{"Human scope & privacy review"} --> Q
+  H --> RE
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  class EC,PE,OR,EV,PR,RE,E evidence;
+  class OP,CO constructive;
+  class Q,H human;

@@ -1,0 +1,3 @@
+# Influence lifecycle — accessible description
+
+The main path moves from discover through research, verify, map, a human prioritization decision, contribute, a human engagement decision, follow up, reflect, improve, and back to discover. At prioritization, a human can wait or take no action and move to a restartable safe pause, or choose do not contact and enter a separate durable human stop. Engagement review likewise separates revise or wait from do not contact. Only the ordinary pause has a dashed return when evidence or capacity changes. Do not contact can change only through a new accountable human decision with a documented reason; the diagram contains no automatic restart from that state. The loop is adaptable, not a funnel, and research never obligates contact.

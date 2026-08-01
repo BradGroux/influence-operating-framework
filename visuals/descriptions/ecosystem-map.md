@@ -1,0 +1,3 @@
+# Ecosystem map — accessible description
+
+A human-approved bounded question defines an ecosystem. The ecosystem connects to people, organizations and communities, events and channels, and projects and media. Evidence-backed relationships connect people and organizations. Events connect to opportunities; projects connect to contributions; opportunities can lead to contributions. A separate evidence node supports nodes and edges as fact, inference, or hypothesis. Human review governs both the map boundary and relationship assertions. The graph is a purpose-specific view, not a universal ranking or contact list.

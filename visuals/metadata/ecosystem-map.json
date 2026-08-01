@@ -1,0 +1,19 @@
+{
+  "id": "ecosystem-map",
+  "title": "Bounded ecosystem map",
+  "concept": "Evidence-backed graph of an ecosystem scoped by a human question",
+  "version": "1.0.0",
+  "source": "visuals/source/ecosystem-map.mmd",
+  "exports": {
+    "svg": "visuals/exports/svg/ecosystem-map.svg",
+    "png": "visuals/exports/png/ecosystem-map.png"
+  },
+  "description": "visuals/descriptions/ecosystem-map.md",
+  "accessible_description": "A human-approved bounded question defines an ecosystem. The ecosystem connects to people, organizations and communities, events and channels, and projects and media. Evidence-backed relationships connect people and organizations. Events connect to opportunities; projects connect to contributions; opportunities can lead to contributions. A separate evidence node supports nodes and edges as fact, inference, or hypothesis. Human review governs both the map boundary and relationship assertions. The graph is a purpose-specific view, not a universal ranking or contact list.",
+  "hashes": {
+    "source": "8bd28ca2fc4d2800afe4d4f224f71233e5da2e95a55229a3990688de55d3ef71",
+    "svg": "6b1a50a15cca0089443351f75cbeaea9f4b42a600b8706dd2f96727cd4b8ff12",
+    "png": "466669b7b4569a7fe7a25194b8b411c2d544cb6a78697d4e8d2dcd53093a331b",
+    "description": "78fb168ffb516ddd74fb6bfd7da261c3f5567927d6105e1b026bd597ff4eedb9"
+  }
+}

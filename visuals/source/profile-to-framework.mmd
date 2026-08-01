@@ -1,0 +1,18 @@
+flowchart LR
+  P["Practitioner profile"] --> M["Mission, goals & boundaries"]
+  P --> CAP["Capacity, ecosystems & channels"]
+  M --> F["Canonical framework"]
+  CAP --> F
+  F --> PRA["Operating practices"]
+  F --> REC["Portable records"]
+  F --> AG["Bounded agents"]
+  PRA --> OUT["Contribution, relationships, learning & outcomes"]
+  REC --> OUT
+  AG --> H{"Human judgment"} --> OUT
+  OUT -. "reflection updates profile" .-> P
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  class P,M,CAP,F,REC,AG evidence;
+  class PRA,OUT constructive;
+  class H human;

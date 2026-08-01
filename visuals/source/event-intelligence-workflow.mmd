@@ -1,0 +1,17 @@
+flowchart LR
+  V["Verify organizer, logistics & roles"] --> FIT{"Mission, community & capacity fit"}
+  FIT -->|"fit"| INT["Choose contribution & learning intentions"]
+  FIT -->|"wait / decline / no action"| STOP["Stop safely"]
+  INT --> PREP["Prepare accessible artifacts & consented introductions"]
+  PREP --> HR{"Human event decision"}
+  HR -->|"attend / submit / contribute"| EVT["Participate under community norms"]
+  HR -->|"wait / decline"| STOP
+  EVT --> PROM["Fulfill promises"] --> REF["Reflect before new asks"]
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  classDef stop fill:#3d1620,stroke:#fb7185,color:#f5f7ff,stroke-width:2px;
+  class V evidence;
+  class INT,PREP,EVT,PROM,REF constructive;
+  class FIT,HR human;
+  class STOP stop;

@@ -1,0 +1,17 @@
+flowchart LR
+  D["Discover"] --> R["Research"] --> V["Verify"] --> M["Map"] --> P{"Prioritize"}
+  P --> C["Contribute"] --> E{"Engage?"}
+  E -->|"human approves context"| F["Follow up"] --> L["Reflect"] --> I["Improve"] --> D
+  P -->|"wait / no action"| S["Stop or pause safely"]
+  P -->|"do not contact"| X["Durable human stop"]
+  E -->|"revise / wait"| S
+  E -->|"do not contact"| X
+  S -. "changed evidence or capacity" .-> D
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  classDef stop fill:#3d1620,stroke:#fb7185,color:#f5f7ff,stroke-width:2px;
+  class D,R,V,M evidence;
+  class C,F,L,I constructive;
+  class P,E human;
+  class S,X stop;

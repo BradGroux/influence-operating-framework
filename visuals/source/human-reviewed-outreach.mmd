@@ -1,0 +1,16 @@
+flowchart LR
+  R["Research complete"] --> C["Contribution context identified"] --> D["Draft generated — cannot send"] --> H{"Human review"}
+  H -->|"Approve exact draft"| A["Eligible for separate authorized handoff"]
+  H -->|"Revise"| D
+  H -->|"Wait"| W["Pause with reason"]
+  H -->|"Do not contact"| X["Durable stop"]
+  A --> O["Log actual outcome"] --> F["Reflect"]
+  W -. "material context changes" .-> H
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  classDef stop fill:#3d1620,stroke:#fb7185,color:#f5f7ff,stroke-width:2px;
+  class R,C,D evidence;
+  class A,O,F constructive;
+  class H,W human;
+  class X stop;

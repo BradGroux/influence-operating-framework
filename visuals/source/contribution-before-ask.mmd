@@ -1,0 +1,19 @@
+flowchart LR
+  N["Verified community need"] --> E["Evidence, consent & norms"] --> O["Proportionate options"]
+  O --> H{"Human chooses"}
+  H -->|"contribute"| C["Create useful value"]
+  H -->|"collaborate / hand off"| CH["Share ownership"]
+  H -->|"wait / no action"| S["Stop safely"]
+  C --> V["Verify value, burden & accessibility"]
+  CH --> V
+  V --> A{"Is an ask independently appropriate?"}
+  A -->|"yes"| R["Human-reviewed outreach"]
+  A -->|"not now / no"| S
+  classDef evidence fill:#17213b,stroke:#60a5fa,color:#f5f7ff,stroke-width:2px;
+  classDef constructive fill:#102f35,stroke:#2dd4bf,color:#f5f7ff,stroke-width:2px;
+  classDef human fill:#3a2b0d,stroke:#fbbf24,color:#f5f7ff,stroke-width:2px;
+  classDef stop fill:#3d1620,stroke:#fb7185,color:#f5f7ff,stroke-width:2px;
+  class N,E evidence;
+  class O,C,CH,V,R constructive;
+  class H,A human;
+  class S stop;

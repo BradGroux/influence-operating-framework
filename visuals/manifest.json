@@ -1,0 +1,286 @@
+{
+  "manifest_version": "1.0.0",
+  "renderer": "@mermaid-js/mermaid-cli@11.16.0",
+  "configuration": {
+    "path": "visuals/mermaid-config.json",
+    "sha256": "8d8bdf22b2adf3179a44f885f421f175da1f312a56ee1b3689a80dc471c671c0"
+  },
+  "visuals": [
+    {
+      "id": "automation-architecture",
+      "source": {
+        "path": "visuals/source/automation-architecture.mmd",
+        "sha256": "c2ab862f43f57ab207c77cccabff8f565ab4be1009cf91cb01ae85c8bb7e49b6"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/automation-architecture.svg",
+        "sha256": "116b7022fb34768422da0a043bc99f4871f2b5e8d7bb39915816e188b921a2e8"
+      },
+      "png": {
+        "path": "visuals/exports/png/automation-architecture.png",
+        "sha256": "9c1bf5ad8d822da7436d5a64d4e4bf6c72a78d7cb95ce262fb6a438d036c6627"
+      },
+      "metadata": {
+        "path": "visuals/metadata/automation-architecture.json",
+        "sha256": "a1322148bca4d5c19ac88abf0c294be2b995920fc55b64e673ac30e591c3dc8d"
+      },
+      "description": {
+        "path": "visuals/descriptions/automation-architecture.md",
+        "sha256": "02258882b12ac8ee9ca6f99ffb792ff532cfb510ed064acadf58f3ecceb13d15"
+      }
+    },
+    {
+      "id": "contribution-before-ask",
+      "source": {
+        "path": "visuals/source/contribution-before-ask.mmd",
+        "sha256": "911f7eec459f9bf811773b0349fd2f1d106fa13b37b03819a460becc1c248069"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/contribution-before-ask.svg",
+        "sha256": "5ae606f169265e6f47be6a1d3fc48afa5eda3fcffb80d4e63a534fc45508edf6"
+      },
+      "png": {
+        "path": "visuals/exports/png/contribution-before-ask.png",
+        "sha256": "5dd993daf06b810933f48f42264e9cb71a4c3f925984fa04146a771cc0443e95"
+      },
+      "metadata": {
+        "path": "visuals/metadata/contribution-before-ask.json",
+        "sha256": "947b3c394690b060d7fa1b2677c0c1fdfe72e6423395d64a1a143f41171da8db"
+      },
+      "description": {
+        "path": "visuals/descriptions/contribution-before-ask.md",
+        "sha256": "5caf7bf822c3ae666f09ea4928723a06aa0aebd9a3729ffb59bf6710d14a25b5"
+      }
+    },
+    {
+      "id": "ecosystem-map",
+      "source": {
+        "path": "visuals/source/ecosystem-map.mmd",
+        "sha256": "8bd28ca2fc4d2800afe4d4f224f71233e5da2e95a55229a3990688de55d3ef71"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/ecosystem-map.svg",
+        "sha256": "6b1a50a15cca0089443351f75cbeaea9f4b42a600b8706dd2f96727cd4b8ff12"
+      },
+      "png": {
+        "path": "visuals/exports/png/ecosystem-map.png",
+        "sha256": "466669b7b4569a7fe7a25194b8b411c2d544cb6a78697d4e8d2dcd53093a331b"
+      },
+      "metadata": {
+        "path": "visuals/metadata/ecosystem-map.json",
+        "sha256": "c965ab5ed06e55b4b655ff08ad05b13a8b244b414a11cba3806557a131a51f8d"
+      },
+      "description": {
+        "path": "visuals/descriptions/ecosystem-map.md",
+        "sha256": "78fb168ffb516ddd74fb6bfd7da261c3f5567927d6105e1b026bd597ff4eedb9"
+      }
+    },
+    {
+      "id": "event-intelligence-workflow",
+      "source": {
+        "path": "visuals/source/event-intelligence-workflow.mmd",
+        "sha256": "25bd81b25ac073f0f2a25a2317a9f335de0d3e74df8e6a41dfd60c210707971f"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/event-intelligence-workflow.svg",
+        "sha256": "a4a15594dc31f9cdeac3048e770d81ede1034b0e63e98ddbb32e02eb658f8770"
+      },
+      "png": {
+        "path": "visuals/exports/png/event-intelligence-workflow.png",
+        "sha256": "d5715dd368ff96b3485ef076112f6423280728447ad8ddacc656000f4859cf65"
+      },
+      "metadata": {
+        "path": "visuals/metadata/event-intelligence-workflow.json",
+        "sha256": "d8610ee813080e51e90f0a4e5fd92f8e27709a410485f0f172823add1a52203f"
+      },
+      "description": {
+        "path": "visuals/descriptions/event-intelligence-workflow.md",
+        "sha256": "ac8df2d7aa1f3dcc295b73cf400fb2d5d02106a7339fc531def5c8874356a1e6"
+      }
+    },
+    {
+      "id": "framework-overview",
+      "source": {
+        "path": "visuals/source/framework-overview.mmd",
+        "sha256": "9bcd81a855fef179685f4f8813b9f71cd8616d5cb9526f6f7961422a355b3a5a"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/framework-overview.svg",
+        "sha256": "777b28c6eb4522d964507b91f3e9f7d1b1862c67a06e06c1836ee1ba40467411"
+      },
+      "png": {
+        "path": "visuals/exports/png/framework-overview.png",
+        "sha256": "6b2502a756c87046e5dff3773f43a1c0a3756be1e5c1f0497927ec5c6992135d"
+      },
+      "metadata": {
+        "path": "visuals/metadata/framework-overview.json",
+        "sha256": "0203356241ad5449cf41c8e296471a5e54ce8a875ac35c4e4a34cd87e228e48a"
+      },
+      "description": {
+        "path": "visuals/descriptions/framework-overview.md",
+        "sha256": "82c41c403487cf91653c82e096c3635d38cb9c5770160a881416ba275dc74e73"
+      }
+    },
+    {
+      "id": "human-reviewed-outreach",
+      "source": {
+        "path": "visuals/source/human-reviewed-outreach.mmd",
+        "sha256": "42a9612f410b15cdfa49e0075bb3b1abf48859f00247b4533a0d7a60d4fdd2ab"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/human-reviewed-outreach.svg",
+        "sha256": "7737f40934747505d1087f4a40e2708bfd64e635387cee91b4af008df49b426f"
+      },
+      "png": {
+        "path": "visuals/exports/png/human-reviewed-outreach.png",
+        "sha256": "84f7dfcde01de97e191d6d2547ca2d38898787779e9616163439b1937f8ea834"
+      },
+      "metadata": {
+        "path": "visuals/metadata/human-reviewed-outreach.json",
+        "sha256": "ce4de30c2b987e4ad135f20478b9ac7c09a0cfd89c045cc05daa4d45a5dfa014"
+      },
+      "description": {
+        "path": "visuals/descriptions/human-reviewed-outreach.md",
+        "sha256": "2f695fe7eb0ec22d771c4154220a7d5c9d76dfde264d8c9eba9bda2fc0249094"
+      }
+    },
+    {
+      "id": "influence-lifecycle",
+      "source": {
+        "path": "visuals/source/influence-lifecycle.mmd",
+        "sha256": "efd59d2531cdca1706ff12e50fb76b8720bf8ebdb14eaea0ca08fcec248480f1"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/influence-lifecycle.svg",
+        "sha256": "cb9645b03c37cb7852c4447cfd7fac81dfce96e4827c28e0bcd008baca73aa17"
+      },
+      "png": {
+        "path": "visuals/exports/png/influence-lifecycle.png",
+        "sha256": "16910dbd1dabe6d7a7e795ea1dd0d1c243fa972999006e0f95032c8914a963bb"
+      },
+      "metadata": {
+        "path": "visuals/metadata/influence-lifecycle.json",
+        "sha256": "e426d013699fdafc099660431062c95f73bbf50cfffbccdb84dfb5e45e70458e"
+      },
+      "description": {
+        "path": "visuals/descriptions/influence-lifecycle.md",
+        "sha256": "a6220324c21bbd9f456b56df48087d4dba28af1ab8d5455f5f3ca853a944b15c"
+      }
+    },
+    {
+      "id": "measurement-model",
+      "source": {
+        "path": "visuals/source/measurement-model.mmd",
+        "sha256": "b6c7d30a798d2cdb432580737142bc27d2472b7854d51196e205f5fbe556726d"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/measurement-model.svg",
+        "sha256": "506ac5eacddc582fbdc4fd3785e4167342c13a871ccc7ecaf813406b62b4ebb2"
+      },
+      "png": {
+        "path": "visuals/exports/png/measurement-model.png",
+        "sha256": "aadb4555aad6bc4caf72466e4539277b683572949c5f523c02c763fda3a1dcb8"
+      },
+      "metadata": {
+        "path": "visuals/metadata/measurement-model.json",
+        "sha256": "1069abd6d7841b3087d5d35f2f3579f683062452c53aecc47b2f76808dd40493"
+      },
+      "description": {
+        "path": "visuals/descriptions/measurement-model.md",
+        "sha256": "9d630cbeb8ff770f129c1cafcd37f3f01be64ce9a6134d229f9857b44741d874"
+      }
+    },
+    {
+      "id": "profile-to-framework",
+      "source": {
+        "path": "visuals/source/profile-to-framework.mmd",
+        "sha256": "b6bf91f2dc653fbe662b4958d6083dad108d7dccbeaf555bdab742b145c6ff3e"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/profile-to-framework.svg",
+        "sha256": "48f329daa42ebe71d8cdaa17fad582bd38969a842e1ce5d5108d3cbe0971bcce"
+      },
+      "png": {
+        "path": "visuals/exports/png/profile-to-framework.png",
+        "sha256": "913a5bd90b64439f5d83bc8196ded3b7393e249c8e1f875c3f215e511289cb25"
+      },
+      "metadata": {
+        "path": "visuals/metadata/profile-to-framework.json",
+        "sha256": "eef1b78ef1f6e4adf99d8f94dcc158e0a4c376a7298ec5ee85a84347e6c638f4"
+      },
+      "description": {
+        "path": "visuals/descriptions/profile-to-framework.md",
+        "sha256": "11280c36ea090b046acba31cf64eb6658929f3ac90ad8730ba5975c56422b882"
+      }
+    },
+    {
+      "id": "reflection-learning-loop",
+      "source": {
+        "path": "visuals/source/reflection-learning-loop.mmd",
+        "sha256": "b8d1d524a2c02f48aa525f46afb3e2ad175a7611d096ff081193f76aad848e53"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/reflection-learning-loop.svg",
+        "sha256": "2ed29e5025a8e194d1f63aa1377864c007166ab6357707a58592574db4e6c42d"
+      },
+      "png": {
+        "path": "visuals/exports/png/reflection-learning-loop.png",
+        "sha256": "535a6b794df842e1d86935f10d3d3eb3250a9a1eda7734a35f9d5bed7fb15d98"
+      },
+      "metadata": {
+        "path": "visuals/metadata/reflection-learning-loop.json",
+        "sha256": "c03417fdf68e1ff956e6030944f12a594c9e79e3ffc6d76629478779889a665d"
+      },
+      "description": {
+        "path": "visuals/descriptions/reflection-learning-loop.md",
+        "sha256": "40d3b0dc9a3ff46dca84712c7c837fe2dcf90046552693d3fe5f170159915138"
+      }
+    },
+    {
+      "id": "relationship-graph-model",
+      "source": {
+        "path": "visuals/source/relationship-graph-model.mmd",
+        "sha256": "d3a190d37aabe56e12f2c433e00c75fdcdafaec2ab4599a56fbf5f55b5b6264a"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/relationship-graph-model.svg",
+        "sha256": "fd609e70576c42bb63d4a9f92d84904a0e023bda27dbd4d1eae8bc586dfd2db2"
+      },
+      "png": {
+        "path": "visuals/exports/png/relationship-graph-model.png",
+        "sha256": "1def67defe9f953ceb03df8a420659b1bd8ef62c0534927f08520637e3c48dd6"
+      },
+      "metadata": {
+        "path": "visuals/metadata/relationship-graph-model.json",
+        "sha256": "600efa1cda3c3ca7eae2ce9beb7619e122c66b8d816688f041b248b4335639a5"
+      },
+      "description": {
+        "path": "visuals/descriptions/relationship-graph-model.md",
+        "sha256": "e1cadfc9ef867a00cf337a6c6afaa279dd7423607e66767c136a8ec7da01e00d"
+      }
+    },
+    {
+      "id": "repository-information-architecture",
+      "source": {
+        "path": "visuals/source/repository-information-architecture.mmd",
+        "sha256": "2152eaaea3e0b3a6a142ab5b35e6f2bf431442c7f6de368c9f47a4ea2218a07a"
+      },
+      "svg": {
+        "path": "visuals/exports/svg/repository-information-architecture.svg",
+        "sha256": "a53d0b24e076d7aa897977d9030cb1288018d7903ac086c163cae7284f02463a"
+      },
+      "png": {
+        "path": "visuals/exports/png/repository-information-architecture.png",
+        "sha256": "65cc1241bdfb8e97ebe489a502b27db992166dd7892ec86b4bc706f87d2fbd50"
+      },
+      "metadata": {
+        "path": "visuals/metadata/repository-information-architecture.json",
+        "sha256": "4c136ad4a9a01e523a3e2403d7d4628fbcaed75a9bad84dc8e1e78799bafafe7"
+      },
+      "description": {
+        "path": "visuals/descriptions/repository-information-architecture.md",
+        "sha256": "ac317d7dedf33607ff869979e75acabd4442c7c9cbaf46beb3c73baaf775a1a5"
+      }
+    }
+  ]
+}

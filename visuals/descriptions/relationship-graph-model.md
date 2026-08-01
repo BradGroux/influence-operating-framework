@@ -1,0 +1,3 @@
+# Relationship graph model — accessible description
+
+Participant A and Participant B are connected through a first-class relationship record. Evidence, actual interactions, contributions and commitments, and consent and communication boundaries support that record. The relationship then reaches a human disposition with four example outcomes: no action needed, wait, do not contact, or a next thoughtful action. Do not contact is shown as a stop. The diagram does not infer trust or closeness from an edge; context, evidence, and human review determine what the relationship record can truthfully say.
