@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://influence-operating-framework.org/schemas/event.schema.json",
+  "title": "Event record",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["name", "organizer_ids", "ecosystem_ids", "format", "starts_at", "ends_at", "location_summary", "accessibility_summary", "opportunity_ids"],
+      "properties": {
+        "record_type": { "const": "event" },
+        "name": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "organizer_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "ecosystem_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "format": { "enum": ["in_person", "online", "hybrid"] },
+        "starts_at": { "type": "string", "format": "date-time" },
+        "ends_at": { "type": "string", "format": "date-time" },
+        "location_summary": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "accessibility_summary": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "opportunity_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

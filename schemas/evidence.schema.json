@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://influence-operating-framework.org/schemas/evidence.schema.json",
+  "title": "Evidence record",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["source_url", "source_title", "publisher", "accessed_at", "claim_type", "claim", "contradicts_evidence_ids"],
+      "properties": {
+        "record_type": { "const": "evidence" },
+        "source_url": { "type": "string", "format": "uri" },
+        "source_title": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "publisher": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "accessed_at": { "type": "string", "format": "date" },
+        "published_at": { "type": "string", "format": "date" },
+        "stale_after": { "type": "string", "format": "date" },
+        "claim_type": { "$ref": "common.schema.json#/$defs/claimType" },
+        "claim": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "contradicts_evidence_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

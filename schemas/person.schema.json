@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://influence-operating-framework.org/schemas/person.schema.json",
+  "title": "Person record",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["display_name", "summary", "roles", "organization_ids", "ecosystem_ids", "relationship_ids", "communication_boundary"],
+      "properties": {
+        "record_type": { "const": "person" },
+        "display_name": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "summary": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "roles": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "organization_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "ecosystem_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "relationship_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "communication_boundary": {
+          "type": "object",
+          "required": ["consent_status", "preferred_channels", "restriction_history"],
+          "properties": {
+            "consent_status": { "enum": ["unknown", "opted_in", "opted_out"] },
+            "preferred_channels": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+            "restriction_history": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "allOf": [
+                  { "$ref": "common.schema.json#/$defs/humanDecision" },
+                  { "properties": { "state": { "enum": ["none", "wait", "do_not_contact"] } } }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

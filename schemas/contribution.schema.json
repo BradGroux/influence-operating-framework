@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://influence-operating-framework.org/schemas/contribution.schema.json",
+  "title": "Contribution record",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["title", "need", "beneficiary_ids", "opportunity_ids", "consent_dependencies", "expected_value", "not_expected_in_return", "completion_evidence_ids"],
+      "properties": {
+        "record_type": { "const": "contribution" },
+        "title": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "need": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "beneficiary_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "opportunity_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "consent_dependencies": { "type": "array", "items": { "type": "string" } },
+        "expected_value": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "not_expected_in_return": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "completion_evidence_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

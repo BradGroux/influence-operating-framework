@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://influence-operating-framework.org/schemas/interaction.schema.json",
+  "title": "Interaction record",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["participant_ids", "occurred_at", "interaction_type", "summary", "commitments"],
+      "properties": {
+        "record_type": { "const": "interaction" },
+        "participant_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/stableId" }, "minItems": 1, "uniqueItems": true },
+        "occurred_at": { "type": "string", "format": "date-time" },
+        "interaction_type": { "enum": ["conversation", "event_participation", "collaboration", "introduction", "public_exchange", "other"] },
+        "summary": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "commitments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["owner_id", "description", "status"],
+            "properties": {
+              "owner_id": { "$ref": "common.schema.json#/$defs/stableId" },
+              "description": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+              "status": { "enum": ["open", "completed", "cancelled"] }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

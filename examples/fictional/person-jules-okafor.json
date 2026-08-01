@@ -1,0 +1,34 @@
+{
+  "$schema": "https://influence-operating-framework.org/schemas/person.schema.json",
+  "id": "person-jules-okafor",
+  "record_type": "person",
+  "schema_version": "1.0.0",
+  "created_at": "2026-08-01T12:00:00Z",
+  "updated_at": "2026-08-01T12:00:00Z",
+  "status": "active",
+  "confidence": "medium",
+  "privacy": "public",
+  "evidence_ids": ["evidence-riverbend-program"],
+  "human_notes": "Fictional community accessibility reviewer.",
+  "extensions": {},
+  "fictional": true,
+  "display_name": "Jules Okafor",
+  "summary": "A fictional community accessibility reviewer who participated in a planning session.",
+  "roles": ["accessibility reviewer"],
+  "organization_ids": ["organization-riverbend-learning"],
+  "ecosystem_ids": ["ecosystem-riverbend-digital-learning"],
+  "relationship_ids": ["relationship-lina-jules"],
+  "communication_boundary": {
+    "consent_status": "unknown",
+    "preferred_channels": [],
+    "restriction_history": [
+      {
+        "decision_id": "decision-jules-restriction-initial",
+        "state": "none",
+        "decided_by_person_id": "person-lina-moreno",
+        "decided_at": "2026-08-01T12:00:00Z",
+        "reason": "No restriction was recorded in the fictional planning context; consent remains unknown."
+      }
+    ]
+  }
+}

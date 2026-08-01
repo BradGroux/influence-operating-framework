@@ -1,0 +1,37 @@
+{
+  "$schema": "https://influence-operating-framework.org/schemas/opportunity.schema.json",
+  "id": "opportunity-accessible-starter-guide",
+  "record_type": "opportunity",
+  "schema_version": "1.0.0",
+  "created_at": "2026-08-01T12:00:00Z",
+  "updated_at": "2026-08-01T12:00:00Z",
+  "status": "active",
+  "confidence": "medium",
+  "privacy": "public",
+  "evidence_ids": ["evidence-riverbend-program"],
+  "human_notes": "Ratings are advisory and cannot replace the narrative.",
+  "extensions": {},
+  "fictional": true,
+  "title": "Co-design an accessible technology starter guide",
+  "opportunity_type": "contribution",
+  "ecosystem_ids": ["ecosystem-riverbend-digital-learning"],
+  "beneficiary_ids": ["organization-riverbend-learning"],
+  "dimensions": {
+    "mission_alignment": "high",
+    "community_value": "high",
+    "learning_potential": "medium",
+    "commercial_potential": "not_applicable",
+    "ethical_risk": "low"
+  },
+  "narrative_reasoning": "A public fictional source describes a need that fits the collective's education mission. Community review is required before publication.",
+  "uncertainty": "Access requirements and maintenance ownership are not yet confirmed.",
+  "decision_history": [
+    {
+      "decision_id": "decision-opportunity-guide-contribute-first",
+      "state": "contribute_first",
+      "decided_by_person_id": "person-lina-moreno",
+      "decided_at": "2026-08-01T12:00:00Z",
+      "reason": "The verified fictional need supports a bounded contribution before any engagement request."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://influence-operating-framework.org/schemas/outreach-draft.schema.json",
+  "id": "outreach-draft-accessibility-review",
+  "record_type": "outreach_draft",
+  "schema_version": "1.0.0",
+  "created_at": "2026-08-01T12:00:00Z",
+  "updated_at": "2026-08-01T12:00:00Z",
+  "status": "draft",
+  "confidence": "medium",
+  "privacy": "public",
+  "evidence_ids": ["evidence-riverbend-program"],
+  "human_notes": "This fictional draft is paused; approval would still not send it.",
+  "extensions": {},
+  "fictional": true,
+  "recipient_person_id": "person-jules-okafor",
+  "context": "A documented fictional planning session identified the accessibility review need.",
+  "contribution_id": "contribution-accessible-starter-guide",
+  "draft_content": "Would you be open to reviewing the starter guide scope when it is ready? No response is needed if the timing is not useful.",
+  "relationship_claims": [],
+  "disposition": "wait",
+  "review_history": [
+    {
+      "decision_id": "decision-outreach-accessibility-wait",
+      "state": "wait",
+      "decided_by_person_id": "person-lina-moreno",
+      "decided_at": "2026-08-01T12:00:00Z",
+      "reason": "Wait until the community confirms the scope and review burden."
+    }
+  ],
+  "sending_capability": false
+}

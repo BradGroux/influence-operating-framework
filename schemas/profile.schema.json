@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://influence-operating-framework.org/schemas/profile.schema.json",
+  "title": "Practitioner profile record",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["practitioner_name", "profile_type", "mission", "goals", "boundaries", "ecosystem_ids", "channels", "measurement_priorities", "accountable_human", "no_autonomous_send"],
+      "properties": {
+        "record_type": { "const": "profile" },
+        "practitioner_name": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "profile_type": { "enum": ["individual", "group", "organization"] },
+        "mission": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "goals": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "boundaries": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "ecosystem_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "channels": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "measurement_priorities": { "type": "array", "items": { "enum": ["contribution", "relationships", "learning", "reach", "commercial"] }, "uniqueItems": true },
+        "accountable_human": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "no_autonomous_send": { "const": true }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://influence-operating-framework.org/schemas/reflection.schema.json",
+  "title": "Reflection record",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["subject_ids", "reflection_type", "what_happened", "expected_outcome", "actual_outcome", "what_worked", "what_failed", "surprises", "changes", "repeat", "artifact", "challenged_assumption", "locked_decision_review_needed"],
+      "properties": {
+        "record_type": { "const": "reflection" },
+        "subject_ids": { "$ref": "common.schema.json#/$defs/stableIdArray" },
+        "reflection_type": { "enum": ["event", "talk", "workshop", "acceptance", "rejection", "outreach", "introduction", "media", "contribution", "experiment", "unexpected_opportunity", "other"] },
+        "what_happened": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "expected_outcome": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "actual_outcome": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "what_worked": { "type": "string" },
+        "what_failed": { "type": "string" },
+        "surprises": { "type": "string" },
+        "changes": { "type": "string" },
+        "repeat": { "type": "string" },
+        "artifact": { "type": "string" },
+        "challenged_assumption": { "type": "string" },
+        "locked_decision_review_needed": { "type": "boolean" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}
