@@ -52,6 +52,10 @@ shared ownership, paid opportunities, sponsorship, revenue, or reduced waste.
 Commercial outcomes are legitimate when they are transparent and consistent
 with contribution, consent, and purpose.
 
+Assess operational sustainability and commercial outcomes separately within
+this dimension. Revenue does not cancel unsustainable burden, and low revenue
+does not erase demonstrated community value.
+
 ## No universal score
 
 The dimensions can conflict. A small workshop may create strong contribution
@@ -68,36 +72,30 @@ narrative, and let a person override it.
 Reflect after meaningful contribution, engagement, completion, rejection,
 surprise, missed commitment, harm concern, or deliberate no-action decision.
 
-Use this sequence:
+Use five prompts:
 
-1. **Intention:** What were we trying to accomplish, for whom, and why?
-2. **Observation:** What actually happened? Separate direct evidence from
-   interpretation.
-3. **Difference:** Where did the outcome differ from expectation?
-4. **Effect:** Who benefited, who carried cost, and which boundary mattered?
-5. **Lesson:** What assumption was strengthened, challenged, or left open?
-6. **Response:** What should repeat, stop, change, or be tested?
-7. **Scope:** Is the lesson specific to this case, local to the practice, or
-   supported strongly enough for a framework proposal?
+1. **Purpose and outcome:** What were we trying to accomplish, what happened,
+   and did the declared purpose advance?
+2. **Evidence:** Which observations support the account, and what remains an
+   interpretation or open question?
+3. **Effects:** Who benefited, who carried cost, and which boundary mattered?
+4. **Learning:** Which assumption changed or remained unresolved?
+5. **Response:** What should repeat, stop, change, or be tested, and how broadly
+   does the evidence support that lesson?
+
+Activity, visibility, or revenue alone does not demonstrate that purpose
+advanced.
 
 Record failures with the same care as successes. Do not rewrite the original
 expectation after seeing the outcome.
 
 ## Maintaining the practice
 
-Improvement follows five activities:
-
-1. **Observe:** Gather outcome evidence and feedback.
-2. **Interpret:** Explain what the evidence does and does not support.
-3. **Decide:** Choose no change, a small adjustment, a bounded experiment, or a
-   framework proposal.
-4. **Change:** Name the owner, affected practice, reason, and expected effect.
-5. **Review:** Check whether the change helped without weakening purpose or
-   safeguards.
-
-Prefer the smallest change that addresses the lesson. Keep experiments
-reversible where practical. A tool may suggest patterns or draft changes, but a
-person accountable for the affected practice decides whether to adopt them.
+Choose no change, a small adjustment, a bounded experiment, or a framework
+proposal. Name the accountable owner, affected practice, evidence, expected
+effect, and next review. Prefer the smallest useful change and keep experiments
+reversible where practical. A tool may suggest patterns or draft changes, but
+an accountable person decides whether to adopt them.
 
 ## Review cadence
 

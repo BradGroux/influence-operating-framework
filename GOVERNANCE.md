@@ -15,12 +15,15 @@ framework does not independently grant authority to redefine it.
 Framework authority descends in this order:
 
 1. [Charter](framework/charter.md)
-2. Accepted [decision records](decisions/README.md)
-3. Remaining canonical documents under [`framework/`](framework/README.md)
-4. Governance and contribution guidance
-5. Examples and project records
+2. Remaining canonical documents under [`framework/`](framework/README.md)
+3. Governance and contribution guidance
+4. Examples and project records
 
 Lower-authority material cannot silently change higher-authority meaning.
+Accepted [decision records](decisions/README.md) preserve rationale and
+authorize corresponding edits, but they do not form a separate normative
+layer. A decision changes the framework only when its accepted meaning appears
+in the canonical documents.
 
 ## Change paths
 
@@ -73,10 +76,14 @@ release must:
 
 - identify the exact canonical change;
 - pass repository document validation;
-- receive a practical application review and an adversarial framework review;
 - disclose open limitations and dissent; and
 - avoid claims of legal, ethical, accessibility, or professional certification
   that the review did not establish.
+
+A release with a material canonical change must receive a practical
+application review and an adversarial framework review. Editorial corrections,
+repository-only maintenance, and other changes that preserve framework meaning
+receive review proportionate to their risk plus the repository document checks.
 
 No version number or automated check overrides an unresolved material framework
 finding.

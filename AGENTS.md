@@ -8,14 +8,9 @@ contribution, relationships, sound judgment, and learning.
 
 ## Authority
 
-Apply this order:
-
-1. Direct current owner instruction.
-2. `framework/charter.md`.
-3. Accepted decisions under `decisions/`.
-4. The remaining canonical documents under `framework/`.
-5. Governance and contribution guidance.
-6. Examples and project records.
+Apply the public authority chain in `GOVERNANCE.md`. A direct current owner
+instruction controls the immediate repository task, but any change to framework
+meaning must be incorporated into the appropriate canonical document.
 
 Examples illustrate the framework. They do not create requirements.
 

@@ -27,6 +27,9 @@ flowchart LR
     L -.-> N
 ```
 
+The arrows show one useful traversal, not a required sequence. Revisit any move
+when evidence, capacity, consent, or circumstances change.
+
 ## Orient
 
 Orient the work around purpose rather than a person to target or a platform to
@@ -76,12 +79,14 @@ Consider:
 - learning, artifact, reach, and legitimate commercial possibilities; and
 - what must be stopped or deferred to make room.
 
-The decision may be to pursue, contribute first, research further, revise,
-wait, decline, take no action, or not contact someone. If ratings are useful,
-keep them few, define them for the decision, and explain the result in words.
+The decision may be to proceed, contribute first, research further, revise,
+wait, decline, choose no action needed, or choose do not contact. If ratings are
+useful, keep them few, define them for the decision, and explain the result in
+words.
 
-**Checkpoint:** A named person can explain the decision, its trade-offs, and
-what evidence would reverse it.
+**Checkpoint:** A named person with legitimate authority can explain the
+decision, its trade-offs, and what evidence would reverse it. A decision that
+exceeds that person's mandate is escalated or narrowed.
 
 ## Contribute
 
@@ -124,6 +129,7 @@ Before direct outreach:
 
 The framework does not send messages. Approval of a draft is a judgment about
 the draft, not an instruction that any system must transmit it.
+Batch or perfunctory approval is not accountable review of a specific action.
 
 **Checkpoint:** The engagement is truthful, necessary enough, respectful of
 boundaries, and owned by the person taking the action.
@@ -165,8 +171,8 @@ the evidence supporting it.
 
 A cycle is complete when its intended contribution, decision, relationship
 commitment, or learning outcome has been accounted for. It can also complete
-successfully with a decision to wait, decline, take no action, or not contact
-someone.
+successfully with a decision to wait, decline, no action needed, or do not
+contact.
 
 Stop or narrow the work when evidence is insufficient, capacity changes,
 consent is absent, boundaries are unclear, the contribution is unwanted, or

@@ -74,9 +74,9 @@ python3 scripts/validate_repository.py
 bash scripts/validate_mermaid.sh
 ```
 
-Passing validation means the repository is internally consistent. It does not
-certify a real-world implementation, legal compliance, ethics, accessibility,
-or community acceptance.
+Passing validation means the listed structural checks completed. It does not
+establish semantic consistency or certify a real-world implementation, legal
+compliance, ethics, accessibility, or community acceptance.
 
 ## Stewardship
 

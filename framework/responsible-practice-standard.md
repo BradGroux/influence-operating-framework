@@ -63,19 +63,13 @@ than manufacturing agreement.
 Known communication preferences, requests to wait, and do-not-contact decisions
 take precedence over an opportunity to engage. Silence is not consent.
 
-The origin of a boundary determines who can change it:
-
-- A boundary communicated by the affected person, or by a representative
-  authorized to act for them, can be changed only by later affirmative
-  direction from that person or their authorized representative.
-- An internal precaution set by the practitioner can be reconsidered by an
-  accountable practitioner for a documented reason after current context and
-  risk are reviewed.
+Honor a boundary set by an affected person or their authorized representative
+until that person or representative affirmatively changes it. An accountable
+practitioner may revisit only the practitioner's own internal precaution, and
+only after reviewing current context and risk.
 
 Elapsed time, a new opportunity, a different channel, or lack of response does
-not reverse a recipient-set boundary. A genuine legal or immediate-safety duty
-may require action under the rules governing that duty, but it does not create
-permission for ordinary influence engagement.
+not reverse a recipient-set boundary.
 
 A direct communication should have:
 
@@ -91,11 +85,12 @@ person. A tool may not remove or weaken any such boundary automatically.
 
 ## Human judgment and assisted work
 
-People, software, and AI may help retrieve public sources, organize notes,
+People may use software and AI to retrieve public sources, organize notes,
 identify contradictions, compare declared considerations, prepare drafts,
-check accessibility, or assemble reflection material.
+check accessibility, or assemble reflection material. The accountable person
+still owns the judgment and action.
 
-They may not:
+Software and AI must not independently:
 
 - fabricate a missing fact, relationship, role, quotation, endorsement, or
   contact detail;
@@ -105,6 +100,10 @@ They may not:
 - send external communication without a separately accountable human action;
 - enroll people in recurring outreach because they were researched; or
 - turn reach, revenue, role, or access into a score of human worth.
+
+Batch approval, a perfunctory click, or review that does not consider the
+specific context, boundaries, and proposed action is not accountable human
+review.
 
 The framework defines these responsibilities in business terms. How an adopter
 implements access controls, approvals, audit trails, or communication systems is
@@ -128,6 +127,23 @@ Ask:
 
 Do not use service, sponsorship, mentorship, access, or introductions to create
 an implied obligation.
+
+Transparent, consented, and bounded sponsor or partner decision rights can be
+legitimate. They become improper when used to coerce participation, condition
+unrelated benefits, or displace the authority of affected people and
+communities.
+
+## Material interests and conflicts
+
+Identify interests that could reasonably affect the work or how others
+interpret it, including financial, employment, sponsorship, referral, and
+organizational interests. Disclose a relevant interest to affected audiences
+when it could reasonably change how the work is interpreted, and manage it by
+narrowing the role, seeking independent review, recusing, or declining the work
+when disclosure alone is insufficient.
+
+Transparency does not cure coercion, missing consent, displaced authority, or
+an unmanaged conflict.
 
 ## Accessibility, safety, and community norms
 

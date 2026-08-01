@@ -39,7 +39,9 @@ A clear practice states:
 - the mission or goal the activity serves;
 - the people or community expected to benefit;
 - why participation is appropriate now;
-- what the practitioner can responsibly offer; and
+- what the practitioner can responsibly offer;
+- which material interests could affect the activity or how it is understood;
+  and
 - what would make stopping or declining the better choice.
 
 Purpose is weak when the only answer is audience growth, status, proximity,
@@ -125,7 +127,7 @@ risk is acceptable.
 
 A clear practice states:
 
-- the decision owner;
+- the decision owner and their legitimate authority or mandate;
 - the reasonable options considered;
 - the evidence, uncertainty, trade-offs, and affected people;
 - the chosen action, limits, and stop conditions; and
@@ -135,6 +137,10 @@ Valid decisions include proceed, contribute first, research further, revise,
 wait, decline, no action needed, and do not contact. A numerical score may aid
 comparison within a declared context, but it cannot replace explanation or
 rank human worth.
+
+For group practice, a consequential commitment or external action requires a
+named human owner with authority to make it. Escalate a decision that exceeds
+the owner's mandate or would bind affected people who have not authorized it.
 
 ## Learning
 
@@ -163,6 +169,10 @@ For a quick review, answer one sentence for each concern. For consequential or
 long-running work, make the answers durable enough that another accountable
 person can understand the reasoning, commitments, boundaries, and open
 questions.
+
+The six concerns are the framework's enduring questions. The seven moves in
+the practice method are one optional way to traverse them; neither is a
+required sequence.
 
 The concerns are complete when the practitioner can make a responsible
 decision—not when every possible fact has been collected or every activity has

@@ -132,9 +132,10 @@ def validate_structure(errors: list[str]) -> None:
                     )
 
 
-def validate_markdown(files: list[Path], errors: list[str]) -> tuple[int, int]:
+def validate_markdown(files: list[Path], errors: list[str]) -> tuple[int, int, int]:
     anchor_cache: dict[Path, set[str]] = {}
-    link_count = 0
+    local_link_count = 0
+    external_link_count = 0
     mermaid_count = 0
 
     for path in files:
@@ -175,11 +176,13 @@ def validate_markdown(files: list[Path], errors: list[str]) -> tuple[int, int]:
             errors.append(f"unclosed code fence: {relative}")
 
         for match in MARKDOWN_LINK.finditer(text):
-            link_count += 1
             target_path, fragment = split_link(match.group(1))
 
             if target_path.startswith(("http://", "https://", "mailto:")):
+                external_link_count += 1
                 continue
+
+            local_link_count += 1
 
             resolved = path if not target_path else (path.parent / target_path).resolve()
             try:
@@ -202,7 +205,7 @@ def validate_markdown(files: list[Path], errors: list[str]) -> tuple[int, int]:
                         f"missing Markdown anchor: {relative} -> {match.group(1)}"
                     )
 
-    return link_count, mermaid_count
+    return local_link_count, external_link_count, mermaid_count
 
 
 def main() -> int:
@@ -210,7 +213,9 @@ def main() -> int:
     files = markdown_files()
 
     validate_structure(errors)
-    link_count, mermaid_count = validate_markdown(files, errors)
+    local_link_count, external_link_count, mermaid_count = validate_markdown(
+        files, errors
+    )
 
     if errors:
         for error in errors:
@@ -220,7 +225,8 @@ def main() -> int:
 
     print(f"PASS: required structure: {len(REQUIRED_FILES)} files")
     print(f"PASS: Markdown documents: {len(files)}")
-    print(f"PASS: local and external Markdown links inspected: {link_count}")
+    print(f"PASS: local Markdown link targets validated: {local_link_count}")
+    print(f"INFO: external Markdown links not fetched: {external_link_count}")
     print(f"PASS: inline Mermaid blocks: {mermaid_count}")
     print("PASS: superseded technical framework paths are absent")
     print("All repository document checks passed.")

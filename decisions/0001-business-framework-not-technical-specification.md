@@ -44,6 +44,9 @@ implementation choices and cannot redefine framework meaning.
 ## Consequences
 
 - Canonical content lives under `framework/`.
+- This record preserves rationale; its accepted meaning has normative effect
+  through the corresponding canonical documents rather than as a separate
+  framework layer.
 - Examples are human-readable Markdown and do not add requirements.
 - Diagrams are inline Mermaid only when they materially clarify the prose.
 - Repository validation checks document integrity rather than operational or

@@ -12,8 +12,10 @@ or a disguised sales obligation.
 
 ## Context
 
-The evidence, history, norms, constraints, relationships, commitments, and
-uncertainty needed for a responsible decision.
+The evidence, history, norms, constraints, and uncertainty needed for a
+responsible decision. Evidence about a relationship can be context, but the
+relationship's continuity, commitments, consent, and boundaries remain the
+Relationship concern.
 
 Context is bounded by purpose and proportionality. It is not an unlimited
 intelligence collection.
@@ -72,6 +74,21 @@ trade-offs; it is not a person or presumed conversion.
 
 The person or mission-led group applying the framework and remaining
 accountable for its judgments, commitments, and external actions.
+
+## Purpose
+
+The declared reason for participating, the people or community intended to
+benefit, and the conditions that make participation appropriate or not.
+
+## Judgment
+
+An accountable human decision that explains the reasonable options, evidence,
+uncertainty, trade-offs, authority, action, limits, and stop conditions.
+
+## Learning
+
+The disciplined comparison of intention with observed outcome, followed by a
+proportionate decision to retain, change, test, or stop part of the practice.
 
 ## Relationship
 
