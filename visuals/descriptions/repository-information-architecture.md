@@ -1,3 +1,0 @@
-# Repository information architecture — accessible description
-
-The repository divides into authority, canonical framework, implementation contracts, illustrations and adapters, and assurance and history. Authority contains the charter plus locked decisions and ADRs. Canonical content contains the docs and vocabulary. Implementation contracts contain schemas, agents, and workflows. Illustrations contain templates, profiles, fictional examples, and visual artifacts. Assurance contains scripts, tests, project records, and the validation report. Higher-authority content controls lower layers; examples and generated artifacts cannot silently create requirements.

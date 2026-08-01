@@ -1,9 +1,14 @@
-# Security and privacy reporting
+# Security and privacy
 
-Do not publish vulnerabilities, private contact data, consent records, or sensitive relationship context in a public issue.
+This repository contains public documentation and fictional examples. Do not
+submit credentials, private contact information, sensitive relationship notes,
+confidential sources, or security-sensitive implementation details in issues or
+pull requests.
 
-The repository does not yet publish a dedicated private reporting address. Until one is approved, contact Brad Groux through an already trusted private channel and include only the minimum information necessary to coordinate a safer transfer. This is an explicit final-v1.0.0 release blocker, not an accessible route for a new reporter.
+Report a vulnerability through the repository host's private security-reporting
+channel when one is available. If no private channel exists, contact the
+maintainer privately and disclose only enough information to establish the
+problem. Do not open a public issue containing exploitable or personal details.
 
-Reports should identify the affected artifact, likely impact, reproduction conditions, and any known exposure. Do not include credentials or unrelated personal data. Maintainers will acknowledge, assess, contain, correct, validate, and document a public-safe summary when appropriate.
-
-This repository contains specifications and public examples, not a hosted service. Tool-specific implementations remain responsible for their own authentication, authorization, secrets, retention, incident response, and legal obligations.
+The framework describes responsible business practice. It is not a security
+control, privacy program, legal opinion, or certification for an implementation.

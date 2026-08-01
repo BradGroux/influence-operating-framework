@@ -1,20 +1,38 @@
 # Changelog
 
-All notable changes are recorded here.
+All notable changes to the Influence Operating Framework are documented here.
 
-## [Unreleased]
+## 1.0.0-rc.3 — Unreleased
 
-- Prepared local `1.0.0-rc.1` and `1.0.0-rc.2` candidates for exact-commit independent review; rc.1 remained a no-go after its first post-fix pass.
-- Recorded two independent exact-SHA rc.2 reviews and a NO-GO disposition; repository-local remediation remains required before another candidate review.
-- Hardened outreach approval, do-not-contact precedence, extensions, evidence, temporal validation, portable accountability fields, structured unknowns, and decision-history comparison.
-- Added schema 2.0.0 migration guidance, claim-specific fictional evidence, a profile template, and the explicit Repeat lifecycle decision.
-- Closed the two-axis release-candidate code review with punctuation-safe extension policy, nonempty baseline enforcement, evidence-type checks, parsed temporal comparisons, structured schedule unknowns, and ADR-governed v1 gates.
-- Added type-aware graph references, wait/opt-out precedence, profile-bound approver authority, coherent completion states, placeholder rejection, framework-version provenance, and baseline/source identity in validation reports after rc.1 review.
-- Public hosting, a monitored private reporting channel, qualified human/domain reviews, additional maintainers, and final owner approval remain open release gates.
+### Changed
 
-## [0.1.0] - 2026-08-01
+- Rebuilt the repository around a canonical business operating framework.
+- Defined six concerns: Purpose, Context, Contribution, Relationship, Judgment,
+  and Learning.
+- Condensed the operating method into seven practical moves: Orient,
+  Understand, Choose, Contribute, Engage, Sustain, and Learn.
+- Replaced technical conformance machinery with a responsible-practice standard
+  and lightweight document validation.
+- Replaced schema-based records and profiles with three readable fictional
+  examples.
+- Embedded only the Mermaid diagrams that materially clarify the framework.
 
-- Established the charter, operating model, ethical and privacy boundaries, research method, and governance.
-- Added portable JSON Schemas, fictional graph examples, reusable profiles, templates, workflows, and bounded agent contracts.
-- Added twelve source-controlled visualizations with SVG and PNG exports and accessible descriptions.
-- Added one-command validation and an auditable validation report.
+### Removed
+
+- Portable JSON Schemas, record migrations, graph fixtures, and profile records.
+- Automation-agent contracts and implementation workflow templates.
+- Generated SVG and PNG exports, diagram metadata, and rendering dependencies.
+- Technical release-assurance tests and reports tied to the superseded toolkit.
+
+## Pre-release history
+
+### 1.0.0-rc.2 — 2026-08-01
+
+- Hardened the initial portable-record and visual-toolkit candidate.
+- Independent review found unresolved implementation concerns.
+- Superseded by the framework-first rewrite before a final v1.0.0 release.
+
+### 1.0.0-rc.1 — 2026-08-01
+
+- Produced the first fully validated technical release candidate.
+- Superseded before public v1.0.0 release.

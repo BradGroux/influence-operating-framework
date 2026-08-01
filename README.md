@@ -1,62 +1,85 @@
 # Influence Operating Framework
 
-The Influence Operating Framework is an open operating model for building meaningful influence through useful contribution, sustained relationships, reflection, and repeatable practice.
+The Influence Operating Framework is an open business operating framework for
+building meaningful influence through useful contribution, trusted
+relationships, accountable judgment, and continuous learning.
 
-It helps a practitioner answer four connected questions:
+It is for practitioners and mission-led groups working across communities,
+education, open source, media, speaking, philanthropy, technology, public
+service, and commercial settings. It helps them decide where to participate,
+what value to create, when engagement is appropriate, what commitments to
+honor, and what outcomes should change future practice.
 
-1. Where can I contribute to communities and ecosystems aligned with my mission?
-2. What do verified evidence and existing relationships actually support?
-3. What thoughtful action—including no action, waiting, or not contacting—fits the context?
-4. What did the outcome teach, and how should the practice change?
+Influence here means the earned capacity to help ideas, people, and communities
+move. It is not follower count, access, status, or the ability to manufacture
+attention.
 
-This is not a sales CRM, a lead funnel, an engagement-farming playbook, or a speaking checklist. Growth and commercial outcomes are supported as downstream effects; they are not the framework's center. No default agent or workflow sends external communication.
+## The framework
+
+Every responsible influence practice makes six concerns clear:
+
+1. **Purpose** — Why are we participating, and who should benefit?
+2. **Context** — What do we know, how do we know it, and what remains unknown?
+3. **Contribution** — What useful value can we create without requiring
+   reciprocity?
+4. **Relationship** — What shared history, commitments, consent, and boundaries
+   matter?
+5. **Judgment** — What should a person decide now, including waiting or taking
+   no action?
+6. **Learning** — What happened, what changed, and how should the practice
+   improve?
+
+These concerns apply to existing work. The framework does not require a
+particular tool, database, data model, automation system, or communication
+platform.
 
 ## Start here
 
-- Read the [charter](docs/00-charter.md) and [framework overview](docs/01-framework-overview.md).
-- Learn the [operating model](docs/02-operating-model.md) and [research method](docs/16-research-methodology.md).
-- See how human control works in [human-reviewed outreach](docs/09-human-reviewed-outreach.md).
-- Adapt the framework with the [implementation guide](docs/15-implementation-guide.md) and [templates](templates/README.md).
-- Review [Brad Groux's owner-supplied profile](profiles/brad-groux/profile.md) and the [fictional Riverbend profile](profiles/riverbend-learning-collective/profile.md).
-- Browse the generated [repository index](INDEX.md).
+1. [Charter](framework/charter.md)
+2. [Operating framework](framework/operating-framework.md)
+3. [Practice method](framework/practice-method.md)
+4. [Responsible practice standard](framework/responsible-practice-standard.md)
+5. [Measurement and learning](framework/measurement-and-learning.md)
+6. [Glossary](framework/glossary.md)
 
-## One-command validation
+The [examples](examples/README.md) show the framework in use without adding new
+requirements.
+
+## What this is not
+
+This is not a CRM, lead funnel, engagement-farming playbook, public-speaking
+checklist, messaging system, or technical specification. It does not prescribe
+schemas, APIs, agent contracts, record formats, visual build pipelines, or
+autonomous outreach.
+
+People and tools may assist with research, drafting, organization, and
+reflection. The practitioner remains accountable for evidence, privacy,
+contribution, commitments, and every external action.
+
+## Quick application
+
+For any activity, write one honest answer for each of the six concerns. If
+purpose is unclear, evidence is weak, the contribution is speculative, a
+boundary is unresolved, or the practitioner cannot honor the resulting
+commitment, stop or narrow the activity. Waiting, declining, and doing nothing
+are successful outcomes when they protect people or purpose.
+
+## Status and validation
+
+Version 1.0.0-rc.3 is the framework-first v1.0.0 release candidate. Repository
+checks are intentionally limited to document integrity:
 
 ```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements-dev.txt
-npm install
-python3 scripts/validate.py
+python3 scripts/validate_repository.py
+bash scripts/validate_mermaid.sh
 ```
 
-The validator checks repository structure, JSON Schemas and every fictional example, linked record IDs, Markdown links, public-data safety, external-action boundaries, visual sources and renders, and the generated index. It rewrites [the validation report](reports/validation-report.md) with explicit passed, failed, and deferred items.
+Passing validation means the repository is internally consistent. It does not
+certify a real-world implementation, legal compliance, ethics, accessibility,
+or community acceptance.
 
-When records have changed since a prior authoritative export, verify that human decision histories were only appended:
+## Stewardship
 
-```bash
-python3 scripts/validate.py --only schemas --baseline-root /path/to/authoritative-snapshot --no-report
-```
-
-No self-contained current snapshot can prove that omitted prior history never existed; release and private-overlay procedures must retain the authoritative baseline used by this check.
-
-To rerender diagrams separately:
-
-```bash
-npm run render:visuals
-```
-
-## Human and agent use
-
-Humans and agents use the same canonical documents. Agents may perform only the bounded work described in [automation contracts](automations/README.md). A draft can receive a human disposition of approve, revise, wait, or do not contact; even approval is not a send. Any later sending system is separate and requires explicit authorization outside this repository.
-
-## Public and private records
-
-Everything committed here is safe for public review. Real sensitive notes, personal contact details, consent records, and restricted evidence belong in a private overlay governed by [ethics, privacy, and safety guidance](docs/12-ethics-privacy-and-safety.md). The public repository documents that boundary but does not contain private data.
-
-## Status
-
-Version 1.0.0-rc.2 is a local release candidate under independent review. It is not the final v1.0.0 release and does not claim independent ethics, privacy, accessibility, legal, or domain approval. See [v1.0.0 release criteria](project/specifications/v1.0.0-release-criteria.md), [project status](project/planning/status.md), and [the validation report](reports/validation-report.md).
-
-## License
-
-[MIT](LICENSE)
+Brad Groux is the founding steward. Changes follow [governance](GOVERNANCE.md)
+and the [contribution guide](CONTRIBUTING.md). The framework is released under
+the [MIT License](LICENSE).

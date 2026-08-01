@@ -2,50 +2,70 @@
 
 ## Purpose
 
-This repository contains the Influence Operating Framework: an open, tool-agnostic operating model for ethical influence through contribution, relationships, reflection, and continuous improvement.
+This repository contains the Influence Operating Framework: an open business
+operating framework for building useful, trusted influence through
+contribution, relationships, sound judgment, and learning.
 
 ## Authority
 
 Apply this order:
 
 1. Direct current owner instruction.
-2. `docs/00-charter.md`.
-3. `decisions/locked-decisions.md` and accepted ADRs.
-4. Canonical documents under `docs/` and the vocabulary in `CONTEXT.md`.
+2. `framework/charter.md`.
+3. Accepted decisions under `decisions/`.
+4. The remaining canonical documents under `framework/`.
 5. Governance and contribution guidance.
-6. Schemas and automation contracts.
-7. Templates, profiles, workflows, and examples.
-8. Project records and history.
+6. Examples and project records.
 
-Lower-authority material may implement or illustrate the framework but must not silently redefine higher-authority material.
+Examples illustrate the framework. They do not create requirements.
 
-## Content boundaries
+## Framework boundary
+
+- Treat this as a business operating framework and method, not a software,
+  data, automation, or interoperability specification.
+- Clear Markdown is the canonical representation for people and machines.
+- Do not add required schemas, APIs, protocols, record formats, adapters,
+  automation architectures, agent contracts, migrations, or technical
+  conformance layers.
+- An implementation may use those technologies, but they remain outside the
+  framework and cannot redefine it.
+- Keep the framework independent of vendors, platforms, models, databases, and
+  communication systems.
+
+## Practice boundaries
 
 - Treat people as people, never leads, prospects, targets, or conversions.
-- Keep contribution and community value ahead of reach, growth, and monetization.
-- Preserve human judgment for every external engagement decision.
-- Never add an autonomous sender, mass-outreach path, fabricated relationship, or unsupported research claim.
-- Make `wait`, `do not contact`, and `no action needed` normal outcomes.
-- Keep public examples fictional and free of real personal contact data.
-- Keep the canonical framework independent of vendors, models, databases, and automation platforms.
-- Use schemas to validate portable records, not to redefine canonical prose.
-- Keep private overlays outside the public repository.
+- Put contribution and community value ahead of reach, growth, and
+  monetization.
+- Preserve accountable human judgment for external engagement.
+- Never introduce autonomous sending, mass outreach, fabricated relationships,
+  or unsupported research claims.
+- Make waiting, declining, no action, and do not contact normal outcomes.
+- Use fictional public examples unless a real example is explicitly authorized
+  and safely sourced.
+- Keep private notes, contact details, and sensitive context outside the public
+  repository.
 
 ## Documentation
 
-- Use the canonical vocabulary in `CONTEXT.md`.
-- Use clear Markdown, relative links, and kebab-case filenames.
-- State status, ownership, provenance, confidence, privacy, and review limits honestly.
-- Examples illustrate and never create requirements.
-- Add a diagram only when sequence, hierarchy, or relationships are materially clearer visually.
-- Every required visual needs Mermaid source, SVG, PNG, metadata, an accessible description, and a synchronized manifest entry.
+- Use the vocabulary in `framework/glossary.md`.
+- Prefer direct, practical language over technical or promotional language.
+- Explain what a practitioner must understand and decide without prescribing a
+  database or workflow engine.
+- Add an inline Mermaid diagram only when it materially clarifies a relationship
+  or sequence. Do not commit generated image exports or diagram metadata.
+- Keep examples subordinate to the canonical framework.
 
 ## Verification
 
 Before reporting completion, run:
 
 ```bash
-python3 scripts/validate.py
+python3 scripts/validate_repository.py
+bash scripts/validate_mermaid.sh
 ```
 
-The command must validate schemas and examples, record links, Markdown links, structure, vocabulary and safety checks, visual synchronization, and the generated index. Read back `reports/validation-report.md` and report every failed or deferred item.
+The validation is intentionally lightweight. It checks repository structure,
+Markdown links, anchors, Mermaid fence integrity, version consistency, and the
+framework boundary. It does not claim that a document validator can prove the
+quality or ethics of real practice.

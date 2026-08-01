@@ -1,3 +1,0 @@
-# Framework overview — accessible description
-
-The diagram reads left to right through four connected layers: purpose and profile, shared evidence graph, operating practices, and governance and assurance. Governance sends lessons and controls back to purpose, making the model iterative. Human judgment points to purpose, operating practices, and governance because accountability is not delegated. Contribution and community value enter the operating layer, which produces relationships, learning, relevant reach, and downstream outcomes. The visual does not imply that every outcome is desired or that movement is automatic; the practitioner may stop or take no action.

@@ -2,32 +2,81 @@
 
 ## Stewardship
 
-Brad Groux is the founding steward. Additional maintainers and CODEOWNERS assignments are deferred until accepted explicitly.
+Brad Groux is the founding steward. Future maintainers or successors require an
+explicit public record.
 
-Stewardship preserves the charter, records material decisions, distinguishes requirements from examples, and reports review limits honestly. Teaching, applying, commercializing, or automating the framework does not independently grant authority to redefine it.
+Stewardship protects the charter, preserves the framework's business boundary,
+distinguishes requirements from examples, and reports uncertainty and review
+limits honestly. Teaching, applying, commercializing, or implementing the
+framework does not independently grant authority to redefine it.
 
-## Decision levels
+## Authority
 
-- **Locked principles** require an explicit amendment proposal, evidence, impact analysis, a public review period, recorded dissent, and written approval from the founding steward or a future documented successor.
-- **Accepted ADRs** record difficult-to-reverse choices with real alternatives. They may be superseded only by another accepted ADR.
-- **Canonical guidance** can evolve through reviewed contributions that remain consistent with higher authority.
-- **Implementation contracts and schemas** may version independently but cannot silently change canonical meaning.
-- **Examples and profiles** are illustrative and never normative.
+Framework authority descends in this order:
 
-## Proposal and disagreement process
+1. [Charter](framework/charter.md)
+2. Accepted [decision records](decisions/README.md)
+3. Remaining canonical documents under [`framework/`](framework/README.md)
+4. Governance and contribution guidance
+5. Examples and project records
 
-A proposal states the problem, evidence, affected communities, privacy and safety implications, alternatives, recommendation, migration impact, and unresolved dissent. Maintainers publish a disposition: accept, revise, defer, or reject. Disagreement remains in the record; it is not erased merely because a decision was made.
+Lower-authority material cannot silently change higher-authority meaning.
 
-## Releases and compatibility
+## Change paths
 
-The project uses semantic versions. Schema documents have their own `schema_version`. Breaking record changes require a migration note and a major schema version. Deprecated fields remain documented for at least one compatible release unless retaining them creates a safety risk.
+- **Correction:** Fix a demonstrable error without changing framework meaning.
+- **Clarification:** Improve language or examples while preserving meaning.
+- **Canonical change:** Change the operating framework, practice method,
+  responsible-practice standard, measurement model, or glossary.
+- **Charter amendment:** Change the definition, mission, commitments, scope, or
+  accountability boundary.
+- **Illustration:** Add or improve an example without creating a requirement.
 
-Release signing, cadence, and public hosting remain deferred. The [v1.0.0 release criteria](project/specifications/v1.0.0-release-criteria.md) define the accepted maturity gate. Every release must run validation and include a truthful status report; no version string or automated PASS can override an open required gate.
+Material choices with reasonable alternatives belong in a decision record.
+Routine wording and maintenance do not.
 
-## Lessons into changes
+## Review standard
 
-Reflections may propose improvements but do not amend the framework automatically. A lesson becomes guidance only after evidence review, affected-community consideration, compatibility review, and the appropriate decision path.
+A proposal should state:
 
-## Security and privacy
+- the problem and evidence;
+- the affected framework concern or community;
+- alternatives and trade-offs;
+- privacy, consent, accessibility, or safety implications;
+- whether the change is framework meaning or only an illustration; and
+- dissent, uncertainty, and follow-up that remain.
 
-Use [SECURITY.md](SECURITY.md). Sensitive disclosures never belong in public issues. Maintainers minimize retained personal data and preserve the reporter's requested confidentiality within legal and operational limits.
+Charter amendments require written approval from the founding steward or a
+documented successor. Canonical changes require maintainer review and evidence
+that they improve real practice without contradicting the charter. Examples
+require clarity, truthful provenance, publication safety, and framework
+alignment.
+
+Decisions may be accepted, revised, deferred, or rejected. Material dissent
+remains visible in the record.
+
+## Framework and implementations
+
+The framework does not govern the internal architecture of tools that apply it.
+An implementation may use databases, schemas, APIs, AI, automation, or other
+technical controls. It must identify those as local choices and must not present
+them as framework requirements.
+
+An implementation claiming alignment should explain how its business practice
+addresses the six concerns and responsible-practice standard. This repository
+does not certify implementations.
+
+## Releases
+
+The project uses semantic versioning for published framework releases. A
+release must:
+
+- identify the exact canonical change;
+- pass repository document validation;
+- receive a practical application review and an adversarial framework review;
+- disclose open limitations and dissent; and
+- avoid claims of legal, ethical, accessibility, or professional certification
+  that the review did not establish.
+
+No version number or automated check overrides an unresolved material framework
+finding.
