@@ -67,6 +67,9 @@ framework for responsible influence practice.
 - Documented Mermaid accurately: diagrams remain inline source; rendering uses
   a transient pinned renderer, with no package manifest, lockfile, generated
   export, or committed dependency tree.
+- Made Mermaid validation portable across local and GitHub-hosted environments
+  by relying only on Git plus standard shell tools before invoking the pinned
+  renderer.
 
 ### Removed
 

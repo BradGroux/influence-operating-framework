@@ -15,7 +15,7 @@ if [[ $# -ne 0 ]]; then
   exit 2
 fi
 
-for required_command in find npx rg; do
+for required_command in find git grep npx; do
   if ! command -v "$required_command" >/dev/null 2>&1; then
     echo "Required Mermaid validation command is unavailable: $required_command" >&2
     exit 1
@@ -27,9 +27,13 @@ cd "$repository_root"
 document_count=0
 diagram_count=0
 
-while IFS= read -r markdown_file; do
+while IFS= read -r -d '' markdown_file; do
+  if ! grep --quiet '^```mermaid$' "$markdown_file"; then
+    continue
+  fi
+
   document_count=$((document_count + 1))
-  expected="$(rg --count '^```mermaid$' "$markdown_file")"
+  expected="$(grep --count '^```mermaid$' "$markdown_file")"
   document_key="$(printf '%s' "$markdown_file" | tr '/.' '__')"
   document_temp="$validation_temp/$document_key"
   assets_temp="$document_temp/assets"
@@ -47,11 +51,7 @@ while IFS= read -r markdown_file; do
     exit 1
   fi
   diagram_count=$((diagram_count + rendered))
-done < <(rg --files -g '*.md' | while IFS= read -r file; do
-  if rg --quiet '^```mermaid$' "$file"; then
-    printf '%s\n' "$file"
-  fi
-done)
+done < <(git ls-files -z -- '*.md')
 
 if [[ "$document_count" -eq 0 ]]; then
   echo "No Mermaid diagrams found" >&2
