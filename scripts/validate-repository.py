@@ -92,7 +92,13 @@ FINDING_HEADING = re.compile(
     r"^#### [BMNS]-\d+: .+$", flags=re.MULTILINE
 )
 REPOSITORY_EVIDENCE = re.compile(
-    r"`[A-Za-z0-9_.\-/]+:\d+(?:-\d+)?(?:,\d+(?:-\d+)?)*`"
+    r"`([A-Za-z0-9_.\-/]+):(\d+(?:-\d+)?(?:,\d+(?:-\d+)?)*)`"
+)
+HISTORICAL_ATTRIBUTION = re.compile(
+    r"Reviewer [A-Z]([^A-Za-z]|$)|Tester [A-Z]([^A-Za-z]|$)|"
+    r"^[- ]*\*\*(Reviewer|Tester|Reviewer type|Tester type|Author):\*\*|"
+    r"[A-Z]+-(HANDOFF|PROMPT)\.md",
+    flags=re.IGNORECASE | re.MULTILINE,
 )
 
 EMAIL_PATTERN = re.compile(
@@ -350,9 +356,10 @@ def validate_markdown(
     return local_link_count, external_link_count, mermaid_count
 
 
-def validate_review_records(errors: list[str]) -> int:
+def validate_review_records(errors: list[str]) -> tuple[int, int]:
     records = sorted((ROOT / "project/reviews").glob("*.md"))
     checked = 0
+    evidence_checked = 0
 
     for record in records:
         if record.name == "README.md":
@@ -373,6 +380,18 @@ def validate_review_records(errors: list[str]) -> int:
                 errors.append(f"review report missing generic reviewer role: {name}")
             if not REVIEW_COMMIT.search(text):
                 errors.append(f"review report missing exact reviewed commit: {name}")
+
+            reviewed_commit = REVIEW_COMMIT.search(text)
+            commit = ""
+            if reviewed_commit:
+                commit = re.search(r"[0-9a-f]{40}", reviewed_commit.group(0)).group(0)
+                commit_check = subprocess.run(
+                    ["git", "cat-file", "-e", f"{commit}^{{commit}}"],
+                    cwd=ROOT,
+                    capture_output=True,
+                )
+                if commit_check.returncode != 0:
+                    errors.append(f"reviewed commit is not available: {name} ({commit})")
 
             findings = REVIEW_FINDINGS.search(text)
             if findings:
@@ -401,7 +420,121 @@ def validate_review_records(errors: list[str]) -> int:
                             f"{name} ({heading.group(0)})"
                         )
 
-    return checked
+            if commit:
+                source_line_counts: dict[str, int] = {}
+                for evidence in REPOSITORY_EVIDENCE.finditer(text):
+                    source = evidence.group(1)
+                    if source not in source_line_counts:
+                        source_result = subprocess.run(
+                            ["git", "show", f"{commit}:{source}"],
+                            cwd=ROOT,
+                            check=False,
+                            capture_output=True,
+                            text=True,
+                        )
+                        if source_result.returncode != 0:
+                            errors.append(
+                                f"review evidence path is unavailable at commit: "
+                                f"{name} ({source})"
+                            )
+                            source_line_counts[source] = 0
+                            continue
+                        source_line_counts[source] = len(
+                            source_result.stdout.splitlines()
+                        )
+                    maximum_line = max(
+                        int(value) for value in re.findall(r"\d+", evidence.group(2))
+                    )
+                    if maximum_line > source_line_counts[source]:
+                        errors.append(
+                            f"review evidence exceeds source length: {name} "
+                            f"({source}:{evidence.group(2)})"
+                        )
+                    evidence_checked += 1
+
+    return checked, evidence_checked
+
+
+def validate_public_history(errors: list[str]) -> int:
+    history_ref = ""
+    for candidate_ref in ("refs/heads/main", "refs/remotes/origin/main", "HEAD"):
+        ref_result = subprocess.run(
+            ["git", "rev-parse", "--verify", f"{candidate_ref}^{{commit}}"],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+        )
+        if ref_result.returncode == 0:
+            history_ref = candidate_ref
+            break
+    if not history_ref:
+        errors.append("unable to resolve public history for inspection")
+        return 0
+
+    commit_result = subprocess.run(
+        ["git", "rev-list", history_ref],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if commit_result.returncode != 0:
+        errors.append("unable to inspect public main history")
+        return 0
+
+    commits = [value for value in commit_result.stdout.splitlines() if value]
+    metadata_result = subprocess.run(
+        ["git", "log", history_ref, "--format=%an%x00%ae%x00%cn%x00%ce"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    for row in metadata_result.stdout.splitlines():
+        author_name, author_email, committer_name, committer_email = row.split("\0")
+        for identity_name, identity_email in (
+            (author_name, author_email),
+            (committer_name, committer_email),
+        ):
+            if identity_name == "Brad Groux" and not identity_email.endswith(
+                "@users.noreply.github.com"
+            ):
+                errors.append(
+                    "public main history exposes non-no-reply steward email metadata"
+                )
+                break
+
+    for commit in commits:
+        grep_result = subprocess.run(
+            [
+                "git",
+                "grep",
+                "-n",
+                "-I",
+                "-i",
+                "-E",
+                HISTORICAL_ATTRIBUTION.pattern,
+                commit,
+                "--",
+                "*.md",
+                "*.yml",
+                "*.yaml",
+                "*.cff",
+            ],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if grep_result.returncode == 0:
+            first_match = grep_result.stdout.splitlines()[0]
+            errors.append(f"public main history contains legacy attribution: {first_match}")
+            break
+        if grep_result.returncode not in {0, 1}:
+            errors.append(f"unable to scan public history commit: {commit}")
+            break
+
+    return len(commits)
 
 
 def validate_publication_safety(files: list[Path], errors: list[str]) -> int:
@@ -444,8 +577,9 @@ def main() -> int:
     local_links, external_links, mermaid_blocks = validate_markdown(
         documents, errors
     )
-    review_records = validate_review_records(errors)
+    review_records, review_evidence = validate_review_records(errors)
     publication_files = validate_publication_safety(public_files, errors)
+    history_commits = validate_public_history(errors)
 
     if errors:
         for error in errors:
@@ -459,7 +593,9 @@ def main() -> int:
     print(f"INFO: external Markdown links not fetched: {external_links}")
     print(f"PASS: inline Mermaid source blocks: {mermaid_blocks}")
     print(f"PASS: standardized review records: {review_records}")
+    print(f"PASS: historical review citations: {review_evidence}")
     print(f"PASS: publication-safety scan: {publication_files} text files")
+    print(f"PASS: sanitized public main history: {history_commits} commits")
     print("PASS: release version and citation metadata")
     print("PASS: superseded technical framework paths are absent")
     print("All repository document and publication checks passed.")

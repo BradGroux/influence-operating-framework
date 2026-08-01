@@ -32,8 +32,9 @@ framework for responsible influence practice.
   disclosure, plus a pull-request template and explicit code ownership.
 - A pinned GitHub Actions workflow for automated repository validation.
 - A repeatable validation gate covering required structure, local Markdown
-  links and anchors, release metadata, review-record conventions,
-  publication-safety patterns, framework-boundary paths, and Mermaid rendering.
+  links and anchors, release metadata, review-record conventions and source
+  targets, publication-safety patterns, sanitized public history,
+  framework-boundary paths, and Mermaid rendering.
 - Preserved, sanitized review evidence from application, adversarial,
   coherence, simplicity, misuse, and release-integrity passes.
 
@@ -85,13 +86,13 @@ framework for responsible influence practice.
   boundaries and narrow examples; rc.4 resolved both and received GO from the
   application and adversarial reviews.
 - Four supplemental reviews evaluated initial commit
-  `3878daec07c402c49a0424e82368c07ad0e07c6c` for coherence, practical use,
+  `c840dd67e613a3d2ae2455f51c4b4eb6bd7895ea` for coherence, practical use,
   misuse resistance, and simplicity.
 - Material corrections were committed as candidate
-  `3f4cc013d80fed996705ed9a2fd4e4cc9bd63541` and subjected to fresh practical
+  `0638a29333532578a87f369c043596a15a70fff7` and subjected to fresh practical
   application and adversarial review.
 - The canonical coherence, practical application, and adversarial misuse
-  reviews of candidate `18c8b2c89137de3191034f7b7138df256b397f1f`
+  reviews of candidate `12947000c0a4f5272070f15024f500efdee61cd9`
   returned GO with no findings.
 - The release-integrity review returned GO with three Minor repository
   maintenance findings. The publication pass resolved all three without

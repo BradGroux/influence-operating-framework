@@ -127,12 +127,13 @@ bash scripts/validate-repository.sh
 ```
 
 The gate checks required files, local Markdown links and anchors, version and
-citation metadata, review-record conventions, publication-safety patterns,
-framework-boundary paths, and Mermaid rendering. It does not certify a
-real-world implementation or prove legal compliance, ethics, accessibility, or
-community acceptance. Mermaid rendering uses a transient, pinned command-line
-renderer through `npx`; no package manifest, lockfile, generated diagram, or
-committed dependency tree is required.
+citation metadata, review-record conventions and historical evidence targets,
+publication-safety patterns, sanitized public history, framework-boundary
+paths, and Mermaid rendering. It does not certify a real-world implementation
+or prove legal compliance, ethics, accessibility, or community acceptance.
+Mermaid rendering uses a transient, pinned command-line renderer through `npx`;
+no package manifest, lockfile, generated diagram, or committed dependency tree
+is required.
 
 ## Contributing and Support
 

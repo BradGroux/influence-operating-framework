@@ -62,8 +62,8 @@ bash scripts/validate-repository.sh
 ```
 
 The gate checks its enumerated required files, local Markdown links and anchors,
-release and citation metadata, review-record conventions, publication-safety
-patterns, fixed superseded-framework paths, Mermaid fence integrity, and
-rendering of inline Mermaid source. It does not fetch external links, infer
-semantic coherence, or claim that document checks can prove the quality or
-ethics of real practice.
+release and citation metadata, review-record conventions and source targets,
+publication-safety patterns, public-history attribution, fixed
+superseded-framework paths, Mermaid fence integrity, and rendering of inline
+Mermaid source. It does not fetch external links, infer semantic coherence, or
+claim that document checks can prove the quality or ethics of real practice.
