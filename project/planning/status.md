@@ -2,7 +2,7 @@
 
 **Target:** 1.0.0 release candidate
 **Updated:** 2026-08-01
-**State:** rc.2 remediation and code review complete; immutable rc.2 review pending
+**State:** rc.2 independent review complete; NO-GO pending remediation
 
 ## Completed 0.1.0 baseline
 
@@ -26,12 +26,12 @@
 ## v1.0.0 release hardening
 
 - Two independent agents reviewed the exact clean 0.1.0 candidate SHA.
-- Initial and rc.1 repository-local Blocker, Material, and Editorial findings have been dispositioned in the rc.2 candidate with regression coverage and a final two-axis code review.
-- Candidate `1.0.0-rc.1` failed its first post-fix independent review; its reports remain point-in-time evidence.
+- Initial and rc.1 repository-local Blocker, Material, and Editorial findings were dispositioned in the rc.2 candidate with regression coverage and a final two-axis code review.
+- Candidate `1.0.0-rc.2` failed its exact-SHA independent review with one Blocker and six distinct Material finding areas; its reports remain point-in-time evidence.
 - The current version is `1.0.0-rc.2`; it is not a final v1.0.0 claim or tag.
-- A fresh two-agent post-fix review is required against the final release-candidate SHA.
+- Repository-local remediation and another exact-SHA two-agent review are required before the repository gate can close.
 
-See the [v1.0.0 release criteria](../specifications/v1.0.0-release-criteria.md), [initial independent review disposition](../reviews/v1.0.0-independent-review-disposition-2026-08-01.md), [rc.1 post-fix disposition](../reviews/v1.0.0-rc.1-post-fix-review-disposition-2026-08-01.md), and [rc.2 code review](../reviews/v1.0.0-rc.2-code-review-2026-08-01.md).
+See the [v1.0.0 release criteria](../specifications/v1.0.0-release-criteria.md), [initial independent review disposition](../reviews/v1.0.0-independent-review-disposition-2026-08-01.md), [rc.1 post-fix disposition](../reviews/v1.0.0-rc.1-post-fix-review-disposition-2026-08-01.md), [rc.2 code review](../reviews/v1.0.0-rc.2-code-review-2026-08-01.md), and [rc.2 independent review disposition](../reviews/v1.0.0-rc.2-independent-review-disposition-2026-08-01.md).
 
 ## Open external release gates
 

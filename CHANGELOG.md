@@ -5,6 +5,7 @@ All notable changes are recorded here.
 ## [Unreleased]
 
 - Prepared local `1.0.0-rc.1` and `1.0.0-rc.2` candidates for exact-commit independent review; rc.1 remained a no-go after its first post-fix pass.
+- Recorded two independent exact-SHA rc.2 reviews and a NO-GO disposition; repository-local remediation remains required before another candidate review.
 - Hardened outreach approval, do-not-contact precedence, extensions, evidence, temporal validation, portable accountability fields, structured unknowns, and decision-history comparison.
 - Added schema 2.0.0 migration guidance, claim-specific fictional evidence, a profile template, and the explicit Repeat lifecycle decision.
 - Closed the two-axis release-candidate code review with punctuation-safe extension policy, nonempty baseline enforcement, evidence-type checks, parsed temporal comparisons, structured schedule unknowns, and ADR-governed v1 gates.
