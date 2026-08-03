@@ -17,6 +17,19 @@ Reports evaluate an exact commit and do not become framework requirements.
 Reviewers read the canonical framework before examples. Optional
 implementation choices are not defects or requirements.
 
+## Open Framework Commons v1.0.0 adoption
+
+Reviewed candidate: `de0132859f457bb8008d0524d05eb06def50a7f8`
+
+| Perspective | Verdict | Findings |
+|---|---|---|
+| [Practical application](open-framework-commons-v1.0.0-adoption-practical-application-review-2026-08-03.md) | GO | None after one first-pass Minor was resolved |
+| [Adversarial scope](open-framework-commons-v1.0.0-adoption-adversarial-scope-review-2026-08-03.md) | GO | None after one first-pass Minor was resolved |
+
+The [maintainer disposition](open-framework-commons-v1.0.0-adoption-review-disposition-2026-08-03.md)
+accepts the resolved findings and authorizes the owner-directed v1.0.0
+republish after merged-tree verification.
+
 ## Public Review Record Standard
 
 Review records use `<subject>-<record-type>-YYYY-MM-DD.md`. `README.md` is the

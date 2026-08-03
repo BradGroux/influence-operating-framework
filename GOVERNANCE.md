@@ -2,7 +2,7 @@
 
 **Status:** Approved initial repository governance<br>
 **Founding steward:** Brad Groux<br>
-**Last reviewed:** 2026-08-01
+**Last reviewed:** 2026-08-03
 
 ## Stewardship
 
@@ -32,6 +32,32 @@ Accepted [decision records](decisions/README.md) preserve rationale and
 authorize corresponding edits, but they do not form a separate normative
 layer. A decision changes the framework only when its accepted meaning appears
 in the canonical documents.
+
+## Open Framework Commons adoption
+
+Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-framework-commons)
+as shared documentation at annotated tag
+[`v1.0.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.0.0),
+release commit
+[`27870fb1d57d951b9ef5a3a86f33ef068ee557da`](https://github.com/BradGroux/open-framework-commons/commit/27870fb1d57d951b9ef5a3a86f33ef068ee557da).
+
+Commons is a referenced shared foundation, not a parent authority, and does not
+enter the Influence authority chain above. Influence retains authority over
+its concerns, method, terminology, examples, research, governance, roadmap,
+implementation choices, and releases.
+
+All Commons v1.0.0 shared principles and boundaries are adopted with no
+deviation. Product-local Mission Control, community-extension topics, and
+guidance owned by other ecosystem products remain deferred unless separately
+accepted through this governance. Influence's more specific human-judgment,
+consent, and external-action requirements remain local and controlling for
+Influence practice.
+
+If Commons and Influence appear to conflict, contributors stop and surface the
+conflict. The founding steward or a documented successor resolves it through
+the applicable Influence change path. A later Commons release has no effect
+until Influence records a separate adoption, deferral, or deviation decision.
+See [decision 0003](decisions/0003-adopt-open-framework-commons-v1.0.0.md).
 
 ## Change paths
 
@@ -104,6 +130,9 @@ Repository content and accepted contributions are licensed under the
 - **Version:** 1.0.0
 - **Effective date:** 2026-08-01
 - **Repository version:** annotated tag `v1.0.0`
+- **Republished:** 2026-08-03 after adopting Open Framework Commons v1.0.0
+  before documented use; the prior tag target was
+  `7d4727a8cf889d621e45854c874a5e0a15a94a56`
 - **Material changes:** recorded in the [changelog](CHANGELOG.md)
 - **Known limitations:** examples are fictional, illustrative, and not
   domain-validated; independent reports are source-bounded AI-assisted review

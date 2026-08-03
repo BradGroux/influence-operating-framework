@@ -2,7 +2,7 @@
 
 All notable changes to the Influence Operating Framework are documented here.
 
-## 1.0.0 — 2026-08-01
+## 1.0.0 — 2026-08-01 (republished 2026-08-03)
 
 The first public release establishes a concise, human-first business operating
 framework for responsible influence practice.
@@ -37,6 +37,11 @@ framework for responsible influence practice.
   framework-boundary paths, and Mermaid rendering.
 - Preserved, sanitized review evidence from application, adversarial,
   coherence, simplicity, misuse, and release-integrity passes.
+- Adopted Open Framework Commons v1.0.0 as shared documentation, pinned to
+  release commit `27870fb1d57d951b9ef5a3a86f33ef068ee557da`, with a public
+  discovery reference and an explicit local authority boundary.
+- Recorded adoption of all shared principles and boundaries, deferral of
+  product-local topics, and no deviations from Commons v1.0.0.
 
 ### Changed
 
@@ -104,6 +109,16 @@ framework for responsible influence practice.
 - The examples remain fictional, illustrative, and not domain-validated.
 - The independent reports are source-bounded AI-assisted review evidence, not
   human, organizational, legal, ethical, professional, or domain validation.
+- The Commons adoption preserves canonical framework meaning and keeps
+  Influence's concerns, method, terminology, examples, research, governance,
+  roadmap, implementation choices, and releases independent.
+- Practical application and adversarial scope reviews of exact candidate
+  `de0132859f457bb8008d0524d05eb06def50a7f8` returned GO with no findings after
+  resolving two first-pass Minor consistency findings.
+- Before documented use, the owner directed v1.0.0 to be republished with the
+  Commons adoption. The original annotated tag target was
+  `7d4727a8cf889d621e45854c874a5e0a15a94a56`; `VERSION` and citation metadata
+  remain 1.0.0 and retain the initial 2026-08-01 release date.
 - The version 1.0.0 release is owner-approved, licensed under MIT, and published
   at `github.com/BradGroux/influence-operating-framework`.
 

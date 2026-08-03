@@ -25,6 +25,31 @@ contribution processes.
 Brad Groux is the creator and founding steward. Changes follow
 [Governance](GOVERNANCE.md) and the [contribution guide](CONTRIBUTING.md).
 
+## Open Framework Commons
+
+Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-framework-commons)
+as shared documentation at annotated tag
+[`v1.0.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.0.0),
+release commit
+[`27870fb1d57d951b9ef5a3a86f33ef068ee557da`](https://github.com/BradGroux/open-framework-commons/commit/27870fb1d57d951b9ef5a3a86f33ef068ee557da).
+
+The adoption disposition is:
+
+- **Adopted:** all nine shared principles and the shared boundaries for
+  people-first, tool-independent, contribution-led, openly documented, and
+  honestly reviewed work;
+- **Deferred as product-local:** Mission Control, community-extension topics,
+  and guidance owned by other ecosystem products; and
+- **Deviations:** none. Influence's stronger human-judgment, consent, and
+  external-action boundaries remain compatible local guidance.
+
+Influence remains independent. It owns its concerns, method, terminology,
+examples, research, governance, roadmap, implementation choices, and releases.
+Commons is not a parent framework and cannot amend Influence automatically.
+The [adoption decision](decisions/0003-adopt-open-framework-commons-v1.0.0.md)
+and [Governance](GOVERNANCE.md#open-framework-commons-adoption) record the
+authority boundary.
+
 ## The Framework
 
 Every responsible influence practice makes six concerns clear:
@@ -103,12 +128,22 @@ contribution, commitments, and every external action.
 ## Current Status
 
 Version 1.0.0 is the complete, owner-approved initial release, dated
-2026-08-01. The final framework reviews found no Blocker, Material, Minor, or
-Suggestion findings:
+2026-08-01 and republished on 2026-08-03 to include the Commons adoption before
+documented use. The pre-adoption final canonical framework reviews found no
+Blocker, Material, Minor, or Suggestion findings:
 
 - [Canonical coherence review](project/reviews/v1.0.0-final-canonical-coherence-review-2026-08-01.md)
 - [Practical application review](project/reviews/v1.0.0-final-practical-application-review-2026-08-01.md)
 - [Adversarial misuse review](project/reviews/v1.0.0-final-adversarial-misuse-review-2026-08-01.md)
+
+The Commons adoption and v1.0.0 republish received separate exact-candidate
+[practical application](project/reviews/open-framework-commons-v1.0.0-adoption-practical-application-review-2026-08-03.md)
+and
+[adversarial scope](project/reviews/open-framework-commons-v1.0.0-adoption-adversarial-scope-review-2026-08-03.md)
+reviews. Both returned GO with no findings after two first-pass Minor
+consistency findings were resolved. The
+[maintainer disposition](project/reviews/open-framework-commons-v1.0.0-adoption-review-disposition-2026-08-03.md)
+records the republish decision and limits.
 
 The [release-integrity review](project/reviews/v1.0.0-final-release-integrity-review-2026-08-01.md)
 returned GO with three repository-maintenance findings. This publication pass
