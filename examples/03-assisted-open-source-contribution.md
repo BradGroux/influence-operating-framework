@@ -15,6 +15,25 @@ The public issue tracker and project documentation are sufficient for this
 work. Devon has no need to research maintainers' personal profiles or contact
 them privately.
 
+## Scenario decision view
+
+```mermaid
+flowchart TD
+    A["Assistant summarizes current public<br/>issues and guidance, then drafts"]
+    A --> D{"Contributor checks sources and tests the claim:<br/>does evidence support it?"}
+    D -- "Yes" --> T["Prepare and personally test<br/>a bounded patch"]
+    D -- "No" --> Q{"After rejecting or narrowing unsupported claims,<br/>does supported scope remain?"}
+    Q -- "Yes" --> T
+    Q -- "No" --> X["Stop without<br/>submission"]
+    T --> F["Contributor submits through the public process,<br/>reviews feedback, and chooses the response"]
+    F --> L["Revise, stop, or complete;<br/>record the learning"]
+    X --> L
+```
+
+This diagram is specific to the fictional contribution. The assistant does not
+decide sufficiency, submit the patch, respond to review, or authorize later
+actions.
+
 ## Six-concern review
 
 ### Purpose

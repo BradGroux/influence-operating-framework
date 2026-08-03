@@ -15,6 +15,23 @@ Existing participant permissions cover the cooperative's own program reporting.
 They do not cover sponsor promotion or direct sponsor contact. The cooperative
 needs funding, but the company is not its only possible supporter.
 
+## Scenario decision view
+
+```mermaid
+flowchart LR
+    O["Sponsorship offer"] --> R["Review mission, consent,<br/>authority, and burden"]
+    R --> A["Offer bounded alternative:<br/>no participant data or control"]
+    A --> D{"Sponsor accepts<br/>the boundaries?"}
+    D -- "Yes" --> F["Use funding within<br/>the agreed limits"]
+    D -- "No" --> X["Decline and reduce<br/>program scope"]
+    F --> L["Review outcomes<br/>and reporting burden"]
+    X --> L
+```
+
+This is the scenario's decision structure, not a universal sponsorship
+procedure. Funding remains one consideration; participant agency and community
+authority control both branches.
+
 ## Six-concern review
 
 ### Purpose

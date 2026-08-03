@@ -128,9 +128,10 @@ contribution, commitments, and every external action.
 ## Current Status
 
 Version 1.0.0 is the complete, owner-approved initial release, dated
-2026-08-01 and republished on 2026-08-03 to include the Commons adoption before
-documented use. The pre-adoption final canonical framework reviews found no
-Blocker, Material, Minor, or Suggestion findings:
+2026-08-01 and republished on 2026-08-03 to include the Commons adoption and
+focused framework visualizations before documented use. The pre-adoption final
+canonical framework reviews found no Blocker, Material, Minor, or Suggestion
+findings:
 
 - [Canonical coherence review](project/reviews/v1.0.0-final-canonical-coherence-review-2026-08-01.md)
 - [Practical application review](project/reviews/v1.0.0-final-practical-application-review-2026-08-01.md)
@@ -144,6 +145,15 @@ reviews. Both returned GO with no findings after two first-pass Minor
 consistency findings were resolved. The
 [maintainer disposition](project/reviews/open-framework-commons-v1.0.0-adoption-review-disposition-2026-08-03.md)
 records the republish decision and limits.
+
+The focused visualizations received separate exact-candidate
+[practical application](project/reviews/v1.0.0-visualization-practical-application-review-2026-08-03.md)
+and
+[adversarial scope](project/reviews/v1.0.0-visualization-adversarial-scope-review-2026-08-03.md)
+reviews. Both returned GO with no findings after the candidate resolved four
+iterative Minor clarity findings and one layout suggestion. The
+[maintainer disposition](project/reviews/v1.0.0-visualization-review-disposition-2026-08-03.md)
+records the visualization and republish decision.
 
 The [release-integrity review](project/reviews/v1.0.0-final-release-integrity-review-2026-08-01.md)
 returned GO with three repository-maintenance findings. This publication pass
