@@ -39,7 +39,7 @@ Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-fram
 as shared documentation at annotated tag
 [`v1.0.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.0.0),
 release commit
-[`27870fb1d57d951b9ef5a3a86f33ef068ee557da`](https://github.com/BradGroux/open-framework-commons/commit/27870fb1d57d951b9ef5a3a86f33ef068ee557da).
+[`a0f0d384e9010a65d1a21a324b4c912433d5e031`](https://github.com/BradGroux/open-framework-commons/commit/a0f0d384e9010a65d1a21a324b4c912433d5e031).
 
 Commons is a referenced shared foundation, not a parent authority, and does not
 enter the Influence authority chain above. Influence retains authority over
@@ -133,7 +133,9 @@ Repository content and accepted contributions are licensed under the
 - **Republished:** 2026-08-03 after adopting Open Framework Commons v1.0.0 and
   adding focused visualizations before documented use; prior published tag
   targets were `7d4727a8cf889d621e45854c874a5e0a15a94a56` and
-  `f91851a1b42b28b01928e5db7aaac4c20b946417`
+  `f91851a1b42b28b01928e5db7aaac4c20b946417`, and the immediately prior
+  product tag target was
+  `cbe41ccd84f2027f58ae7938df09131b5fbde3ca`
 - **Material changes:** recorded in the [changelog](CHANGELOG.md)
 - **Known limitations:** examples are fictional, illustrative, and not
   domain-validated; independent reports are source-bounded AI-assisted review

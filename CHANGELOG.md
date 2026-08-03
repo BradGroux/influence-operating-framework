@@ -38,7 +38,7 @@ framework for responsible influence practice.
 - Preserved, sanitized review evidence from application, adversarial,
   coherence, simplicity, misuse, and release-integrity passes.
 - Adopted Open Framework Commons v1.0.0 as shared documentation, pinned to
-  release commit `27870fb1d57d951b9ef5a3a86f33ef068ee557da`, with a public
+  release commit `a0f0d384e9010a65d1a21a324b4c912433d5e031`, with a public
   discovery reference and an explicit local authority boundary.
 - Recorded adoption of all shared principles and boundaries, deferral of
   product-local topics, and no deviations from Commons v1.0.0.
@@ -48,6 +48,13 @@ framework for responsible influence practice.
 
 ### Changed
 
+- Refreshed the Open Framework Commons v1.0.0 pin from
+  `27870fb1d57d951b9ef5a3a86f33ef068ee557da` to
+  `a0f0d384e9010a65d1a21a324b4c912433d5e031` after its coordinated
+  republication. This changes no Influence method or authority; Influence
+  v1.0.0 will be republished after review and merge. The immediately prior
+  product tag target,
+  `cbe41ccd84f2027f58ae7938df09131b5fbde3ca`, remains release evidence.
 - Rebuilt the repository around a canonical business operating framework after
   the pre-release technical toolkit had grown beyond the intended scope.
 - Condensed the operating method into seven practical moves and clarified that
