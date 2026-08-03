@@ -69,7 +69,7 @@ flowchart LR
     end
 
     J["Accountable interpretation<br/>evidence, context, and trade-offs"]
-    N["No universal<br/>influence score"]
+    N["Prohibited: universal<br/>influence score"]
 
     C --> J
     R --> J
