@@ -7,7 +7,7 @@
 - **Reviewer role:** Independent standards and specification reviewers
 - **Reviewed version:** `v1.0.0` coordinated republish candidate
 - **Fixed point:** `cbe41ccd84f2027f58ae7938df09131b5fbde3ca`
-- **Reviewed commit:** `f3ed7635f9c3231fe1a0b112fd24c0eac3fa03e7`
+- **Reviewed commit:** `1db36dcf943bae00af25eaa532fbbce87bb767ff`
 - **Commons prior commit:** `27870fb1d57d951b9ef5a3a86f33ef068ee557da`
 - **Commons adopted commit:** `a0f0d384e9010a65d1a21a324b4c912433d5e031`
 - **Verdict:** **GO**
@@ -54,7 +54,7 @@ The standards recheck returned GO with no open findings.
 
 ## Verification
 
-- `git diff --check cbe41ccd84f2027f58ae7938df09131b5fbde3ca...f3ed7635f9c3231fe1a0b112fd24c0eac3fa03e7`
+- `git diff --check cbe41ccd84f2027f58ae7938df09131b5fbde3ca...1db36dcf943bae00af25eaa532fbbce87bb767ff`
 - `bash scripts/validate-repository.sh`
 - 50 Markdown documents and 105 local links and anchors
 - 23 existing standardized review records and 175 historical citations
