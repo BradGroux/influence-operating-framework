@@ -56,6 +56,33 @@ Assess operational sustainability and commercial outcomes separately within
 this dimension. Revenue does not cancel unsustainable burden, and low revenue
 does not erase demonstrated community value.
 
+## Outcome view
+
+```mermaid
+flowchart LR
+    subgraph D["Observe separately"]
+        C["Contribution"]
+        R["Relationship"]
+        L["Learning"]
+        V["Relevant reach"]
+        S["Sustainability and<br/>commercial outcomes"]
+    end
+
+    J["Accountable interpretation<br/>evidence, context, and trade-offs"]
+    N["No universal<br/>influence score"]
+
+    C --> J
+    R --> J
+    L --> J
+    V --> J
+    S --> J
+    J -. "must not collapse into" .-> N
+```
+
+This is an interpretation view, not a sequence or shared scale. Each dimension
+retains its own evidence, and accountable judgment keeps their trade-offs
+visible without turning them into one score.
+
 ## No universal score
 
 The dimensions can conflict. A small workshop may create strong contribution

@@ -14,6 +14,24 @@ struggling to make workshop materials accessible.
 Mara has one day available before the proposal deadline. She has never met the
 organizers and has no private information about participants.
 
+## Scenario decision view
+
+```mermaid
+flowchart LR
+    N["Public need<br/>is evidenced"] --> C["Offer a bounded<br/>contribution"]
+    C --> J{"Community response?"}
+    J -- "Redirect" --> R["Revise or abandon<br/>the original artifact"]
+    J -- "Accept" --> H["Honor scope, ownership,<br/>and maintenance"]
+    J -- "No response" --> S["Stop without repeated<br/>follow-up"]
+    R --> L["Learn from the<br/>observed outcome"]
+    H --> L
+    S --> L
+```
+
+This diagram shows the choices in this fictional case, not a required
+framework sequence. A redirect changes the contribution, and no response ends
+the offer rather than starting an outreach cadence.
+
 ## Six-concern review
 
 ### Purpose

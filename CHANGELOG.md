@@ -42,6 +42,9 @@ framework for responsible influence practice.
   discovery reference and an explicit local authority boundary.
 - Recorded adoption of all shared principles and boundaries, deferral of
   product-local topics, and no deviations from Commons v1.0.0.
+- Five focused Mermaid diagrams covering separate outcome dimensions, the
+  assisted-work accountability boundary, and the decision structure of each
+  fictional example.
 
 ### Changed
 
@@ -115,6 +118,9 @@ framework for responsible influence practice.
 - Practical application and adversarial scope reviews of exact candidate
   `de0132859f457bb8008d0524d05eb06def50a7f8` returned GO with no findings after
   resolving two first-pass Minor consistency findings.
+- Before documented use, the owner directed v1.0.0 to be republished again with
+  focused visualizations. The immediately prior annotated tag target was
+  `f91851a1b42b28b01928e5db7aaac4c20b946417`.
 - Before documented use, the owner directed v1.0.0 to be republished with the
   Commons adoption. The original annotated tag target was
   `7d4727a8cf889d621e45854c874a5e0a15a94a56`; `VERSION` and citation metadata

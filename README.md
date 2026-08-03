@@ -128,9 +128,10 @@ contribution, commitments, and every external action.
 ## Current Status
 
 Version 1.0.0 is the complete, owner-approved initial release, dated
-2026-08-01 and republished on 2026-08-03 to include the Commons adoption before
-documented use. The pre-adoption final canonical framework reviews found no
-Blocker, Material, Minor, or Suggestion findings:
+2026-08-01 and republished on 2026-08-03 to include the Commons adoption and
+focused framework visualizations before documented use. The pre-adoption final
+canonical framework reviews found no Blocker, Material, Minor, or Suggestion
+findings:
 
 - [Canonical coherence review](project/reviews/v1.0.0-final-canonical-coherence-review-2026-08-01.md)
 - [Practical application review](project/reviews/v1.0.0-final-practical-application-review-2026-08-01.md)

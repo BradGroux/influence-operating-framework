@@ -130,9 +130,10 @@ Repository content and accepted contributions are licensed under the
 - **Version:** 1.0.0
 - **Effective date:** 2026-08-01
 - **Repository version:** annotated tag `v1.0.0`
-- **Republished:** 2026-08-03 after adopting Open Framework Commons v1.0.0
-  before documented use; the prior tag target was
-  `7d4727a8cf889d621e45854c874a5e0a15a94a56`
+- **Republished:** 2026-08-03 after adopting Open Framework Commons v1.0.0 and
+  adding focused visualizations before documented use; prior published tag
+  targets were `7d4727a8cf889d621e45854c874a5e0a15a94a56` and
+  `f91851a1b42b28b01928e5db7aaac4c20b946417`
 - **Material changes:** recorded in the [changelog](CHANGELOG.md)
 - **Known limitations:** examples are fictional, illustrative, and not
   domain-validated; independent reports are source-bounded AI-assisted review

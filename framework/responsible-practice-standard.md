@@ -109,6 +109,32 @@ The framework defines these responsibilities in business terms. How an adopter
 implements access controls, approvals, audit trails, or communication systems is
 outside the framework.
 
+### Assisted-work accountability boundary
+
+```mermaid
+flowchart LR
+    subgraph A["Assistance may"]
+        S["Retrieve public or<br/>authorized sources"]
+        D["Organize, compare,<br/>check, or draft"]
+        N["Boundary: no contact<br/>decision or sending"]
+        S --> D
+        D --- N
+    end
+
+    H{"Accountable person reviews<br/>evidence, boundaries,<br/>and the exact action"}
+    R["Revise, wait, decline,<br/>no action, or do not contact"]
+    P["Proceed through a separately<br/>controlled channel"]
+
+    D --> H
+    H -- "choose restraint" --> R
+    H -- "choose action" --> P
+```
+
+The boundary is about responsibility, not software design. Assistance stops
+before the contact decision and transmission. Approval of a draft is not an
+instruction for a system to send it, and restraint remains a successful
+outcome.
+
 ## Contribution and power
 
 Contribution should respond to an evidenced need and remain open to correction
