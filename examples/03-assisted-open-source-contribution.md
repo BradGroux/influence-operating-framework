@@ -18,19 +18,27 @@ them privately.
 ## Scenario decision view
 
 ```mermaid
-flowchart TD
-    P["Current public issues<br/>and project guidance"] --> A["Assistant summarizes<br/>and drafts"]
-    A --> H["Contributor checks sources<br/>and tests the claim"]
-    H --> D{"Evidence supports<br/>the claim?"}
-    D -- "No" --> N["Reject or narrow<br/>the unsupported claim"]
-    D -- "Yes" --> T["Prepare and personally test<br/>a bounded patch"]
-    N --> Q{"Supported scope<br/>remains?"}
-    Q -- "No" --> X["Stop without<br/>submission"]
+flowchart LR
+    subgraph R["Evidence review"]
+        direction TB
+        P["Current public issues<br/>and project guidance"] --> A["Assistant summarizes<br/>and drafts"]
+        A --> H["Contributor checks sources<br/>and tests the claim"]
+        H --> D{"Evidence supports<br/>the claim?"}
+        D -- "No" --> N["Reject or narrow<br/>the unsupported claim"]
+        N --> Q{"Supported scope<br/>remains?"}
+    end
+
+    subgraph C["Accountable contribution"]
+        direction TB
+        T["Prepare and personally test<br/>a bounded patch"] --> S["Submit through the<br/>public contribution process"]
+        S --> F["Contributor reviews feedback<br/>and chooses the response"]
+        F --> L["Revise, stop, or complete;<br/>record the learning"]
+        X["Stop without<br/>submission"] --> L
+    end
+
+    D -- "Yes" --> T
     Q -- "Yes" --> T
-    T --> S["Submit through the<br/>public contribution process"]
-    S --> F["Contributor reviews feedback<br/>and chooses the response"]
-    F --> L["Revise, stop, or complete;<br/>record the learning"]
-    X --> L
+    Q -- "No" --> X
 ```
 
 This diagram is specific to the fictional contribution. The assistant does not

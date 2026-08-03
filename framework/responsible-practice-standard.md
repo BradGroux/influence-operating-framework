@@ -122,7 +122,7 @@ flowchart LR
     end
 
     H{"Accountable person reviews<br/>evidence, boundaries,<br/>and the exact action"}
-    R["Revise, wait, decline,<br/>no action, or do not contact"]
+    R["Revise, wait, decline,<br/>no action needed, or do not contact"]
     P["Proceed through a separately<br/>controlled channel"]
 
     D --> H
