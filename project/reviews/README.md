@@ -17,6 +17,19 @@ Reports evaluate an exact commit and do not become framework requirements.
 Reviewers read the canonical framework before examples. Optional
 implementation choices are not defects or requirements.
 
+## v1.0.0 focused visualizations
+
+Reviewed candidate: `998e8811ac920f2da287a0a17d41f030b5e29769`
+
+| Perspective | Verdict | Findings |
+|---|---|---|
+| [Practical application](v1.0.0-visualization-practical-application-review-2026-08-03.md) | GO | None after four iterative Minor clarity findings and one layout suggestion were resolved |
+| [Adversarial scope](v1.0.0-visualization-adversarial-scope-review-2026-08-03.md) | GO | None |
+
+The [maintainer disposition](v1.0.0-visualization-review-disposition-2026-08-03.md)
+accepts the resolved findings and authorizes the owner-directed v1.0.0
+republish after merged-tree verification.
+
 ## Open Framework Commons v1.0.0 adoption
 
 Reviewed candidate: `de0132859f457bb8008d0524d05eb06def50a7f8`

@@ -146,6 +146,15 @@ consistency findings were resolved. The
 [maintainer disposition](project/reviews/open-framework-commons-v1.0.0-adoption-review-disposition-2026-08-03.md)
 records the republish decision and limits.
 
+The focused visualizations received separate exact-candidate
+[practical application](project/reviews/v1.0.0-visualization-practical-application-review-2026-08-03.md)
+and
+[adversarial scope](project/reviews/v1.0.0-visualization-adversarial-scope-review-2026-08-03.md)
+reviews. Both returned GO with no findings after the candidate resolved four
+iterative Minor clarity findings and one layout suggestion. The
+[maintainer disposition](project/reviews/v1.0.0-visualization-review-disposition-2026-08-03.md)
+records the visualization and republish decision.
+
 The [release-integrity review](project/reviews/v1.0.0-final-release-integrity-review-2026-08-01.md)
 returned GO with three repository-maintenance findings. This publication pass
 resolves them by documenting the transient Mermaid renderer accurately,
