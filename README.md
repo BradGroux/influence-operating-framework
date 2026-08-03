@@ -31,7 +31,7 @@ Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-fram
 as shared documentation at annotated tag
 [`v1.0.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.0.0),
 release commit
-[`27870fb1d57d951b9ef5a3a86f33ef068ee557da`](https://github.com/BradGroux/open-framework-commons/commit/27870fb1d57d951b9ef5a3a86f33ef068ee557da).
+[`a0f0d384e9010a65d1a21a324b4c912433d5e031`](https://github.com/BradGroux/open-framework-commons/commit/a0f0d384e9010a65d1a21a324b4c912433d5e031).
 
 The adoption disposition is:
 
