@@ -9,6 +9,7 @@ project-management activity.
 
 - [0001: Business framework, not technical specification](0001-business-framework-not-technical-specification.md)
 - [0002: Bounded v1.0.0 supplemental review corrections](0002-bounded-v1.0.0-supplemental-review-corrections.md)
+- [0003: Adopt Open Framework Commons v1.0.0](0003-adopt-open-framework-commons-v1.0.0.md)
 
 An accepted decision remains the rationale for its corresponding canonical
 language until another accepted decision supersedes it. If a decision and the
