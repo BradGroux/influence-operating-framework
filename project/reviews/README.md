@@ -30,6 +30,20 @@ The [maintainer disposition](v1.0.0-visualization-review-disposition-2026-08-03.
 accepts the resolved findings and authorizes the owner-directed v1.0.0
 republish after merged-tree verification.
 
+## Open Framework Commons v1.0.0 coordinated pin refresh
+
+Reviewed candidate: `f3ed7635f9c3231fe1a0b112fd24c0eac3fa03e7`
+
+| Perspective | Verdict | Findings |
+|---|---|---|
+| Standards and release integrity | GO | None after one Minor release-history omission was resolved |
+| Issue requirements and scope | GO | None |
+
+The consolidated
+[coordinated refresh review](open-framework-commons-v1.0.0-coordinated-refresh-review-2026-08-03.md)
+preserves the resolved finding, verification, and limits before the
+owner-directed v1.0.0 republication.
+
 ## Open Framework Commons v1.0.0 adoption
 
 Reviewed candidate: `de0132859f457bb8008d0524d05eb06def50a7f8`
