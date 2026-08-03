@@ -18,30 +18,16 @@ them privately.
 ## Scenario decision view
 
 ```mermaid
-flowchart LR
-    subgraph R["Evidence review"]
-        direction TB
-        P["Current public issues<br/>and project guidance"] --> A["Assistant summarizes<br/>and drafts"]
-        A --> H["Contributor checks sources<br/>and tests the claim"]
-        H --> D{"Evidence supports<br/>the claim?"}
-        D -- "No" --> N["Reject or narrow<br/>the unsupported claim"]
-        N --> Q{"Supported scope<br/>remains?"}
-        D -- "Yes" --> DY["Supported claim"]
-        Q -- "Yes" --> QY["Narrower supported scope"]
-        Q -- "No" --> QN["No supported scope"]
-    end
-
-    subgraph C["Accountable contribution"]
-        direction TB
-        T["Prepare and personally test<br/>a bounded patch"] --> S["Submit through the<br/>public contribution process"]
-        S --> F["Contributor reviews feedback<br/>and chooses the response"]
-        F --> L["Revise, stop, or complete;<br/>record the learning"]
-        X["Stop without<br/>submission"] --> L
-    end
-
-    DY --> T
-    QY --> T
-    QN --> X
+flowchart TD
+    A["Assistant summarizes current public<br/>issues and guidance, then drafts"]
+    A --> D{"Contributor checks sources and tests the claim:<br/>does evidence support it?"}
+    D -- "Yes" --> T["Prepare and personally test<br/>a bounded patch"]
+    D -- "No" --> Q{"After rejecting or narrowing unsupported claims,<br/>does supported scope remain?"}
+    Q -- "Yes" --> T
+    Q -- "No" --> X["Stop without<br/>submission"]
+    T --> F["Contributor submits through the public process,<br/>reviews feedback, and chooses the response"]
+    F --> L["Revise, stop, or complete;<br/>record the learning"]
+    X --> L
 ```
 
 This diagram is specific to the fictional contribution. The assistant does not
