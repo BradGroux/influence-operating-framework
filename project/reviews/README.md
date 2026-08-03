@@ -32,7 +32,7 @@ republish after merged-tree verification.
 
 ## Open Framework Commons v1.0.0 coordinated pin refresh
 
-Reviewed candidate: `f3ed7635f9c3231fe1a0b112fd24c0eac3fa03e7`
+Reviewed candidate: `1db36dcf943bae00af25eaa532fbbce87bb767ff`
 
 | Perspective | Verdict | Findings |
 |---|---|---|
