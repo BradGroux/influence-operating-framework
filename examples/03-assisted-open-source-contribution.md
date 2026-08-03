@@ -26,6 +26,9 @@ flowchart LR
         H --> D{"Evidence supports<br/>the claim?"}
         D -- "No" --> N["Reject or narrow<br/>the unsupported claim"]
         N --> Q{"Supported scope<br/>remains?"}
+        D -- "Yes" --> DY["Supported claim"]
+        Q -- "Yes" --> QY["Narrower supported scope"]
+        Q -- "No" --> QN["No supported scope"]
     end
 
     subgraph C["Accountable contribution"]
@@ -36,9 +39,9 @@ flowchart LR
         X["Stop without<br/>submission"] --> L
     end
 
-    D -- "Yes" --> T
-    Q -- "Yes" --> T
-    Q -- "No" --> X
+    DY --> T
+    QY --> T
+    QN --> X
 ```
 
 This diagram is specific to the fictional contribution. The assistant does not
