@@ -22,6 +22,7 @@ REQUIRED_FILES = (
     ".github/ISSUE_TEMPLATE/private-conduct-contact.yml",
     ".github/ISSUE_TEMPLATE/private-sensitive-disclosure-contact.yml",
     ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/signing-keys/allowed-signers",
     ".github/workflows/validate-release.yml",
     "AGENTS.md",
     "CHANGELOG.md",
@@ -48,6 +49,7 @@ REQUIRED_FILES = (
     "project/reviews/README.md",
     "scripts/puppeteer-ci-config.json",
     "scripts/validate-mermaid.sh",
+    "scripts/validate-release.sh",
     "scripts/validate-repository.py",
     "scripts/validate-repository.sh",
 )

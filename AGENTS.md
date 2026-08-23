@@ -61,6 +61,16 @@ Before reporting completion, run:
 bash scripts/validate-repository.sh
 ```
 
+Before publishing a release, run the stricter complete-history gate:
+
+```bash
+bash scripts/validate-release.sh
+```
+
+The release gate refuses shallow history and, when given the version tag,
+verifies its cryptographic signature and exact commit target against the tracked
+allowed-signers record.
+
 In a shallow clone, the gate validates the current tree and reachable history
 and reports unavailable historical-review coverage explicitly. Run
 `git fetch --unshallow` before a release or any check that requires complete

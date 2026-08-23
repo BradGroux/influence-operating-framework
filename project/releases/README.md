@@ -6,6 +6,7 @@ framework content.
 
 ## Published releases
 
+- [Version 1.0.2](v1.0.2-release-2026-08-22.md)
 - [Version 1.0.1](v1.0.1-release-2026-08-22.md)
 
 Version 1.0.0 release history is preserved in the root

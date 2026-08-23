@@ -99,6 +99,17 @@ reporting any historical review evidence that is unavailable. Run
 `git fetch --unshallow` before release work or whenever complete historical
 assurance is required.
 
+Release maintainers run the stricter gate from a clean, complete-history
+checkout:
+
+```bash
+bash scripts/validate-release.sh
+```
+
+For a published tag, pass the exact tag as the argument. The gate requires an
+annotated tag, verifies its signature against the repository's tracked public
+signing key, and requires the tag to resolve exactly to `HEAD`.
+
 In the contribution description, report what changed, how it was checked, and
 any remaining risk or disagreement. Passing validation establishes repository
 integrity only; it does not certify real-world practice.
