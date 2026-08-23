@@ -56,3 +56,15 @@ Adopt Open Framework Commons v1.1.0 through option 3.
   measurement dimension, glossary term, or example changes.
 - Later Commons releases still require a separate adoption, deferral, or
   deviation decision.
+
+## Review implications and limits
+
+This documentation-only adoption adds no personal data, contact action,
+automation, implementation requirement, or new accessibility surface. Existing
+privacy, consent, safety, and accountable-human-judgment requirements remain
+unchanged.
+
+Remaining on Commons v1.0.0 was a viable alternative. The decision owner chose
+the exact v1.1.0 adoption so future shared proposals include Focus explicitly.
+No dissent was recorded. Whether a later Commons release remains compatible is
+unresolved until that exact release receives a separate local review.

@@ -374,8 +374,8 @@ def validate_review_records(
     records = sorted((ROOT / "project/reviews").glob("*.md"))
     checked = 0
     evidence_checked = 0
-    records_skipped = 0
-    evidence_skipped = 0
+    unavailable_commit_records = 0
+    unavailable_citations = 0
 
     for record in records:
         if record.name == "README.md":
@@ -409,7 +409,7 @@ def validate_review_records(
                 )
                 if commit_check.returncode != 0:
                     if shallow_repository:
-                        records_skipped += 1
+                        unavailable_commit_records += 1
                     else:
                         errors.append(
                             f"reviewed commit is not available: {name} ({commit})"
@@ -477,9 +477,14 @@ def validate_review_records(
                         )
                     evidence_checked += 1
             elif commit and shallow_repository:
-                evidence_skipped += len(evidence)
+                unavailable_citations += len(evidence)
 
-    return checked, evidence_checked, records_skipped, evidence_skipped
+    return (
+        checked,
+        evidence_checked,
+        unavailable_commit_records,
+        unavailable_citations,
+    )
 
 
 def validate_public_history(errors: list[str]) -> int:
@@ -608,8 +613,8 @@ def main() -> int:
     (
         review_records,
         review_evidence,
-        review_records_skipped,
-        review_evidence_skipped,
+        unavailable_review_commits,
+        unavailable_review_citations,
     ) = validate_review_records(errors, shallow_repository)
     publication_files = validate_publication_safety(public_files, errors)
     history_commits = validate_public_history(errors)
@@ -629,7 +634,8 @@ def main() -> int:
     if shallow_repository:
         print(
             "WARNING: shallow repository: historical review evidence is unavailable "
-            f"for {review_records_skipped} records and {review_evidence_skipped} "
+            f"for {unavailable_review_commits} records and "
+            f"{unavailable_review_citations} "
             "citations. Run git fetch --unshallow for full history validation."
         )
         print(f"PASS: available historical review citations: {review_evidence}")
@@ -642,7 +648,10 @@ def main() -> int:
         print(f"PASS: sanitized public main history: {history_commits} commits")
     print("PASS: release version and citation metadata")
     print("PASS: superseded technical framework paths are absent")
-    print("All repository document and publication checks passed.")
+    if shallow_repository:
+        print("All current-tree and reachable-history checks passed.")
+    else:
+        print("All repository document and publication checks passed.")
     return 0
 
 
