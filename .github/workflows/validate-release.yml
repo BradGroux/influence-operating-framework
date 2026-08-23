@@ -34,7 +34,12 @@ jobs:
           python-version: "3.13"
 
       - name: Run the release validation suite
-        run: scripts/validate-repository.sh
+        run: |
+          release_tag=""
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            release_tag="${GITHUB_REF#refs/tags/}"
+          fi
+          scripts/validate-release.sh "$release_tag"
 
       - name: Verify shallow-clone behavior
         run: |
@@ -54,3 +59,12 @@ jobs:
             echo "Shallow validation claimed full-history coverage." >&2
             exit 1
           fi
+          release_output="$shallow_root/release-validation.log"
+          if (
+            cd "$shallow_root/repository"
+            bash scripts/validate-release.sh
+          ) >"$release_output" 2>&1; then
+            echo "Shallow release validation unexpectedly passed." >&2
+            exit 1
+          fi
+          grep -F "Release validation requires complete Git history." "$release_output"

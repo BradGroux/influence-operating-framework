@@ -2,6 +2,35 @@
 
 All notable changes to the Influence Operating Framework are documented here.
 
+## 1.0.2 — 2026-08-22
+
+This patch release removes the remaining release-integrity caveats from v1.0.1
+without changing canonical framework meaning or rewriting prior release history.
+
+### Changed
+
+- Added a dedicated, GitHub-registered Ed25519 release-signing identity and a
+  tracked public allowed-signers record. No private key enters the repository.
+- Required signed annotated version tags that verify against the tracked public
+  key and resolve exactly to the released commit.
+- Added a release-only validation entry point that requires a clean worktree and
+  complete Git history before running the full repository and Mermaid gates.
+- Kept ordinary contributor validation useful in shallow clones with explicit
+  partial-history reporting; shallow release validation now fails closed with
+  actionable restoration guidance.
+- Updated CI to use the full-history release gate for pull requests, `main`, and
+  tags, with cryptographic tag verification on version-tag workflows.
+
+### Audit and release status
+
+- Version 1.0.1 remains unchanged and publicly available as historical release.
+- The change affects release stewardship and repository assurance only. It does
+  not change the six concerns, seven practice moves, responsible-practice
+  standard, measurement guidance, glossary, examples, or Commons disposition.
+- Signature verification establishes control of the registered signing key. It
+  does not establish real-world, organizational, legal, ethical, accessibility,
+  professional, or domain validation.
+
 ## 1.0.1 — 2026-08-22
 
 This patch release adopts Open Framework Commons v1.1.0 and makes repository

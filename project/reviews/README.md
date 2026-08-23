@@ -17,6 +17,21 @@ Reports evaluate an exact commit and do not become framework requirements.
 Reviewers read the canonical framework before examples. Optional
 implementation choices are not defects or requirements.
 
+## v1.0.2 signed release and complete-history gate
+
+Reviewed candidate: `2778d4da992082937c1986f2b4cd62ddd3ce33c6`
+
+| Perspective | Verdict | Findings |
+|---|---|---|
+| [Repository standards](v1.0.2-standards-review-2026-08-22.md) | GO | None after one first-pass gate-naming ambiguity was resolved |
+| [Issue requirements and scope](v1.0.2-specification-review-2026-08-22.md) | GO | None after the same first-pass gate-naming ambiguity was resolved |
+
+The reviews confirm that the patch keeps shallow contributor validation useful,
+fails release validation without complete history, verifies version-tag
+signatures against the tracked public key, and changes no canonical framework
+meaning. Merge, signed tag, workflow, and public release readback remain separate
+publication checks.
+
 ## v1.0.1 Commons adoption and validation correction
 
 Reviewed candidate: `c58ab80437e0cf91b191fb48285bb1883ceba76d`

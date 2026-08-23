@@ -1,6 +1,6 @@
 # Charter
 
-- **Status:** Accepted 1.0.1
+- **Status:** Accepted 1.0.2
 - **Founding steward:** Brad Groux
 - **Effective date:** 2026-08-01
 

@@ -128,13 +128,14 @@ contribution, commitments, and every external action.
 
 ## Current Status
 
-Version 1.0.1 is the current owner-approved release, dated 2026-08-22. It adopts
-Open Framework Commons v1.1.0 and corrects shallow-clone validation without
-changing canonical framework meaning. Version 1.0.0 remains the initial release,
-dated 2026-08-01 and republished on 2026-08-03 to include the original Commons
-adoption and focused framework visualizations before documented use. Its final
-canonical framework reviews found no Blocker, Material, Minor, or Suggestion
-findings:
+Version 1.0.2 is the current owner-approved release, dated 2026-08-22. It adds
+cryptographically verified release tags and a complete-history release gate
+without changing canonical framework meaning. Version 1.0.1 adopted Open
+Framework Commons v1.1.0 and corrected shallow-clone contributor validation.
+Version 1.0.0 remains the initial release, dated 2026-08-01 and republished on
+2026-08-03 to include the original Commons adoption and focused framework
+visualizations before documented use. Its final canonical framework reviews
+found no Blocker, Material, Minor, or Suggestion findings:
 
 - [Canonical coherence review](project/reviews/v1.0.0-final-canonical-coherence-review-2026-08-01.md)
 - [Practical application review](project/reviews/v1.0.0-final-practical-application-review-2026-08-01.md)
@@ -189,6 +190,11 @@ In a shallow clone, the gate keeps current-tree checks active and reports
 historical review evidence and public-history coverage as partial. Run
 `git fetch --unshallow` before a release or whenever complete historical
 assurance is required.
+
+Release maintainers use `bash scripts/validate-release.sh` from a clean checkout
+with complete history. Version tags must be signed annotated tags that verify
+against the tracked public signing key and resolve exactly to the released
+commit.
 
 ## Contributing and Support
 

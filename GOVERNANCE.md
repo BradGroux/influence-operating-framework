@@ -111,7 +111,9 @@ The project uses semantic versioning for published framework releases. A
 release must:
 
 - identify the exact canonical change;
-- pass repository document validation;
+- pass release validation from a clean checkout with complete Git history;
+- use a cryptographically signed annotated tag verified against the tracked
+  public signing key and resolving exactly to the released commit;
 - disclose open limitations and dissent; and
 - avoid claims of legal, ethical, accessibility, or professional certification
   that the review did not establish.
@@ -160,6 +162,21 @@ Repository content and accepted contributions are licensed under the
   review evidence or complete public history; full release assurance requires
   complete Git history
 - **Superseded public version:** 1.0.0 remains available as historical release
+- **Responsible steward:** Brad Groux
+- **Publication destination:**
+  [`github.com/BradGroux/influence-operating-framework`](https://github.com/BradGroux/influence-operating-framework)
+
+### Version 1.0.2 Release Baseline
+
+- **Version:** 1.0.2
+- **Effective date:** 2026-08-22
+- **Repository version:** signed annotated tag `v1.0.2`
+- **Material changes:** recorded in the [changelog](CHANGELOG.md)
+- **Framework effect:** no canonical meaning change; adds cryptographic release
+  identity and makes complete Git history a mandatory release gate
+- **Known limitations:** signature verification establishes control of the
+  registered release key, not real-world framework effectiveness
+- **Superseded public version:** 1.0.1 remains available as historical release
 - **Responsible steward:** Brad Groux
 - **Publication destination:**
   [`github.com/BradGroux/influence-operating-framework`](https://github.com/BradGroux/influence-operating-framework)
