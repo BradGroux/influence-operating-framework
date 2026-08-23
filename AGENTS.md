@@ -61,6 +61,11 @@ Before reporting completion, run:
 bash scripts/validate-repository.sh
 ```
 
+In a shallow clone, the gate validates the current tree and reachable history
+and reports unavailable historical-review coverage explicitly. Run
+`git fetch --unshallow` before a release or any check that requires complete
+historical assurance.
+
 The gate checks its enumerated required files, local Markdown links and anchors,
 release and citation metadata, review-record conventions and source targets,
 publication-safety patterns, public-history attribution, fixed

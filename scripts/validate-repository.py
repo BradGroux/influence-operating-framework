@@ -267,7 +267,7 @@ def validate_release_metadata(errors: list[str]) -> None:
         expected = (
             "cff-version: 1.2.0",
             f"version: {version}",
-            "date-released: 2026-08-01",
+            "date-released: 2026-08-22",
             "license: MIT",
             "repository-code: \"https://github.com/BradGroux/influence-operating-framework\"",
         )
@@ -357,10 +357,25 @@ def validate_markdown(
     return local_link_count, external_link_count, mermaid_count
 
 
-def validate_review_records(errors: list[str]) -> tuple[int, int]:
+def repository_is_shallow() -> bool:
+    result = subprocess.run(
+        ["git", "rev-parse", "--is-shallow-repository"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    return result.returncode == 0 and result.stdout.strip() == "true"
+
+
+def validate_review_records(
+    errors: list[str], shallow_repository: bool
+) -> tuple[int, int, int, int]:
     records = sorted((ROOT / "project/reviews").glob("*.md"))
     checked = 0
     evidence_checked = 0
+    records_skipped = 0
+    evidence_skipped = 0
 
     for record in records:
         if record.name == "README.md":
@@ -384,6 +399,7 @@ def validate_review_records(errors: list[str]) -> tuple[int, int]:
 
             reviewed_commit = REVIEW_COMMIT.search(text)
             commit = ""
+            commit_available = False
             if reviewed_commit:
                 commit = re.search(r"[0-9a-f]{40}", reviewed_commit.group(0)).group(0)
                 commit_check = subprocess.run(
@@ -392,7 +408,14 @@ def validate_review_records(errors: list[str]) -> tuple[int, int]:
                     capture_output=True,
                 )
                 if commit_check.returncode != 0:
-                    errors.append(f"reviewed commit is not available: {name} ({commit})")
+                    if shallow_repository:
+                        records_skipped += 1
+                    else:
+                        errors.append(
+                            f"reviewed commit is not available: {name} ({commit})"
+                        )
+                else:
+                    commit_available = True
 
             findings = REVIEW_FINDINGS.search(text)
             if findings:
@@ -421,10 +444,11 @@ def validate_review_records(errors: list[str]) -> tuple[int, int]:
                             f"{name} ({heading.group(0)})"
                         )
 
-            if commit:
+            evidence = list(REPOSITORY_EVIDENCE.finditer(text))
+            if commit and commit_available:
                 source_line_counts: dict[str, int] = {}
-                for evidence in REPOSITORY_EVIDENCE.finditer(text):
-                    source = evidence.group(1)
+                for citation in evidence:
+                    source = citation.group(1)
                     if source not in source_line_counts:
                         source_result = subprocess.run(
                             ["git", "show", f"{commit}:{source}"],
@@ -444,16 +468,18 @@ def validate_review_records(errors: list[str]) -> tuple[int, int]:
                             source_result.stdout.splitlines()
                         )
                     maximum_line = max(
-                        int(value) for value in re.findall(r"\d+", evidence.group(2))
+                        int(value) for value in re.findall(r"\d+", citation.group(2))
                     )
                     if maximum_line > source_line_counts[source]:
                         errors.append(
                             f"review evidence exceeds source length: {name} "
-                            f"({source}:{evidence.group(2)})"
+                            f"({source}:{citation.group(2)})"
                         )
                     evidence_checked += 1
+            elif commit and shallow_repository:
+                evidence_skipped += len(evidence)
 
-    return checked, evidence_checked
+    return checked, evidence_checked, records_skipped, evidence_skipped
 
 
 def validate_public_history(errors: list[str]) -> int:
@@ -572,13 +598,19 @@ def main() -> int:
     errors: list[str] = []
     documents = markdown_files()
     public_files = publication_text_files()
+    shallow_repository = repository_is_shallow()
 
     validate_structure(errors)
     validate_release_metadata(errors)
     local_links, external_links, mermaid_blocks = validate_markdown(
         documents, errors
     )
-    review_records, review_evidence = validate_review_records(errors)
+    (
+        review_records,
+        review_evidence,
+        review_records_skipped,
+        review_evidence_skipped,
+    ) = validate_review_records(errors, shallow_repository)
     publication_files = validate_publication_safety(public_files, errors)
     history_commits = validate_public_history(errors)
 
@@ -594,9 +626,20 @@ def main() -> int:
     print(f"INFO: external Markdown links not fetched: {external_links}")
     print(f"PASS: inline Mermaid source blocks: {mermaid_blocks}")
     print(f"PASS: standardized review records: {review_records}")
-    print(f"PASS: historical review citations: {review_evidence}")
+    if shallow_repository:
+        print(
+            "WARNING: shallow repository: historical review evidence is unavailable "
+            f"for {review_records_skipped} records and {review_evidence_skipped} "
+            "citations. Run git fetch --unshallow for full history validation."
+        )
+        print(f"PASS: available historical review citations: {review_evidence}")
+    else:
+        print(f"PASS: historical review citations: {review_evidence}")
     print(f"PASS: publication-safety scan: {publication_files} text files")
-    print(f"PASS: sanitized public main history: {history_commits} commits")
+    if shallow_repository:
+        print(f"PASS: sanitized reachable public main history: {history_commits} commits")
+    else:
+        print(f"PASS: sanitized public main history: {history_commits} commits")
     print("PASS: release version and citation metadata")
     print("PASS: superseded technical framework paths are absent")
     print("All repository document and publication checks passed.")

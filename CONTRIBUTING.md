@@ -94,6 +94,11 @@ Run:
 bash scripts/validate-repository.sh
 ```
 
+In a shallow clone, this validates the current tree and reachable history while
+reporting any historical review evidence that is unavailable. Run
+`git fetch --unshallow` before release work or whenever complete historical
+assurance is required.
+
 In the contribution description, report what changed, how it was checked, and
 any remaining risk or disagreement. Passing validation establishes repository
 integrity only; it does not certify real-world practice.
