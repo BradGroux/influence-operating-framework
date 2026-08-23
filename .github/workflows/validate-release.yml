@@ -35,3 +35,22 @@ jobs:
 
       - name: Run the release validation suite
         run: scripts/validate-repository.sh
+
+      - name: Verify shallow-clone behavior
+        run: |
+          shallow_root="$(mktemp -d)"
+          git init "$shallow_root/repository"
+          git -C "$shallow_root/repository" remote add origin "$GITHUB_WORKSPACE"
+          git -C "$shallow_root/repository" fetch --depth 1 --no-tags origin HEAD
+          git -C "$shallow_root/repository" checkout --detach FETCH_HEAD
+          output="$shallow_root/validation.log"
+          (
+            cd "$shallow_root/repository"
+            python3 scripts/validate-repository.py
+          ) | tee "$output"
+          grep -F "WARNING: shallow repository: historical review evidence is unavailable" "$output"
+          grep -F "PASS: sanitized reachable public main history:" "$output"
+          if grep -F "PASS: sanitized public main history:" "$output"; then
+            echo "Shallow validation claimed full-history coverage." >&2
+            exit 1
+          fi

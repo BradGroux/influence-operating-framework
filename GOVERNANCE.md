@@ -2,7 +2,7 @@
 
 **Status:** Approved initial repository governance<br>
 **Founding steward:** Brad Groux<br>
-**Last reviewed:** 2026-08-03
+**Last reviewed:** 2026-08-22
 
 ## Stewardship
 
@@ -37,27 +37,29 @@ in the canonical documents.
 
 Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-framework-commons)
 as shared documentation at annotated tag
-[`v1.0.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.0.0),
+[`v1.1.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.1.0),
 release commit
-[`a0f0d384e9010a65d1a21a324b4c912433d5e031`](https://github.com/BradGroux/open-framework-commons/commit/a0f0d384e9010a65d1a21a324b4c912433d5e031).
+[`f25a2b89b4aed95984fd235e2e229efe52c125d8`](https://github.com/BradGroux/open-framework-commons/commit/f25a2b89b4aed95984fd235e2e229efe52c125d8).
 
 Commons is a referenced shared foundation, not a parent authority, and does not
 enter the Influence authority chain above. Influence retains authority over
 its concerns, method, terminology, examples, research, governance, roadmap,
 implementation choices, and releases.
 
-All Commons v1.0.0 shared principles and boundaries are adopted with no
-deviation. Product-local Mission Control, community-extension topics, and
-guidance owned by other ecosystem products remain deferred unless separately
-accepted through this governance. Influence's more specific human-judgment,
-consent, and external-action requirements remain local and controlling for
-Influence practice.
+All Commons v1.1.0 shared principles and boundaries are adopted with no
+deviation. This includes recognizing Focus Operating Framework as the fifth
+equal, independent product in Commons scope and evaluating future shared
+proposals across all five products. Product-local Mission Control,
+community-extension topics, and guidance owned by other ecosystem products
+remain deferred unless separately accepted through this governance.
+Influence's more specific human-judgment, consent, and external-action
+requirements remain local and controlling for Influence practice.
 
 If Commons and Influence appear to conflict, contributors stop and surface the
 conflict. The founding steward or a documented successor resolves it through
 the applicable Influence change path. A later Commons release has no effect
 until Influence records a separate adoption, deferral, or deviation decision.
-See [decision 0003](decisions/0003-adopt-open-framework-commons-v1.0.0.md).
+See [decision 0004](decisions/0004-adopt-open-framework-commons-v1.1.0.md).
 
 ## Change paths
 
@@ -142,6 +144,22 @@ Repository content and accepted contributions are licensed under the
   evidence rather than human, organizational, professional, or domain
   validation; real-world use has not been certified
 - **Superseded public version:** none
+- **Responsible steward:** Brad Groux
+- **Publication destination:**
+  [`github.com/BradGroux/influence-operating-framework`](https://github.com/BradGroux/influence-operating-framework)
+
+### Version 1.0.1 Release Baseline
+
+- **Version:** 1.0.1
+- **Effective date:** 2026-08-22
+- **Repository version:** annotated tag `v1.0.1`
+- **Material changes:** recorded in the [changelog](CHANGELOG.md)
+- **Framework effect:** no canonical meaning change; adopts Open Framework
+  Commons v1.1.0 and improves shallow-clone validation reporting
+- **Known limitations:** shallow clones cannot verify unavailable historical
+  review evidence or complete public history; full release assurance requires
+  complete Git history
+- **Superseded public version:** 1.0.0 remains available as historical release
 - **Responsible steward:** Brad Groux
 - **Publication destination:**
   [`github.com/BradGroux/influence-operating-framework`](https://github.com/BradGroux/influence-operating-framework)

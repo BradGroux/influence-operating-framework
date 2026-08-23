@@ -29,15 +29,16 @@ Brad Groux is the creator and founding steward. Changes follow
 
 Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-framework-commons)
 as shared documentation at annotated tag
-[`v1.0.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.0.0),
+[`v1.1.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.1.0),
 release commit
-[`a0f0d384e9010a65d1a21a324b4c912433d5e031`](https://github.com/BradGroux/open-framework-commons/commit/a0f0d384e9010a65d1a21a324b4c912433d5e031).
+[`f25a2b89b4aed95984fd235e2e229efe52c125d8`](https://github.com/BradGroux/open-framework-commons/commit/f25a2b89b4aed95984fd235e2e229efe52c125d8).
 
 The adoption disposition is:
 
 - **Adopted:** all nine shared principles and the shared boundaries for
   people-first, tool-independent, contribution-led, openly documented, and
-  honestly reviewed work;
+  honestly reviewed work, including recognition of Focus Operating Framework
+  as the fifth equal, independent product in Commons scope;
 - **Deferred as product-local:** Mission Control, community-extension topics,
   and guidance owned by other ecosystem products; and
 - **Deviations:** none. Influence's stronger human-judgment, consent, and
@@ -46,7 +47,7 @@ The adoption disposition is:
 Influence remains independent. It owns its concerns, method, terminology,
 examples, research, governance, roadmap, implementation choices, and releases.
 Commons is not a parent framework and cannot amend Influence automatically.
-The [adoption decision](decisions/0003-adopt-open-framework-commons-v1.0.0.md)
+The [current adoption decision](decisions/0004-adopt-open-framework-commons-v1.1.0.md)
 and [Governance](GOVERNANCE.md#open-framework-commons-adoption) record the
 authority boundary.
 
@@ -127,9 +128,11 @@ contribution, commitments, and every external action.
 
 ## Current Status
 
-Version 1.0.0 is the complete, owner-approved initial release, dated
-2026-08-01 and republished on 2026-08-03 to include the Commons adoption and
-focused framework visualizations before documented use. The pre-adoption final
+Version 1.0.1 is the current owner-approved release, dated 2026-08-22. It adopts
+Open Framework Commons v1.1.0 and corrects shallow-clone validation without
+changing canonical framework meaning. Version 1.0.0 remains the initial release,
+dated 2026-08-01 and republished on 2026-08-03 to include the original Commons
+adoption and focused framework visualizations before documented use. Its final
 canonical framework reviews found no Blocker, Material, Minor, or Suggestion
 findings:
 
@@ -181,6 +184,11 @@ no package manifest, lockfile, generated diagram, or committed dependency tree
 is required. On GitHub-hosted Linux runners, a narrowly scoped Puppeteer
 configuration disables Chromium's unavailable process sandbox while rendering
 repository-owned Markdown in the disposable CI environment.
+
+In a shallow clone, the gate keeps current-tree checks active and reports
+historical review evidence and public-history coverage as partial. Run
+`git fetch --unshallow` before a release or whenever complete historical
+assurance is required.
 
 ## Contributing and Support
 

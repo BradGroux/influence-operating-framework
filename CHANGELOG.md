@@ -2,6 +2,40 @@
 
 All notable changes to the Influence Operating Framework are documented here.
 
+## 1.0.1 — 2026-08-22
+
+This patch release adopts Open Framework Commons v1.1.0 and makes repository
+validation useful and honest in shallow clones. It does not change canonical
+framework meaning.
+
+### Changed
+
+- Adopted Open Framework Commons v1.1.0 at annotated tag object
+  `79e5f06dab46f262cad1d1daf7840e683ffc3880`, peeling to release commit
+  `f25a2b89b4aed95984fd235e2e229efe52c125d8`.
+- Recognized Focus Operating Framework as the fifth equal, independent product
+  in Commons scope and included it in future shared-applicability review.
+- Preserved all nine shared principles, Influence's independent authority, and
+  its stronger human-judgment, consent, and external-action boundaries.
+- Made shallow-clone validation distinguish unavailable historical objects from
+  invalid review evidence, preventing 194 false cascading errors while keeping
+  current-tree checks active.
+- Labeled shallow public-history coverage as reachable-only and documented
+  `git fetch --unshallow` as the release/full-history requirement.
+- Added a CI regression check for shallow-clone reporting while retaining the
+  full-history primary release gate.
+
+### Audit and release status
+
+- Historical review citations to underscored script filenames remain unchanged
+  because they correctly resolve at their exact reviewed commits; current
+  hyphenated filenames did not exist at those commits.
+- Commons v1.1.0 changes no shared principle or research guidance. Its relevant
+  boundary change is the explicit five-product scope.
+- The release remains documentation-only and does not claim real-world,
+  organizational, legal, ethical, accessibility, professional, or domain
+  validation.
+
 ## 1.0.0 — 2026-08-01 (republished 2026-08-03)
 
 The first public release establishes a concise, human-first business operating
