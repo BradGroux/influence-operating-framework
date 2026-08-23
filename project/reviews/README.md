@@ -17,6 +17,19 @@ Reports evaluate an exact commit and do not become framework requirements.
 Reviewers read the canonical framework before examples. Optional
 implementation choices are not defects or requirements.
 
+## v1.0.1 Commons adoption and validation correction
+
+Reviewed candidate: `c58ab80437e0cf91b191fb48285bb1883ceba76d`
+
+| Perspective | Verdict | Findings |
+|---|---|---|
+| [Repository standards](v1.0.1-standards-review-2026-08-22.md) | GO | None after two first-pass standards gaps and one naming concern were resolved |
+| [Issue requirements and scope](v1.0.1-specification-review-2026-08-22.md) | GO | None after one first-pass assurance wording issue was resolved; review publication followed this exact-candidate pass |
+
+The reviews confirm that the patch preserves canonical framework meaning,
+adopts the exact Commons v1.1.0 release through local authority, and keeps
+full-history validation strict while reporting shallow coverage honestly.
+
 ## v1.0.0 focused visualizations
 
 Reviewed candidate: `998e8811ac920f2da287a0a17d41f030b5e29769`
