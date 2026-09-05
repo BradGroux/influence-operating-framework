@@ -182,7 +182,8 @@ expected harm exceeds value. Preserve only the reason and commitment context tha
 retained. Renegotiate, narrow, hand off or end commitments within consent,
 safety and authority; closure does not require unwanted contact or continued
 unsafe work. Resume only if the relevant condition changes, and honor
-recipient-set boundaries until the affected person affirmatively changes them.
+recipient-set boundaries until the affected person or their authorized
+representative affirmatively changes them.
 
 ## Applying the method at different scales
 

@@ -53,10 +53,13 @@ and future release immutability through gh. Tag protection must have no bypass
 actors; main must require Documentation and publication safety. Preserve these
 protections, and never bypass an executed failed check.
 
-The following sequence uses no force operation. Run it from clean merged main
+Run the following blocks in the same Bash session with fail-fast behavior;
+a failed command must stop the sequence. The sequence uses no force operation.
+Run it from clean merged main
 only after the content, PR and merged-main checks above pass:
 
 ```bash
+set -euo pipefail
 gh auth status --hostname github.com
 test "$(gh api --hostname github.com user --jq .login)" = BradGroux
 git fetch origin --tags
@@ -76,6 +79,7 @@ git push origin "refs/tags/$release_tag"
 Wait for the tag workflow to pass, then publish the prepared immutable release:
 
 ```bash
+test "${edition:0:10}" = "$(date -u +%Y.%m.%d)"
 gh release create "$release_tag" --repo BradGroux/influence-operating-framework --verify-tag --title "Influence Operating Framework $release_tag" --notes-file "$notes"
 python3 scripts/verify-public-release.py "$release_tag"
 ```
