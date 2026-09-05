@@ -2,7 +2,7 @@
 
 **Status:** Approved initial repository governance<br>
 **Founding steward:** Brad Groux<br>
-**Last reviewed:** 2026-08-22
+**Last reviewed:** 2026-09-05
 
 ## Stewardship
 
@@ -37,17 +37,21 @@ in the canonical documents.
 
 Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-framework-commons)
 as shared documentation at annotated tag
-[`v1.1.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.1.0),
+[`v2026.09.05`](https://github.com/BradGroux/open-framework-commons/releases/tag/v2026.09.05),
 release commit
-[`f25a2b89b4aed95984fd235e2e229efe52c125d8`](https://github.com/BradGroux/open-framework-commons/commit/f25a2b89b4aed95984fd235e2e229efe52c125d8).
+[`8868a248457dd7b663563beb243c5ebcbb8ac360`](https://github.com/BradGroux/open-framework-commons/commit/8868a248457dd7b663563beb243c5ebcbb8ac360).
 
 Commons is a referenced shared foundation, not a parent authority, and does not
 enter the Influence authority chain above. Influence retains authority over
 its concerns, method, terminology, examples, research, governance, roadmap,
 implementation choices, and releases.
 
-All Commons v1.1.0 shared principles and boundaries are adopted with no
-deviation. This includes recognizing Focus Operating Framework as the fifth
+All Commons v2026.09.05 shared principles and boundaries are adopted with no
+deviation. The updated help-seeking, disengagement and privacy boundaries are
+expressed in local canonical guidance. Commons review and release tooling
+remain Commons-local; this repository independently adopts the proportionate
+evidence distinction and calendar-edition policy below. This includes recognizing
+Focus Operating Framework as the fifth
 equal, independent product in Commons scope and evaluating future shared
 proposals across all five products. Product-local Mission Control,
 community-extension topics, and guidance owned by other ecosystem products
@@ -55,11 +59,17 @@ remain deferred unless separately accepted through this governance.
 Influence's more specific human-judgment, consent, and external-action
 requirements remain local and controlling for Influence practice.
 
-If Commons and Influence appear to conflict, contributors stop and surface the
-conflict. The founding steward or a documented successor resolves it through
-the applicable Influence change path. A later Commons release has no effect
+If Commons and Influence appear to conflict, pause the disputed action or
+representation while unrelated safe work continues. Identify the exact adopted
+tag and commit, the statements in tension, affected people and uncertainty.
+Use a safe summary when evidence is private; silence is not permission.
+The founding steward or a documented successor resolves it through
+the applicable Influence change path, recording the rationale, dissent, scope
+of any resumed action and, for a deferral, an owner and concrete revisit trigger.
+Influence decides its local guidance; a shared amendment needs a separate
+Commons decision. A later Commons release has no effect
 until Influence records a separate adoption, deferral, or deviation decision.
-See [decision 0004](decisions/0004-adopt-open-framework-commons-v1.1.0.md).
+See [decision 0005](decisions/0005-calendar-editions-and-commons-adoption.md).
 
 ## Change paths
 
@@ -86,8 +96,17 @@ A proposal should state:
 - dissent, uncertainty, and follow-up that remain.
 
 Charter amendments require written approval from the founding steward or a
-documented successor. Canonical changes require maintainer review and evidence
-that they improve real practice without contradicting the charter. Examples
+documented successor. Canonical changes require maintainer review and a
+proportionate rationale
+without contradicting the charter. Distinguish a chosen commitment, an
+interpretation, and a claim about an effect. Record supporting evidence and
+context, the strongest adverse case, affected decisions, dissent, and the
+reason to accept, revise, defer or reject. Chosen values need accountable
+reasons; effect claims need evidence appropriate to the claimed effect.
+Fictional scenarios and document review can test interpretation but cannot
+establish improved real practice. Keep missing practitioner or specialist
+evidence explicit and identify what observation would justify reconsideration.
+A wording correction does not require a research dossier. Examples
 require clarity, truthful provenance, publication safety, and framework
 alignment.
 
@@ -107,8 +126,21 @@ does not certify implementations.
 
 ## Releases
 
-The project uses semantic versioning for published framework releases. A
-release must:
+New documentation editions use `YYYY.MM.DD` and signed annotated tags
+`vYYYY.MM.DD`, based on the actual UTC publication date. Further publications
+on that day use `.1`, then `.2`, in numeric order. Order calendar editions by
+date and then correction number; historical v1.0.2 precedes the first calendar
+edition. The identifier says nothing about compatibility or effectiveness.
+Never replace a published tag or add dated aliases to historical editions.
+Preserve old release bodies, citations, decisions, reviews and adoption pins.
+If publication crosses a UTC date, update candidate metadata before tagging.
+
+Release notes assess changes to reader decisions, permissions, responsibilities,
+scope and authority separately from the date. A clarification that narrows a
+previous interpretation is substantive and potentially incompatible, even when
+it matches prior intent. Name what adopters should reconsider; no downstream
+product adopts automatically. The product edition and Commons pin are separate.
+See the [release runbook](project/releases/releasing.md). A release must:
 
 - identify the exact canonical change;
 - pass release validation from a clean checkout with complete Git history;
@@ -128,6 +160,13 @@ finding.
 
 Repository content and accepted contributions are licensed under the
 [MIT License](LICENSE.md).
+
+### Edition 2026.09.05
+
+- **UTC publication date:** 2026-09-05
+- **Predecessor:** v1.0.2, preserved unchanged
+- **Compatibility and limitations:** [release record](project/releases/v2026.09.05-release-2026-09-05.md)
+- **Authority and rationale:** [decision 0005](decisions/0005-calendar-editions-and-commons-adoption.md)
 
 ### Version 1.0.0 Release Baseline
 

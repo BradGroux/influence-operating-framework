@@ -111,7 +111,11 @@ Use five prompts:
    does the evidence support that lesson?
 
 Activity, visibility, or revenue alone does not demonstrate that purpose
-advanced.
+advanced. A before-and-after change does not by itself show that a contribution
+caused it. Distinguish completion, evidence of use, reported benefit and causal
+impact; name alternative explanations and missing evidence. Do not require
+feedback, testimonials or continued contact to validate a contribution. A
+recipient may decline evaluation, and the outcome can remain unknown.
 
 Record failures with the same care as successes. Do not rewrite the original
 expectation after seeing the outcome.

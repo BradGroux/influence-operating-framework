@@ -29,16 +29,17 @@ Brad Groux is the creator and founding steward. Changes follow
 
 Influence adopts [Open Framework Commons](https://github.com/BradGroux/open-framework-commons)
 as shared documentation at annotated tag
-[`v1.1.0`](https://github.com/BradGroux/open-framework-commons/releases/tag/v1.1.0),
+[`v2026.09.05`](https://github.com/BradGroux/open-framework-commons/releases/tag/v2026.09.05),
 release commit
-[`f25a2b89b4aed95984fd235e2e229efe52c125d8`](https://github.com/BradGroux/open-framework-commons/commit/f25a2b89b4aed95984fd235e2e229efe52c125d8).
+[`8868a248457dd7b663563beb243c5ebcbb8ac360`](https://github.com/BradGroux/open-framework-commons/commit/8868a248457dd7b663563beb243c5ebcbb8ac360).
 
 The adoption disposition is:
 
 - **Adopted:** all nine shared principles and the shared boundaries for
   people-first, tool-independent, contribution-led, openly documented, and
   honestly reviewed work, including recognition of Focus Operating Framework
-  as the fifth equal, independent product in Commons scope;
+  as the fifth equal, independent product in Commons scope, legitimate help
+  without earned contribution, safe disengagement, and bounded openness;
 - **Deferred as product-local:** Mission Control, community-extension topics,
   and guidance owned by other ecosystem products; and
 - **Deviations:** none. Influence's stronger human-judgment, consent, and
@@ -47,7 +48,7 @@ The adoption disposition is:
 Influence remains independent. It owns its concerns, method, terminology,
 examples, research, governance, roadmap, implementation choices, and releases.
 Commons is not a parent framework and cannot amend Influence automatically.
-The [current adoption decision](decisions/0004-adopt-open-framework-commons-v1.1.0.md)
+The [current adoption decision](decisions/0005-calendar-editions-and-commons-adoption.md)
 and [Governance](GOVERNANCE.md#open-framework-commons-adoption) record the
 authority boundary.
 
@@ -128,7 +129,14 @@ contribution, commitments, and every external action.
 
 ## Current Status
 
-Version 1.0.2 is the current owner-approved release, dated 2026-08-22. It adds
+Edition 2026.09.05 is the current documentation edition.
+It independently adopts
+Commons v2026.09.05 and clarifies evidence, help-seeking, closure and impact
+interpretation. See the [release record](project/releases/v2026.09.05-release-2026-09-05.md)
+for compatibility and the [audit disposition](project/reviews/calendar-edition-disposition-2026-09-05.md)
+for findings and limits. Calendar dates identify editions, not compatibility.
+
+Version 1.0.2, dated 2026-08-22 in its historical metadata, added
 cryptographically verified release tags and a complete-history release gate
 without changing canonical framework meaning. Version 1.0.1 adopted Open
 Framework Commons v1.1.0 and corrected shallow-clone contributor validation.

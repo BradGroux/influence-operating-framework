@@ -17,3 +17,5 @@ language until another accepted decision supersedes it. If a decision and the
 canonical framework appear to conflict, maintainers must resolve the mismatch
 in the canonical document rather than ask practitioners to infer a rule from
 the decision record.
+
+- [0005: Calendar editions and Commons adoption](0005-calendar-editions-and-commons-adoption.md)

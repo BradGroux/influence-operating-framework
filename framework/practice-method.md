@@ -7,7 +7,9 @@ participation and learning. It groups the work into seven moves:
 
 The moves are not a funnel. They may overlap, repeat, pause, or end without
 engagement. Researching a person or community never creates an obligation to
-contact them.
+contact them. Legitimate requests for help, clarification, accommodation or
+support do not need to be earned through prior contribution. A recipient may
+still state their capacity and boundaries.
 
 ```mermaid
 flowchart LR
@@ -176,8 +178,12 @@ contact.
 
 Stop or narrow the work when evidence is insufficient, capacity changes,
 consent is absent, boundaries are unclear, the contribution is unwanted, or
-expected harm exceeds value. Preserve the reason and any open commitment, then
-resume only if the relevant condition changes.
+expected harm exceeds value. Preserve only the reason and commitment context that may appropriately be
+retained. Renegotiate, narrow, hand off or end commitments within consent,
+safety and authority; closure does not require unwanted contact or continued
+unsafe work. Resume only if the relevant condition changes, and honor
+recipient-set boundaries until the affected person or their authorized
+representative affirmatively changes them.
 
 ## Applying the method at different scales
 
