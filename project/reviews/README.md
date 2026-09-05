@@ -167,3 +167,7 @@ the release decision in a separate disposition.
 
 [Audit, adverse cases and disposition](calendar-edition-disposition-2026-09-05.md)
 record the baseline, issue tracker and limits. Publication is verified separately.
+
+Final candidate `e55af06e2492620514337650766d975a4fb6d71c`: \
+[content review](calendar-edition-content-review-2026-09-05.md) and
+[standards review](calendar-edition-standards-review-2026-09-05.md): GO, no open findings.

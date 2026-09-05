@@ -1,6 +1,6 @@
 # Calendar edition audit and disposition
 
-- **Status:** Remediated candidate; independent final review and publication checks pending
+- **Status:** Accepted candidate; publication checks remain separate
 - **Decision date:** 2026-09-05
 - **Baseline:** `cc5a25d3523a33347c75644d4f41920822cb12f5`
 - **Authority:** Brad Groux, current owner instruction to audit, remediate and release
@@ -81,11 +81,19 @@ sources require compilation, not a new visual redesign.
 
 ## Evidence and release gates
 
-The independent baseline content and standards reviews identified the findings
-above. Final candidate review is recorded separately after remediation. Local
-regressions, publication checks, complete-history Gitleaks and Mermaid rendering
-must pass; CI must also verify depth-1 behavior. Merged-tree, signature, tag
-workflow and release readback are separate publication conditions.
+The independent [content/application/adversarial review](calendar-edition-content-review-2026-09-05.md)
+and [standards review](calendar-edition-standards-review-2026-09-05.md) returned
+GO with no unresolved findings at `e55af06e2492620514337650766d975a4fb6d71c`.
+They resolved the authorized-representative summary inconsistency and the
+fail-fast/publication-date runbook finding. Three regression methods with
+subcases passed; full repository validation rendered 8/8 Mermaid diagrams.
+Depth-1 validation passed with explicit unavailable-history reporting, while
+release validation correctly rejected the shallow checkout. Full-history
+Gitleaks found no secrets; npm audit reported zero known vulnerabilities in
+the inspected transient renderer tree. The original v1.0.2 signed gate passed
+at its unchanged commit. Merged-tree, CI, signature, tag workflow and release
+readback remain separate publication conditions. This record-only follow-up
+does not change the reviewed canonical content or executable scripts.
 
 Historical v1.0.0/v1.0.1 remain unsigned legacy releases; v1.0.2 retains its
 tracked-key signature and exact target. Existing review citations and release
