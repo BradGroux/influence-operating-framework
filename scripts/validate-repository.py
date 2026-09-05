@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 import html
 import re
 import subprocess
@@ -72,7 +73,7 @@ PUBLIC_DOCUMENT_SUFFIXES = {".cff", ".md", ".yaml", ".yml"}
 
 MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\n]+)\)")
 HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
-VERSION_PATTERN = re.compile(r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$")
+VERSION_PATTERN = re.compile(r"^(\d{4})\.(\d{2})\.(\d{2})(?:\.([1-9]\d*))?$")
 MERMAID_START = re.compile(
     r"^(?:flowchart|graph|sequenceDiagram|classDiagram|stateDiagram(?:-v2)?|"
     r"erDiagram|journey|gantt|pie|mindmap|timeline|quadrantChart)\b"
@@ -239,43 +240,50 @@ def validate_structure(errors: list[str]) -> None:
                 errors.append(f"filename is not kebab-case: {relative(candidate)}")
 
 
+def edition_date(version: str) -> str:
+    match = VERSION_PATTERN.fullmatch(version)
+    if not match:
+        raise ValueError("expected YYYY.MM.DD with optional positive correction number")
+    return date(*(int(value) for value in match.groups()[:3])).isoformat()
+
+
 def validate_release_metadata(errors: list[str]) -> None:
     version_path = ROOT / "VERSION"
     if not version_path.is_file():
         return
-
     version = version_path.read_text(encoding="utf-8").strip()
-    if not VERSION_PATTERN.fullmatch(version):
-        errors.append(f"invalid VERSION value: {version!r}")
+    try:
+        released = edition_date(version)
+    except ValueError:
+        errors.append("invalid calendar VERSION value")
         return
-
-    release_documents = (
-        "README.md",
-        "CHANGELOG.md",
-        "CITATION.cff",
-        "GOVERNANCE.md",
-        "framework/charter.md",
-    )
-    for document_name in release_documents:
-        document = ROOT / document_name
-        if document.is_file() and version not in document.read_text(encoding="utf-8"):
-            errors.append(
-                f"release-facing document does not name VERSION {version}: {document_name}"
-            )
-
+    expected_lines = {
+        "README.md": f"Edition {version} is the current documentation edition.",
+        "CHANGELOG.md": f"## {version} — {released}",
+        "GOVERNANCE.md": f"### Edition {version}",
+        "framework/charter.md": f"- **Status:** Accepted {version}",
+    }
+    for name, expected in expected_lines.items():
+        path = ROOT / name
+        if path.is_file() and expected not in path.read_text(encoding="utf-8").splitlines():
+            errors.append(f"active edition metadata mismatch: {name}")
     citation = ROOT / "CITATION.cff"
     if citation.is_file():
-        text = citation.read_text(encoding="utf-8")
-        expected = (
-            "cff-version: 1.2.0",
-            f"version: {version}",
-            "date-released: 2026-08-22",
-            "license: MIT",
-            "repository-code: \"https://github.com/BradGroux/influence-operating-framework\"",
-        )
-        for value in expected:
-            if value not in text:
-                errors.append(f"CITATION.cff missing expected metadata: {value}")
+        lines = citation.read_text(encoding="utf-8").splitlines()
+        expected = {
+            "cff-version": "1.2.0",
+            "version": f'"{version}"',
+            "date-released": released,
+            "license": "MIT",
+            "repository-code": '"https://github.com/BradGroux/influence-operating-framework"',
+        }
+        for key, value in expected.items():
+            actual = [line for line in lines if line.startswith(key + ":")]
+            if actual != [f"{key}: {value}"]:
+                errors.append(f"CITATION.cff metadata mismatch: {key}")
+    notes = ROOT / f"project/releases/v{version}-release-{released}.md"
+    if not notes.is_file():
+        errors.append("missing current edition release record")
 
 
 def validate_markdown(
@@ -490,23 +498,18 @@ def validate_review_records(
 
 
 def validate_public_history(errors: list[str]) -> int:
-    history_ref = ""
-    for candidate_ref in ("refs/heads/main", "refs/remotes/origin/main", "HEAD"):
-        ref_result = subprocess.run(
+    # Include the candidate even when a local main exists, and preserve main coverage.
+    history_refs = ["HEAD"]
+    for candidate_ref in ("refs/heads/main", "refs/remotes/origin/main"):
+        result = subprocess.run(
             ["git", "rev-parse", "--verify", f"{candidate_ref}^{{commit}}"],
-            cwd=ROOT,
-            check=False,
-            capture_output=True,
+            cwd=ROOT, capture_output=True, check=False,
         )
-        if ref_result.returncode == 0:
-            history_ref = candidate_ref
-            break
-    if not history_ref:
-        errors.append("unable to resolve public history for inspection")
-        return 0
+        if result.returncode == 0:
+            history_refs.append(candidate_ref)
 
     commit_result = subprocess.run(
-        ["git", "rev-list", history_ref],
+        ["git", "rev-list", *history_refs],
         cwd=ROOT,
         check=False,
         capture_output=True,
@@ -518,7 +521,7 @@ def validate_public_history(errors: list[str]) -> int:
 
     commits = [value for value in commit_result.stdout.splitlines() if value]
     metadata_result = subprocess.run(
-        ["git", "log", history_ref, "--format=%an%x00%ae%x00%cn%x00%ce"],
+        ["git", "log", *history_refs, "--format=%an%x00%ae%x00%cn%x00%ce"],
         cwd=ROOT,
         check=True,
         capture_output=True,

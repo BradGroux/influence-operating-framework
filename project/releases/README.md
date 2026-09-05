@@ -12,3 +12,6 @@ framework content.
 Version 1.0.0 release history is preserved in the root
 [changelog](../../CHANGELOG.md#100--2026-08-01-republished-2026-08-03) and its
 linked [review records](../reviews/README.md).
+
+- [Edition 2026.09.05](v2026.09.05-release-2026-09-05.md)
+- [Release runbook](releasing.md)

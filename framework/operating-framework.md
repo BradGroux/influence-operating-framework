@@ -112,9 +112,18 @@ A clear practice states:
   and
 - what context is necessary to retain—and what should not be retained.
 
-Promises should be honored before new opportunities are pursued. Silence is not
+Promises should be honored before new opportunities are pursued, subject to
+consent, safety and capacity. An unsafe or unwanted commitment may need to end;
+account for affected people and any safe handoff without making further
+contact a condition of closure. Silence is not
 consent or automatic permission to retry. A relationship can be healthy without
 producing a next action.
+
+This concern supports contribution and responsible participation. The independent
+[Relationship Operating Framework](https://github.com/BradGroux/relationship-operating-framework)
+addresses relationship continuity and stewardship. Neither product requires the
+other, a combined lifecycle, or a sales pipeline; using both does not require
+duplicate notes or transfer authority between them.
 
 ## Judgment
 

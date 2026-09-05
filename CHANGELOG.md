@@ -2,6 +2,20 @@
 
 All notable changes to the Influence Operating Framework are documented here.
 
+## 2026.09.05 — 2026-09-05
+
+First prospective calendar edition, following v1.0.2 without relabeling history.
+Independently adopts Commons v2026.09.05 at
+`8868a248457dd7b663beb243c5ebcbb8ac360`. Clarifies help-seeking, viable refusal,
+safe closure, evidence and impact interpretation; removes an unsupported
+fictional effort claim. Adds calendar metadata regressions, candidate-history
+coverage and a signed immutable publication runbook.
+
+These are substantive clarifications where prior interpretations differ.
+See [compatibility and limits](project/releases/v2026.09.05-release-2026-09-05.md)
+and [decision 0005](decisions/0005-calendar-editions-and-commons-adoption.md).
+All historical entries and identities remain unchanged.
+
 ## 1.0.2 — 2026-08-22
 
 This patch release removes the remaining release-integrity caveats from v1.0.1

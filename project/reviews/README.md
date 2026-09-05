@@ -162,3 +162,8 @@ the release decision in a separate disposition.
 - [Practical application](v1.0.0-final-practical-application-review-2026-08-01.md)
 - [Adversarial misuse](v1.0.0-final-adversarial-misuse-review-2026-08-01.md)
 - [Release integrity](v1.0.0-final-release-integrity-review-2026-08-01.md)
+
+## Calendar edition 2026.09.05
+
+[Audit, adverse cases and disposition](calendar-edition-disposition-2026-09-05.md)
+record the baseline, issue tracker and limits. Publication is verified separately.

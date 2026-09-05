@@ -152,7 +152,10 @@ Ask:
 - Would the contribution still be worthwhile without public recognition?
 
 Do not use service, sponsorship, mentorship, access, or introductions to create
-an implied obligation.
+an implied obligation. Help, clarification, accommodation and support do not
+have to be earned through contribution. A refusal must not cost unrelated
+benefits, standing or safety; a formal option to decline is insufficient when
+power makes it unsafe. Narrow or stop the request when this cannot be protected.
 
 Transparent, consented, and bounded sponsor or partner decision rights can be
 legitimate. They become improper when used to coerce participation, condition

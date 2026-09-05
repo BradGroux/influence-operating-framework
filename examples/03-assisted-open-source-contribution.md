@@ -91,8 +91,9 @@ local until repeated evidence justifies broader guidance.
 
 ## Result
 
-Assistance reduces synthesis and drafting effort while the practitioner retains
-evidence review, scope, authorship, submission, and follow-through. The example
+Assistance supports synthesis and drafting while the practitioner retains
+evidence review, scope, authorship, submission, and follow-through. Net effort
+saved or added is unknown; source correction and testing also take time. The example
 does not require a particular model, agent protocol, or automation system.
 
 ## Framework trace

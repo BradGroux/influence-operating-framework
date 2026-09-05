@@ -1,6 +1,6 @@
 # Charter
 
-- **Status:** Accepted 1.0.2
+- **Status:** Accepted 2026.09.05
 - **Founding steward:** Brad Groux
 - **Effective date:** 2026-08-01
 
@@ -30,6 +30,9 @@ AI may assist, but assistance does not transfer responsibility for judgment or
 external action.
 
 ## Commitments
+
+These are chosen commitments, not evidence that applying the framework
+guarantees influence, trust, community benefit, or commercial results.
 
 1. **Leave every community better than you found it.** Participation should
    create or preserve value for the community, not merely extract attention.
